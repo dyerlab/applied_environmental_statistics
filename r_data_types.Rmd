@@ -69,18 +69,55 @@ which is exactly what we'd expect.  However, the way in which computers store de
 print(x, digits=20)
 ```
 
-Not quite 0.1 is it?  Not that far away from it but not exact.  That is a general problem, not one that R has any more claim to than any other language and/or implementation.  Does this matter much, probably not in the realm of the kinds of things we do in population genetics, it is just something that you should be aware of.
+Not quite 0.1 is it?  Not that far away from it but not exact.  That is a general problem, not one that R has any more claim to than any other language and/or implementation.  Does this matter much, perhaps not in the realm of the kinds of things we do in ecology and evolutionary studies but it is important that you understand some of the limitations of the systems we are working in.
+
+## Distributions
+
+A lot of the inferences we can glean about our data are based upon distributional assumptions--though we will examine some instances where they are not.  R has a wealth of built-in functions specifying different distributions.  In general, for each distribution, we have a function that allows us to generate random draws from that distribution as well as to inquire as to the probability (either cumulative or identity) of a particular value.
+
 You can make random sets of numeric data by using using functions describing various distributions.  For example, some random numbers from the normal distribution are:
 
 ```{r}
 rnorm(10)
 ```
 
-from the normal distribution with designated mean and standard deviation:
+The normal distribution has a probability density function of:
+
+$$
+\begin{equation}
+P(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{\frac{-(x-\mu)^2}{2\sigma^2}}
+\end{equation}
+$$
+where the parameters $\mu$ and $\sigma$ are the mean and standard deviation (or variance if you consider $\sigma^2$).  The normal distribution is a foundation in a wide range of statistical approaches.  In many cases, a collection of data, if we subtract the mean and divide it by the standard deviation, represents (at least to a close approximation) the Normal distribution (which is why it is so useful).  We know quite a bit about this distribution such as:  
+
+- Within $\mu \pm \sigma$ contains ~66% of the observations, wheras, 
+- Within $\mu \pm 2\sigma$ has 95%, and 
+- Within $\mu \pm 3\sigma$ has 97.5% of all the data.
+
+This is some pretty exciting and useful information, amiright?
+
+
+By default, the `rnorm()` function uses a mean of zero and a standard deviation of one.  If you wish, you can specify alternatives for this as:
 
 ```{r}
 rnorm(10,mean=42,sd=12)
 ```
+
+Here is an interactive widget to play around with the normal distribution to get a feel for the shape of data as defined by measures of the center (mean) and distribution (the standard deviation).  Also, note the extent to which the number of samples drawn from this distribution determine our ability to sucessfully describe it.  This is *the key* point to statistical inferences.  If we had an infinite number of data points, we would not need statistics.  It is only because we are taking a small set of observations and trying to derive biologically relevant inferences from them that we need to use statistical approaches.
+
+```{r, echo=FALSE, fig.width=7.5, fig.height=9}
+knitr::include_app("http://shiny.envs.vcu.edu/apps/env_stats/data_normal_distribution/",height = 900)
+```
+
+Here is another distribution, the Poisson Distribution^[Fishy non?].  This distribution is defined as:
+
+$$
+\begin{equation}
+P_\lambda(k) = \frac{\lambda^k e^{-\lambda}}{n!}
+\end{equation}
+$$
+
+and is parameerized by $\lambda$ is the mean of the distribution and $k$ is the number of events.
 
 A poisson distribution with mean 2:
 
