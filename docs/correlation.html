@@ -5,12 +5,12 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Applied Environmental Statitics</title>
+  <title>Applied Environmental Statistics</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="A textbook for the use of R in environmental statistics.">
   <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Applied Environmental Statitics" />
+  <meta property="og:title" content="Applied Environmental Statistics" />
   <meta property="og:type" content="book" />
   
   
@@ -18,7 +18,7 @@
   <meta name="github-repo" content="dyerlab/AppliedEnvironmentalStatistics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Applied Environmental Statitics" />
+  <meta name="twitter:title" content="Applied Environmental Statistics" />
   
   <meta name="twitter:description" content="A textbook for the use of R in environmental statistics." />
   
@@ -215,7 +215,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Environmental Statitics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Environmental Statistics</a>
           </h1>
         </div>
 
@@ -398,13 +398,13 @@ b &lt;-<span class="st"> </span><span class="kw">sin</span>(a)*<span class="dv">
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  b
-## W = 0.90311, p-value = 9.309e-05</code></pre>
+## W = 0.90965, p-value = 0.0001682</code></pre>
 <p>But if we look at the correlations</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(a,b)</code></pre></div>
-<pre><code>## [1] 0.9900828</code></pre>
+<pre><code>## [1] 0.9915559</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(a,b,<span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>)</code></pre></div>
-<pre><code>## [1] 0.9927448</code></pre>
-<p>in this case, the rank correlation is higher (0.0026619, not a lot but enough to prove the point that parametric approximations are not <u>always</u> producing higher estimates.</p>
+<pre><code>## [1] 0.9954983</code></pre>
+<p>in this case, the rank correlation is higher (0.0039424, not a lot but enough to prove the point that parametric approximations are not <u>always</u> producing higher estimates.</p>
 </div>
 <div id="permutation" class="section level2">
 <h2><span class="header-section-number">12.5</span> Permutation</h2>

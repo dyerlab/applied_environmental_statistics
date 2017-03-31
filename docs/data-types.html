@@ -5,12 +5,12 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Applied Environmental Statitics</title>
+  <title>Applied Environmental Statistics</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="A textbook for the use of R in environmental statistics.">
   <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Applied Environmental Statitics" />
+  <meta property="og:title" content="Applied Environmental Statistics" />
   <meta property="og:type" content="book" />
   
   
@@ -18,7 +18,7 @@
   <meta name="github-repo" content="dyerlab/AppliedEnvironmentalStatistics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Applied Environmental Statitics" />
+  <meta name="twitter:title" content="Applied Environmental Statistics" />
   
   <meta name="twitter:description" content="A textbook for the use of R in environmental statistics." />
   
@@ -215,7 +215,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Environmental Statitics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Environmental Statistics</a>
           </h1>
         </div>
 
@@ -262,19 +262,19 @@ x</code></pre></div>
 <pre><code>## [1] 0.099999999999999991673</code></pre>
 <p>Not quite 0.1 is it? Not that far away from it but not exact. That is a general problem, not one that R has any more claim to than any other language and/or implementation. Does this matter much, probably not in the realm of the kinds of things we do in population genetics, it is just something that you should be aware of. You can make random sets of numeric data by using using functions describing various distributions. For example, some random numbers from the normal distribution are:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>)</code></pre></div>
-<pre><code>##  [1]  0.9679307  1.2577435 -0.4562789  1.2420216 -0.5784370  0.4736129
-##  [7] -0.8761517  0.2199888 -1.9485221 -0.2691319</code></pre>
+<pre><code>##  [1]  0.1526190 -0.6659322 -1.1774442 -0.6286138 -0.3646070  1.0439848
+##  [7] -0.2601146 -1.6284827 -0.6165962  0.9498645</code></pre>
 <p>from the normal distribution with designated mean and standard deviation:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dt">mean=</span><span class="dv">42</span>,<span class="dt">sd=</span><span class="dv">12</span>)</code></pre></div>
-<pre><code>##  [1] 19.41253 51.93365 30.76463 32.11977 27.47805 25.65418 42.46047
-##  [8] 41.97363 39.34858 35.18764</code></pre>
+<pre><code>##  [1] 69.00018 40.79116 38.43658 55.39496 50.84577 48.13498 37.67157
+##  [8] 37.76372 38.89140 29.51579</code></pre>
 <p>A poisson distribution with mean 2:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rpois</span>(<span class="dv">10</span>,<span class="dt">lambda =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>##  [1] 0 2 4 1 2 3 4 1 3 2</code></pre>
+<pre><code>##  [1] 0 0 2 0 2 3 0 3 4 4</code></pre>
 <p>and the <span class="math inline">\(\chi^2\)</span> distribution with 1 degree of freedom:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rchisq</span>(<span class="dv">10</span>, <span class="dt">df=</span><span class="dv">1</span>)</code></pre></div>
-<pre><code>##  [1] 3.910081627 0.064539643 0.811388855 0.008339997 0.001925748
-##  [6] 0.019469490 4.896953308 2.532720573 0.138542269 0.145134578</code></pre>
+<pre><code>##  [1] 0.531174780 0.549421991 0.447662320 3.453371439 0.189660494
+##  [6] 0.009239056 0.633183532 2.784179923 0.005684152 0.035329996</code></pre>
 <p>There are several more distributions that if you need to access random numbers, quantiles, probability densities, and cumulative density values are available.</p>
 <div id="coercion-to-numeric" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> Coercion to Numeric</h3>
@@ -395,27 +395,26 @@ stable</code></pre></div>
 <p>It is common to use logical types to serve as indices for vectors. Say for example, you have a vector of data that you want to select some subset from.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>)
 data</code></pre></div>
-<pre><code>##  [1] -0.060330148  1.757068149  0.019086111 -0.005796285  0.496136437
-##  [6]  0.428455315 -0.949846630 -0.667583249 -0.876554929 -0.530485211
-## [11]  0.369259638  0.019481911  0.088226466  1.474884106  0.722016145
-## [16] -1.917560964  1.357659975  0.470550413  0.037420498  0.704237538</code></pre>
+<pre><code>##  [1] -0.29352327  1.91449704  0.03191540  0.31476829  0.15755715
+##  [6] -0.21414589  0.33892277 -1.26790869 -0.07903997 -0.95050615
+## [11] -1.39304141  0.17145114 -0.36575956  0.01764360  0.56176498
+## [16] -0.61544582 -1.22628733  0.33024014  0.75045070 -1.05975746</code></pre>
 <p>Perhaps you are on interested in the non-negative values</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data[ data &gt;<span class="st"> </span><span class="dv">0</span> ]</code></pre></div>
-<pre><code>##  [1] 1.75706815 0.01908611 0.49613644 0.42845531 0.36925964 0.01948191
-##  [7] 0.08822647 1.47488411 0.72201615 1.35765997 0.47055041 0.03742050
-## [13] 0.70423754</code></pre>
+<pre><code>##  [1] 1.9144970 0.0319154 0.3147683 0.1575572 0.3389228 0.1714511 0.0176436
+##  [8] 0.5617650 0.3302401 0.7504507</code></pre>
 <p>If you look at the condition being passed to as the index</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &gt;<span class="st"> </span><span class="dv">0</span></code></pre></div>
-<pre><code>##  [1] FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE
-## [12]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre><code>##  [1] FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE
+## [12]  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE</code></pre>
 <p>you see that individually, each value in the data vector is being evaluated as a logical value, satisfying the condition that it is strictly greater than zero. When you pass that as indices to a vector it only shows the indices that are <code>TRUE</code>.</p>
 <p>You can coerce a value into a logical if you understand the rules. Numeric types that equal 0 (zero) are <code>FALSE</code>, always. Any non-zero value is considered <code>TRUE</code>. Here I use the modulus operator, <code>%%</code>, which provides the remainder of a division.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span>:<span class="dv">20</span> %%<span class="st"> </span><span class="dv">2</span></code></pre></div>
 <pre><code>##  [1] 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0</code></pre>
 <p>which used as indices give us</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data[ (<span class="dv">1</span>:<span class="dv">20</span> %%<span class="st"> </span><span class="dv">2</span>) &gt;<span class="st"> </span><span class="dv">0</span> ]</code></pre></div>
-<pre><code>##  [1] -0.06033015  0.01908611  0.49613644 -0.94984663 -0.87655493
-##  [6]  0.36925964  0.08822647  0.72201615  1.35765997  0.03742050</code></pre>
+<pre><code>##  [1] -0.29352327  0.03191540  0.15755715  0.33892277 -0.07903997
+##  [6] -1.39304141 -0.36575956  0.56176498 -1.22628733  0.75045070</code></pre>
 <p>You can get as complicated in the creation of indices as you like, even using logical operators such as OR and AND. I leave that as an example for you to play with.</p>
 
 </div>
