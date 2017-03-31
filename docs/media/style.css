@@ -1,0 +1,53 @@
+.caption {
+  color: #777;
+    margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+p code {
+  white-space: inherit;
+}
+
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+
+pre code {
+  white-space: inherit;
+}
+
+.hanging {
+  padding-left: 22px;
+  text-indent: -22px;
+}
+
+.scrollingbox {
+  height: 250px;
+  overflow: scroll;
+  display: block;
+  white-space: pre-line;
+  background: #f7f7f7;
+    font-family: "courier new", courier, monospace;
+}
+
+.scrollingbox pre {
+  color:blue;
+  font-size: .85em !important;
+}
+
+
+table {
+  border: none;
+  width: auto !important;
+  border-collapse: collapse;
+}
+
+td {
+  white-space:nowrap;
+}
+
+tr:nth-child(2n){ 
+  background-color:rgba(0,0,0,0) !important;
+}
+

@@ -1,0 +1,9 @@
+book_filename: "Applied_Environmental_Statistics"
+chapter_name: ""
+output_dir: "docs"
+rmd_files: [
+  "index.Rmd",
+  "r_ecosystem.Rmd", "r_data_types.Rmd", "r_data_containers.Rmd",
+  "r_manipulating_data.Rmd",
+  "rmarkdown.Rmd"
+]
