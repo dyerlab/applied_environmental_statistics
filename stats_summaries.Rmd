@@ -1,0 +1,256 @@
+# (PART) Statistical Inferences {-}
+
+# Summary Statistics
+
+
+> In this secion we close out the exploring data section by defining measures of central tendency, dispersion, and explore a few ways to ordinate data.
+
+
+For these data, we will use the `iris` data set as an example.  This data set is built into `R` and is has the quantitative measurements for Sepal Width, Sepal Length, Petal Length, and Petal Width for 150 samples taken from individuals in three different species of *Iris*.
+
+```{r}
+summary(iris)
+```
+
+
+## Central Tendency
+
+Central tendency is a term we use to define the *center of gravity* of some data.  There are several measures of central tendency that we commonly use.  In `R`, only the arithmetic mean is included by default, to estimate the remaining ones, we can install the `DescTools` package.
+
+```{r eval=FALSE}
+install.packages("DescTools")
+```
+
+Once installed, we need to load it into memory.
+
+```{r message=FALSE}
+library(DescTools)
+```
+
+and we are ready to go.
+
+*Arithmetic Mean* - The arithmetic mean is the 'average' that we use on the common vernacular and is defined as:
+
+\[
+\mu = \frac{1}{N} \sum_{i=1}^N x_i
+\]
+
+In `R` we estimate it using the `mean()` function.
+
+```{r}
+mean( iris$Sepal.Width )
+```
+
+We can apply this across groupings in our data using the `by()` function (as we've done previously) to measure the mean of measurements across groups of observations.
+
+```{r}
+by( iris$Sepal.Width, iris$Species, mean )
+```
+
+*Geometric Mean* - The arithmetic mean is not the only way to measure the center of gravity of your data.  The geometric mean is defined as the $n^{th}$ root of the product of measurements.
+
+\[
+\mu_{g} = \left( \prod_{i=1}^N x_i \right)^{\frac{1}{N}}
+\]
+
+```{r message=FALSE, warning=FALSE}
+library(DescTools)
+Gmean(iris$Sepal.Width )
+```
+
+
+The geometric mean is often used to compare values that are multiples or exponential.  For example, in the *Iris* data, it may be more appropriate to evaluate differences in sepal area using the geometric mean rather than the arithmetic one.
+
+```{r}
+by( iris$Sepal.Width*iris$Sepal.Length, iris$Species, Gmean )
+```
+
+
+*Harmonic Mean* - The harmonic mean is an approach commonly applied to fractional data (percentages) or data that has outliers.  It is estimated as the recipricol of the arithmetic mean of reciprocals...
+
+\[
+\mu_{h} = \frac{1}{\frac{1}{N} \left( \frac{1}{x_1} + \frac{1}{x_2} + \cdots + \frac{1}{x_N} \right)}
+\]
+
+The effects of outliers can be seen in the example:
+
+```{r}
+x <- c(2,3,5,6,100)
+mean(x)
+Hmean(x)
+```
+
+In our iris data, we can apply the `Hmean` as before across species
+
+```{r}
+by( iris$Sepal.Width, iris$Species, Hmean )
+```
+
+*Median* - The median is the center of the data, the value where half of the observations are larger and half are smaller---the 50$^{th}$ quantile.
+
+```{r}
+median( iris$Sepal.Width )
+by( iris$Sepal.Width, iris$Species, median )
+```
+
+This is a rank-based measure of central tendency and one that we saw in the Normality discussion last week.
+
+## Dispersion
+
+In addition to the central tendency, for us to describe the data, we also need to know a bit about the dispersion of values around the center of gravity.  
+
+*Range* - The range is the physical separation between the smallest and largest values.
+
+```{r}
+range( iris$Sepal.Width )
+by( iris$Sepal.Width, iris$Species, range )
+```
+
+It is identical to:
+
+```{r}
+c( min(iris$Sepal.Width), max( iris$Sepal.Width))
+```
+
+
+*Sample Variance* - The variance of the data, $\sigma^2$, is defined as the average distance between the observations and the arithmetic mean of the observations.  It is not quite the 'average' since we need to punish ourselves for estimation the mean as we've lost a *degree of freedom*.  We will come back to this later in a more detailed way, just take it on faith right now.  The idealized formula is:
+
+\[
+s^2 = \frac{1}{N-1}\sum_{i=1}^N (x_i - \mu)^2
+\]
+
+which you should never use when using a computer to estimate the sample variance.  There are some significant problems with round-off error that cause this theoretical formula to produce incorrect results.  
+
+In `R` we estimate the variance as:
+
+```{r}
+var( iris$Sepal.Width )
+```
+
+and can be applied across groups as:
+
+```{r}
+by( iris$Sepal.Width, iris$Species, var)
+```
+
+where we can see that *I. setosa* has more variation in sepal width than the other species.  
+
+
+
+*Standard Deviation* - The units on the variance are not same as the units for the original data, since it is the deviance squared.  To interpret the dispersion in a way that is comparable, we take the square root of the variance - a term called the standard deviation.  And while it has its own formula
+
+```{r}
+sd( iris$Sepal.Width)
+```
+
+it is identical to
+
+```{r}
+sqrt( var( iris$Sepal.Width))
+```
+
+It is common to use the standard deviation to designate some spread of the data around the mean using error bars.  Here is an example using the `barplot()` and `arrows()` functions (*n.b.* I return the value of the x-coordinates from the bar plot function to use in the arrows function).
+
+```{r}
+mu <- by( iris$Sepal.Width, iris$Species, mean )
+b <- barplot(mu, ylim=c(0,4))
+sepal.sd <- by( iris$Sepal.Width, iris$Species, sd )
+x <- b
+y0 <- as.numeric( mu )
+y1 <- y0 + as.numeric( sepal.sd)
+arrows( x,y0,x,y1, angle = 90 )
+```
+
+## Ordination
+
+There is a group of routines that are used to visualize and reformat data called "ordination."  These approaches are not necessarily analyses, they are more commonly used to understand the underlying data or to reduce the dimensionality of multivariate data.  
+
+In this section, we are going to explore a bit about principal component (PC) rotation.  A PC rotation is one that takes the original columns of data and performs a rotation on the values to align onto new ‘synthetic' axes.  Consider the example in the next figure.  Here, some bivariate data is plot in 2-space, though this can be done for much higher dimensions of data as well—in fact it is more beneficial with more columns of data and this can be used as a way of reducing the dimensionality of the data while loosing very little (or no) content.  The axes of a PC rotation are taken as linear combinations of the existing axes and define a new coordinate set onto which the points are plot.  All points are rigidly constrained to keep the same relationship and there is no loss of information.  The PC axes are defined by determining the most variable stretch through the data. In the figure, we see the raw data plot onto the X- and Y-axes.  The axis of highest variance does not align with either of the original ones, and instead can be defined as a combination of both X- and Y- coordinates.  
+
+```{r echo=FALSE}
+knitr::include_graphics("PCA.png")
+```
+
+
+If we take the blue axis as the first PC axis, the coordinate of the points would be taken along that new synthetic axis.  The next PC axis is defined as being perpendicular to the previous one(s) and is identified as covering the largest variance in the data as before.  This process continues until there are no more axes.  In our case, the second axis would be at a right angle from the blue line (above).  You can, at maximum, have as many PC axes as there are columns of data.  However, the later axes may not explain significant portions of the underlying data, the process of rotating based upon axes of maximal variation may be able to capture the complete data set with fewer axes than the total set.  This is where a technique like this may be helpful in reducing the dimensionality of the data as well as finding the 'big trends' that may exist in the data set.
+
+To perform this rotation on the *iris* data, we use the `princomp()` function.  Here we focus only on the numerical data (of course) as the `factor` is not something we can do this kind of rotation with.
+
+
+```{r}
+fit.pca <- princomp(iris[,1:4], cor = TRUE)
+```
+
+
+Here are the first 8 (out of 50 potential) axes for the arapat data set.
+
+```{r}
+summary(fit.pca)
+```
+
+This output has two important components to it.  First, it shows the axes, in decreasing order of importance and how much of the total variation they describe.  The first Comp.1 axis explains 72.9% of the variance, the second explains 22.8%, etc.  Second, it shows the cumulative proportion of the variation explained.  From the 4 axes we started with, we can explain 95.8% of the variance by using just the first two PC axes.
+
+Where this becomes meaningful for us is in how we can project our original data onto these new coordinate locations and look at the distribution to see if there are any obvious trends, partitions, gradients, etc.  
+
+```{r warning=FALSE, message=FALSE}
+library(ggplot2)
+pred <- predict(fit.pca)
+df <- data.frame(PC1 = pred[, 1], PC2 = pred[, 2])
+df$Species <- iris$Species
+ggplot(df) + geom_point(aes(x = PC1, y = PC2, color = Species), size = 3, alpha = 0.75)
+```
+
+We can see from the plot that the the samples are clustered in an obvious way.  The designation of ‘Species' as depicted by the color of the points, shows definite partitions between *I. setosa* and the remaining species (along the PC1 axis). However, projected onto the PC2 axis, there does not seem to be a partitioning of the samples differentiating the species in an obvious way.  
+
+## Hierarchical Clustering
+
+In the previous section, we defined a new coordinate space for all samples in the data set.  The rotation of the data was able to describe over 95% of the observed variation using only the first two PC axes.  In this section, we are going to use the rotated coordinates to evaluate species-level differences using a hierarchical clustering method.  Hierarchical clustering are very helpful in understanding groupings in the data, particularly if there is a ‘nesting' structure.  While there are many ways to do it, they all generally proceed as follows:  
+1. Define a numeric metric that measured the distances between all K groups.  
+2. Find the two groups that have the smallest distance and coalesce them together into a pair.  
+3. Assume that the coalesced pair now constitutes a single entity, estimate the numeric metric among all K-1 groups in the data set.  
+4. Go to #2 and repeat until you have coalesced all the groups together.
+
+Here again, it is the data that is telling us how it is structured rather than us imposing a model onto the data to see if it fits.
+
+To perform a clustering, we first need to start with a distance matrix based upon the original data.
+
+```{r}
+iris.dist <- dist( iris[,1:4] )
+```
+
+We can then perform the above algorithm using the `hclust()` function.
+
+```{r}
+h <- hclust( iris.dist )
+plot( h )
+```
+
+Which shows a deep separation between groups.  Lets see if we can get a bit more interpretive power out of it by changing the labels to show species:
+
+```{r}
+h$labels <- iris$Species 
+plot( h , cex=0.5)
+```
+
+You may need to 'zoom' that one a bit to understand the labels because I reduced their font size (the `cex` bit in the plot statement).   This is interesting but would be helpful if we could provide a bit of color to the plot to differentiate the `Species`.  Unfortunately, we cannot just add `col=Species` (for reasons I don't quite understand) to the plot but there is a way to change the `h` object into one that can be colored.  However, you **must** first install a new library if you don't already have it, which I am guessing if this is the first time you've done some work using trees in R you have not.  Install it in the normal fashion 
+
+```{r eval=FALSE}
+install.packages("dendextend")
+```
+
+Then we can use it like
+
+```{r warning=FALSE, message=FALSE}
+library( dendextend )
+d <- as.dendrogram( h )
+labels_colors( d ) <- as.numeric( iris$Species )
+plot( d )
+```
+
+There are some interesting things to notice here.   
+- The green *setosa* group seems to be nicely separated from the rest, just like we saw in the PC plot.
+- There are some individual samples that are a bit mixed, the *I. virginica* and *I. versicolor* samples are mixed together not forming a coherent group.
+
+These plot suggest that morphology along may be a good indicator of species differences for *I. setosa* but not perhaps that good for telling the differences between the *I. virginica* and *I. versicolor* samples.
+
+

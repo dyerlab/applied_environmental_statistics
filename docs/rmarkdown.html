@@ -32,7 +32,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="manipulating-data.html">
+<link rel="prev" href="r-programming.html">
 
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -144,13 +144,25 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.6" data-path="manipulating-data.html"><a href="manipulating-data.html#manipulating-data-1"><i class="fa fa-check"></i><b>5.6</b> Manipulating Data</a></li>
 <li class="chapter" data-level="5.7" data-path="manipulating-data.html"><a href="manipulating-data.html#tabulating"><i class="fa fa-check"></i><b>5.7</b> Tabulating</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>6</b> RMarkdown</a><ul>
-<li class="chapter" data-level="6.1" data-path="rmarkdown.html"><a href="rmarkdown.html#markdown"><i class="fa fa-check"></i><b>6.1</b> Markdown</a></li>
-<li class="chapter" data-level="6.2" data-path="rmarkdown.html"><a href="rmarkdown.html#marking-up-text"><i class="fa fa-check"></i><b>6.2</b> Marking up Text</a></li>
-<li class="chapter" data-level="6.3" data-path="rmarkdown.html"><a href="rmarkdown.html#inserting-r-code-chunks"><i class="fa fa-check"></i><b>6.3</b> Inserting R Code Chunks</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="rmarkdown.html"><a href="rmarkdown.html#chunk-options"><i class="fa fa-check"></i><b>6.3.1</b> Chunk Options</a></li>
+<li class="chapter" data-level="6" data-path="r-programming.html"><a href="r-programming.html"><i class="fa fa-check"></i><b>6</b> R Programming</a><ul>
+<li class="chapter" data-level="6.1" data-path="r-programming.html"><a href="r-programming.html#function-writing"><i class="fa fa-check"></i><b>6.1</b> Function Writing</a></li>
+<li class="chapter" data-level="6.2" data-path="r-programming.html"><a href="r-programming.html#variable-scope"><i class="fa fa-check"></i><b>6.2</b> Variable Scope</a></li>
+<li class="chapter" data-level="6.3" data-path="r-programming.html"><a href="r-programming.html#decision-making"><i class="fa fa-check"></i><b>6.3</b> Decision Making</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="r-programming.html"><a href="r-programming.html#the-if-pattern"><i class="fa fa-check"></i><b>6.3.1</b> The if Pattern</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="rmarkdown.html"><a href="rmarkdown.html#variables-in-text"><i class="fa fa-check"></i><b>6.4</b> Variables in Text</a></li>
+<li class="chapter" data-level="6.4" data-path="r-programming.html"><a href="r-programming.html#the-if-else-pattern"><i class="fa fa-check"></i><b>6.4</b> The <code>if-else</code> Pattern</a></li>
+<li class="chapter" data-level="6.5" data-path="r-programming.html"><a href="r-programming.html#flow-control"><i class="fa fa-check"></i><b>6.5</b> Flow Control</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="r-programming.html"><a href="r-programming.html#the-for-loop"><i class="fa fa-check"></i><b>6.5.1</b> The <code>for()</code> Loop</a></li>
+<li class="chapter" data-level="6.5.2" data-path="r-programming.html"><a href="r-programming.html#short-circuiting-the-loop"><i class="fa fa-check"></i><b>6.5.2</b> Short Circuiting the Loop</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>7</b> RMarkdown</a><ul>
+<li class="chapter" data-level="7.1" data-path="rmarkdown.html"><a href="rmarkdown.html#markdown"><i class="fa fa-check"></i><b>7.1</b> Markdown</a></li>
+<li class="chapter" data-level="7.2" data-path="rmarkdown.html"><a href="rmarkdown.html#marking-up-text"><i class="fa fa-check"></i><b>7.2</b> Marking up Text</a></li>
+<li class="chapter" data-level="7.3" data-path="rmarkdown.html"><a href="rmarkdown.html#inserting-r-code-chunks"><i class="fa fa-check"></i><b>7.3</b> Inserting R Code Chunks</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="rmarkdown.html"><a href="rmarkdown.html#chunk-options"><i class="fa fa-check"></i><b>7.3.1</b> Chunk Options</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="rmarkdown.html"><a href="rmarkdown.html#variables-in-text"><i class="fa fa-check"></i><b>7.4</b> Variables in Text</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="http://dyerlab.org" target="blank">the Dyer Laboratory</a></li>
@@ -173,12 +185,12 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="rmarkdown" class="section level1">
-<h1><span class="header-section-number">6</span> RMarkdown</h1>
+<h1><span class="header-section-number">7</span> RMarkdown</h1>
 <blockquote>
 <p>Writing code and the associated text around the analyses and your data is an odd job that munges together some programming skills, a lot of copy-and-paste, saving images, menu jujitsu (Insert <span class="math inline">\(\to\)</span> Image <span class="math inline">\(\to\)</span> From Computer…), etc. One of the things that we should strive to do is to minimize the amount of stoooopid work that we have to do in our daily lives, right? Markdown is a way to create textual output that can be magically turned into many types of output. In this section, we start looking at some markdown examples that integrate our data, analysis code, and output into a single document that makes our lives suck just a little bit less .</p>
 </blockquote>
 <div id="markdown" class="section level2">
-<h2><span class="header-section-number">6.1</span> Markdown</h2>
+<h2><span class="header-section-number">7.1</span> Markdown</h2>
 <p>Consider the case where you are making a report using a word processor like Word or Pages. The most basic part of that document is the actual text that you use in the document. Certain parts of that text represent different ‘landmarks’ in the paper, titles and headers are typically of a different typeface, images are saved from a different program, etc. If you are to include code, results from analyses, images of output and other stuff that isn’t directly typed into the document, you must do that outside the word processor and somehow insert it into that document. This moving between the processor where you are typing the actual content and other external sources of content and mushing them together is pretty much common place.</p>
 <p>In addition to this work flow, at the end of the day you spend a lot of time working on presentation style. Images and tables moving between page breaks, manually renumbering equations and figures, trying to figure out where captions and figure legends go, and at the end of the day, making sure the statistical work that you did stays in sync with how you are presenting the output in the document. One change in your analysis may percolate to many changes throughout the document that you must manually fix. Perhaps more importantly though, at the end of the day, you are left with a single Word document. What if you want to take those analyses and make a presentation, poster, website, docbook, or pdf out of it? What if you want to make automatic reports on continuous data sources? You have to do this over and over again manually because you are stuck using a word processor that only makes one kind of output. Markdown was designed as a way to create content and display it in many different formats, from the same kind of source. It is a very simple way of creating content that allows you to present it in a wide variety of output formats.</p>
 <p>Markdown is, at a bare minimum, just text. Anyone can write it using any editor you like. For our purposes, RStudio is a nice editor and the one we will use. A markdown file is saved with the extension .Rmd (or .rmd). To make a markdown document in RStudio, select File <span class="math inline">\(\to\)</span> New File <span class="math inline">\(\to\)</span> RMarkdown… and you will be give a dialog of potential types of markdown templates to start from that look like the following image. The main categories on the left are:</p>
@@ -194,7 +206,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <p><img src="./media/RMarkdownDialog.png" alt="RMarkdown Dialog" /> For the time being, lets stick with documents and keep the default setting for HTML. As noted in the dialog, we can switch to the other formats later without a problem and HTML output is perhaps the most versatile for using while we are creating the document.</p>
 </div>
 <div id="marking-up-text" class="section level2">
-<h2><span class="header-section-number">6.2</span> Marking up Text</h2>
+<h2><span class="header-section-number">7.2</span> Marking up Text</h2>
 <p>In a markdown document, it is all text. As such, we need to do typographic things like make headings, bold, italics, etc. Markdown accomplishes these by using symbols around the textual items you are changing. Here are some examples as an image (if I typed them into this document, which is RMarkdown, they would be converted so you wouldn’t see them).</p>
 <p><img src="./media/Headers.png" /><!-- --></p>
 <p><img src="./media/Emphasis.png" /><!-- --></p>
@@ -202,14 +214,14 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <p>There are a lot more markup options (footnotes, links, citations, etc.) that can be found by selecting <em>Help <span class="math inline">\(\to\)</span> Markdown Quick Reference</em> in RStudio.</p>
 </div>
 <div id="inserting-r-code-chunks" class="section level2">
-<h2><span class="header-section-number">6.3</span> Inserting R Code Chunks</h2>
+<h2><span class="header-section-number">7.3</span> Inserting R Code Chunks</h2>
 <p>In markdown, code is contained with what is called a ‘chunk’. This chunk can be a block of code (encompassing some kind of data analysis or the creation of some kind of graphical output) or it can be a bit that is inserted inline with your text (e.g., something like <em>P &lt; 0.0323</em> may be computed and inserted on the fly).</p>
 <p>You can insert a chunk of code by selecting the R option from the Insert menu just above the editor (see below). There is also a keyboard shortcut that can be used to insert a chunk without going to the menu (and it is much faster), though they are platform dependent.</p>
 <p><img src="./media/RStudioInsertChunk.png" /><!-- --></p>
 <p>Once you insert a chunk, RStudio provides a highlighted section within which you can insert your code. Everything within the chunk itself is going to be interpreted just as if it were written in a normal R script.</p>
 <p><img src="./media/chunk.png" /><!-- --></p>
 <div id="chunk-options" class="section level3">
-<h3><span class="header-section-number">6.3.1</span> Chunk Options</h3>
+<h3><span class="header-section-number">7.3.1</span> Chunk Options</h3>
 <p>There are several options you can specify that determine the behavior of the chunk. These are inserted within the curly brackets at the top of the chunk. Some of the more common ones include:</p>
 <ul>
 <li><code>eval=TRUE/FALSE</code> Determine if the code is actually run. Perhaps you are just demonstrating the code.</li>
@@ -221,11 +233,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </div>
 </div>
 <div id="variables-in-text" class="section level2">
-<h2><span class="header-section-number">6.4</span> Variables in Text</h2>
+<h2><span class="header-section-number">7.4</span> Variables in Text</h2>
 <p>Variables and values from the R code in your document can be inserted into the text as well. To do this, you enclose the R code you are using in between a backslash plus the letter r (“<code>r&quot;) and a trailing backslash (&quot;</code>”). Here is an image of an example</p>
 <p><img src="./media/intext_chunk.png" /><!-- --></p>
 <p>and the output:</p>
-<p>My all time favorite number is 9 and always has been.</p>
+<p>My all time favorite number is 8 and always has been.</p>
 
 </div>
 </div>
@@ -240,7 +252,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="manipulating-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-programming.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

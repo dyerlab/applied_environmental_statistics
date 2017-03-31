@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Applied Environmental Statitics</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="A textbook for the use of R in environmental statistics.">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Applied Environmental Statitics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A textbook for the use of R in environmental statistics." />
+  <meta name="github-repo" content="dyerlab/AppliedEnvironmentalStatistics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Applied Environmental Statitics" />
+  
+  <meta name="twitter:description" content="A textbook for the use of R in environmental statistics." />
+  
+
+<meta name="author" content="Rodney J. Dyer">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="summary-statistics.html">
+<link rel="next" href="linear-regression.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="media/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Frontmatter</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#typography"><i class="fa fa-check"></i>Typography</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#interactive-content"><i class="fa fa-check"></i>Interactive Content</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#dedication"><i class="fa fa-check"></i>Dedication</a></li>
+</ul></li>
+<li class="part"><span><b>I Foundations</b></span></li>
+<li class="chapter" data-level="1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html"><i class="fa fa-check"></i><b>1</b> The R Ecosystem</a><ul>
+<li class="chapter" data-level="1.1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#getting-r-configured"><i class="fa fa-check"></i><b>1.1</b> Getting R Configured</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#packages"><i class="fa fa-check"></i><b>1.1.1</b> Packages</a></li>
+<li class="chapter" data-level="1.1.2" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#cran"><i class="fa fa-check"></i><b>1.1.2</b> CRAN</a></li>
+<li class="chapter" data-level="1.1.3" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#github"><i class="fa fa-check"></i><b>1.1.3</b> GitHub</a></li>
+<li class="chapter" data-level="1.1.4" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#bioconductor"><i class="fa fa-check"></i><b>1.1.4</b> Bioconductor</a></li>
+<li class="chapter" data-level="1.1.5" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#troublesome-packages"><i class="fa fa-check"></i><b>1.1.5</b> Troublesome Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#libraries-used"><i class="fa fa-check"></i><b>1.2</b> Libraries Used</a></li>
+<li class="chapter" data-level="1.3" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#the-rstudio-environment"><i class="fa fa-check"></i><b>1.3</b> The RStudio Environment</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-types.html"><a href="data-types.html"><i class="fa fa-check"></i><b>2</b> Data Types</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-types.html"><a href="data-types.html#numeric-data-types"><i class="fa fa-check"></i><b>2.1</b> Numeric Data Types</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data-types.html"><a href="data-types.html#coercion-to-numeric"><i class="fa fa-check"></i><b>2.1.1</b> Coercion to Numeric</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-types.html"><a href="data-types.html#characters"><i class="fa fa-check"></i><b>2.2</b> Characters</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="data-types.html"><a href="data-types.html#concatenation-of-characters"><i class="fa fa-check"></i><b>2.2.1</b> Concatenation of Characters</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-types.html"><a href="data-types.html#coercion-to-characters"><i class="fa fa-check"></i><b>2.2.2</b> Coercion to Characters</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="data-types.html"><a href="data-types.html#factors"><i class="fa fa-check"></i><b>2.3</b> Factors</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data-types.html"><a href="data-types.html#missing-levels-in-factors"><i class="fa fa-check"></i><b>2.3.1</b> Missing Levels in Factors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-types.html"><a href="data-types.html#logical-types"><i class="fa fa-check"></i><b>2.4</b> Logical Types</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-containers.html"><a href="data-containers.html"><i class="fa fa-check"></i><b>3</b> Data Containers</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-containers.html"><a href="data-containers.html#vectors"><i class="fa fa-check"></i><b>3.1</b> Vectors</a></li>
+<li class="chapter" data-level="3.2" data-path="data-containers.html"><a href="data-containers.html#matrices"><i class="fa fa-check"></i><b>3.2</b> Matrices</a></li>
+<li class="chapter" data-level="3.3" data-path="data-containers.html"><a href="data-containers.html#lists"><i class="fa fa-check"></i><b>3.3</b> Lists</a></li>
+<li class="chapter" data-level="3.4" data-path="data-containers.html"><a href="data-containers.html#data-frames"><i class="fa fa-check"></i><b>3.4</b> Data Frames</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="data-containers.html"><a href="data-containers.html#indexing-data-frames"><i class="fa fa-check"></i><b>3.4.1</b> Indexing Data Frames</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulating-data.html"><a href="manipulating-data.html"><i class="fa fa-check"></i><b>4</b> Manipulating Data</a><ul>
+<li class="chapter" data-level="4.1" data-path="manipulating-data.html"><a href="manipulating-data.html#data-import-export"><i class="fa fa-check"></i><b>4.1</b> Data Import &amp; Export</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulating-data.html"><a href="manipulating-data.html#diving-into-data"><i class="fa fa-check"></i><b>4.2</b> Diving Into Data</a></li>
+<li class="chapter" data-level="4.3" data-path="manipulating-data.html"><a href="manipulating-data.html#factor-character-data"><i class="fa fa-check"></i><b>4.3</b> Factor &amp; Character Data</a></li>
+<li class="chapter" data-level="4.4" data-path="manipulating-data.html"><a href="manipulating-data.html#indexing"><i class="fa fa-check"></i><b>4.4</b> Indexing</a></li>
+<li class="chapter" data-level="4.5" data-path="manipulating-data.html"><a href="manipulating-data.html#sorting-ordering"><i class="fa fa-check"></i><b>4.5</b> Sorting &amp; Ordering</a></li>
+<li class="chapter" data-level="4.6" data-path="manipulating-data.html"><a href="manipulating-data.html#manipulating-data-1"><i class="fa fa-check"></i><b>4.6</b> Manipulating Data</a></li>
+<li class="chapter" data-level="4.7" data-path="manipulating-data.html"><a href="manipulating-data.html#tabulating"><i class="fa fa-check"></i><b>4.7</b> Tabulating</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="programming.html"><a href="programming.html"><i class="fa fa-check"></i><b>5</b> Programming</a><ul>
+<li class="chapter" data-level="5.1" data-path="programming.html"><a href="programming.html#function-writing"><i class="fa fa-check"></i><b>5.1</b> Function Writing</a></li>
+<li class="chapter" data-level="5.2" data-path="programming.html"><a href="programming.html#variable-scope"><i class="fa fa-check"></i><b>5.2</b> Variable Scope</a></li>
+<li class="chapter" data-level="5.3" data-path="programming.html"><a href="programming.html#decision-making"><i class="fa fa-check"></i><b>5.3</b> Decision Making</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="programming.html"><a href="programming.html#the-if-pattern"><i class="fa fa-check"></i><b>5.3.1</b> The if Pattern</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="programming.html"><a href="programming.html#the-if-else-pattern"><i class="fa fa-check"></i><b>5.4</b> The <code>if-else</code> Pattern</a></li>
+<li class="chapter" data-level="5.5" data-path="programming.html"><a href="programming.html#flow-control"><i class="fa fa-check"></i><b>5.5</b> Flow Control</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="programming.html"><a href="programming.html#the-for-loop"><i class="fa fa-check"></i><b>5.5.1</b> The <code>for()</code> Loop</a></li>
+<li class="chapter" data-level="5.5.2" data-path="programming.html"><a href="programming.html#short-circuiting-the-loop"><i class="fa fa-check"></i><b>5.5.2</b> Short Circuiting the Loop</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>6</b> Markdown</a><ul>
+<li class="chapter" data-level="6.1" data-path="markdown.html"><a href="markdown.html#markdown-1"><i class="fa fa-check"></i><b>6.1</b> Markdown</a></li>
+<li class="chapter" data-level="6.2" data-path="markdown.html"><a href="markdown.html#marking-up-text"><i class="fa fa-check"></i><b>6.2</b> Marking up Text</a></li>
+<li class="chapter" data-level="6.3" data-path="markdown.html"><a href="markdown.html#inserting-r-code-chunks"><i class="fa fa-check"></i><b>6.3</b> Inserting R Code Chunks</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="markdown.html"><a href="markdown.html#chunk-options"><i class="fa fa-check"></i><b>6.3.1</b> Chunk Options</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="markdown.html"><a href="markdown.html#variables-in-text"><i class="fa fa-check"></i><b>6.4</b> Variables in Text</a></li>
+</ul></li>
+<li class="part"><span><b>II Data</b></span></li>
+<li class="chapter" data-level="7" data-path="manipulating-data-2.html"><a href="manipulating-data-2.html"><i class="fa fa-check"></i><b>7</b> Manipulating Data</a></li>
+<li class="chapter" data-level="8" data-path="graphical-display.html"><a href="graphical-display.html"><i class="fa fa-check"></i><b>8</b> Graphical Display</a></li>
+<li class="chapter" data-level="9" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>9</b> GGPlot</a></li>
+<li class="chapter" data-level="10" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>10</b> Spatial Data</a></li>
+<li class="part"><span><b>III Statistical Inferences</b></span></li>
+<li class="chapter" data-level="11" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>11</b> Summary Statistics</a><ul>
+<li class="chapter" data-level="11.1" data-path="summary-statistics.html"><a href="summary-statistics.html#central-tendency"><i class="fa fa-check"></i><b>11.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="11.2" data-path="summary-statistics.html"><a href="summary-statistics.html#dispersion"><i class="fa fa-check"></i><b>11.2</b> Dispersion</a></li>
+<li class="chapter" data-level="11.3" data-path="summary-statistics.html"><a href="summary-statistics.html#ordination"><i class="fa fa-check"></i><b>11.3</b> Ordination</a></li>
+<li class="chapter" data-level="11.4" data-path="summary-statistics.html"><a href="summary-statistics.html#hierarchical-clustering"><i class="fa fa-check"></i><b>11.4</b> Hierarchical Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>12</b> Correlation</a><ul>
+<li class="chapter" data-level="12.1" data-path="correlation.html"><a href="correlation.html#the-data"><i class="fa fa-check"></i><b>12.1</b> The Data</a></li>
+<li class="chapter" data-level="12.2" data-path="correlation.html"><a href="correlation.html#parametric-correlations"><i class="fa fa-check"></i><b>12.2</b> Parametric Correlations</a></li>
+<li class="chapter" data-level="12.3" data-path="correlation.html"><a href="correlation.html#non-parametric-correlation"><i class="fa fa-check"></i><b>12.3</b> Non-Parametric Correlation</a></li>
+<li class="chapter" data-level="12.4" data-path="correlation.html"><a href="correlation.html#differences"><i class="fa fa-check"></i><b>12.4</b> Differences</a></li>
+<li class="chapter" data-level="12.5" data-path="correlation.html"><a href="correlation.html#permutation"><i class="fa fa-check"></i><b>12.5</b> Permutation</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>13</b> Linear Regression</a><ul>
+<li class="chapter" data-level="13.1" data-path="linear-regression.html"><a href="linear-regression.html#the-data-1"><i class="fa fa-check"></i><b>13.1</b> The Data</a></li>
+<li class="chapter" data-level="13.2" data-path="linear-regression.html"><a href="linear-regression.html#least-squares-linear-regression"><i class="fa fa-check"></i><b>13.2</b> Least Squares Linear Regression</a></li>
+<li class="chapter" data-level="13.3" data-path="linear-regression.html"><a href="linear-regression.html#fitting-a-linear-model"><i class="fa fa-check"></i><b>13.3</b> Fitting a Linear Model</a></li>
+<li class="chapter" data-level="13.4" data-path="linear-regression.html"><a href="linear-regression.html#multiple-regression"><i class="fa fa-check"></i><b>13.4</b> Multiple Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>14</b> Analysis of Variance</a><ul>
+<li class="chapter" data-level="14.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#one-sample-hypotheses"><i class="fa fa-check"></i><b>14.1</b> One Sample Hypotheses</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#data-variability"><i class="fa fa-check"></i><b>14.1.1</b> Data Variability</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#two-sample-hypotheses"><i class="fa fa-check"></i><b>14.2</b> Two Sample Hypotheses</a></li>
+<li class="chapter" data-level="14.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#many-sample-hypotheses"><i class="fa fa-check"></i><b>14.3</b> Many Sample Hypotheses</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#post-hoc-tests"><i class="fa fa-check"></i><b>14.3.1</b> Post-Hoc Tests</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="http://dyerlab.org" target="blank">the Dyer Laboratory</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Environmental Statitics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="correlation" class="section level1">
+<h1><span class="header-section-number">12</span> Correlation</h1>
+<blockquote>
+<p>In this activity, we will be exploring the use of correlation and how we can get inferences about the degree of correlation between sets of data. The most important thing to remember is that correlation does not imply causation, it is only designed to determine the way variables systematically change.</p>
+</blockquote>
+<div id="the-data" class="section level2">
+<h2><span class="header-section-number">12.1</span> The Data</h2>
+<p>For this example, we will go back to our old friend, the Beer Styles data set.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Beer_Styles.csv&quot;</span>)
+<span class="kw">summary</span>(data)</code></pre></div>
+<pre><code>##                  Styles      Yeast       ABV_Min         ABV_Max      
+##  Altbier            : 1   Ale   :69   Min.   :2.400   Min.   : 3.200  
+##  Amber Kellerbier   : 1   Either: 4   1st Qu.:4.200   1st Qu.: 5.475  
+##  American Amber Ale : 1   Lager :27   Median :4.600   Median : 6.000  
+##  American Barleywine: 1               Mean   :4.947   Mean   : 6.768  
+##  American Brown Ale : 1               3rd Qu.:5.500   3rd Qu.: 8.000  
+##  American IPA       : 1               Max.   :9.000   Max.   :14.000  
+##  (Other)            :94                                               
+##     IBU_Min         IBU_Max          SRM_Min         SRM_Max     
+##  Min.   : 0.00   Min.   :  8.00   Min.   : 2.00   Min.   : 3.00  
+##  1st Qu.:15.00   1st Qu.: 25.00   1st Qu.: 3.50   1st Qu.: 7.00  
+##  Median :20.00   Median : 35.00   Median : 8.00   Median :17.00  
+##  Mean   :21.97   Mean   : 38.98   Mean   : 9.82   Mean   :17.76  
+##  3rd Qu.:25.00   3rd Qu.: 45.00   3rd Qu.:14.00   3rd Qu.:22.00  
+##  Max.   :60.00   Max.   :120.00   Max.   :30.00   Max.   :40.00  
+##                                                                  
+##      OG_Min          OG_Max          FG_Min          FG_Max     
+##  Min.   :1.026   Min.   :1.032   Min.   :0.998   Min.   :1.006  
+##  1st Qu.:1.040   1st Qu.:1.052   1st Qu.:1.008   1st Qu.:1.012  
+##  Median :1.046   Median :1.060   Median :1.010   Median :1.015  
+##  Mean   :1.049   Mean   :1.065   Mean   :1.009   Mean   :1.016  
+##  3rd Qu.:1.056   3rd Qu.:1.075   3rd Qu.:1.010   3rd Qu.:1.018  
+##  Max.   :1.080   Max.   :1.130   Max.   :1.020   Max.   :1.040  
+## </code></pre>
+<p>Intuitively, we have been displaying data in the manner appropriate for correlations for some time using the scatter plot. Here is an example display using the maximum Original Gravity (a measure of how much sugar is in the pre-fermented beer—technically called wort) and the final level of alcohol (what the yeast makes by munching on the sugar). These are obviously related variables, you cannot have a high alcohol fermented liquid by starting with a low sugar wort.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>( ggplot2 )
+x &lt;-<span class="st"> </span>data$OG_Max
+y &lt;-<span class="st"> </span>data$ABV_Max
+df &lt;-<span class="st"> </span><span class="kw">data.frame</span>( x, y )
+<span class="kw">ggplot</span>( df, <span class="kw">aes</span>(x,y) ) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;ABV&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;OG&quot;</span>)</code></pre></div>
+<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-188-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>The extent to which these variables change together is quantified by a correlation statistic.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(x,y)</code></pre></div>
+<pre><code>## [1] 0.9541928</code></pre>
+<p>This correlation statistic, <span class="math inline">\(\rho\)</span>, is bound between -1 (perfect negative correlation) and +1 (perfect positive correlation). In our example here, the correlation is <span class="math inline">\(\rho=\)</span> 0.954, suggesting that there is a positive association and it is quite strong (close to +1).</p>
+<p>Using a combination of either <code>plot()</code> or <code>geom_point()</code> and <code>cor()</code>, we can both display and evaluate the correlation between two variables. For more than two, we can either iteratively go through all possible pairs and plot/evaluate them individually, or we can use the <code>GGally</code> package to plot all pairs of variables. You may need to install the <code>GGally</code> package (it is not installed by default). If you get an error message when you use <code>library(GGally)</code> install the package from CRAN using the command <code>install.packages(&quot;GGally&quot;)</code>. Here I plot the maximum values for each property of the styles (and change the base font size so that it shows up properly on the PDF output).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
+<span class="kw">ggpairs</span>(data[<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">12</span>)]) +<span class="st"> </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">8</span>)</code></pre></div>
+<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-190-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>There are three components to this graphical output. Above the diagonal is the pair-wise correlation, on the diagonal is the density (histogram) of each variable, and below the diagonal is the plot. The <code>ggpairs()</code> function is quite extensible. You can specify the kinds of plots to be used above, on, and below the diagonal. You can also mix and match different types of data and it will plot them accordingly. Here is an example if I include the <code>data$Yeast</code> column, which is a factor.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggpairs</span>(data[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>)]) +<span class="st"> </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">8</span>)</code></pre></div>
+<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-191-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Because it is a factor, it presents the pair-wise correlations in a slightly different way. A word of caution. You should be very careful when using this plot with a lot of data types. It takes a bit of time to create each of these graphical outputs and display them. If you make the mistake of doing too many, you might as well go get some coffee because it will take a bit of time for it to finish.</p>
+</div>
+<div id="parametric-correlations" class="section level2">
+<h2><span class="header-section-number">12.2</span> Parametric Correlations</h2>
+<p>The most common kind of correlation is Pearson’s product moment statistic. It is defined as:</p>
+<p><span class="math display">\[
+\rho = \frac{\sum_{i=1}^N(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^N(x_i-\bar{x})^2} \sqrt{\sum_{i=1}^N(x_i-\bar{x})^2}}
+\]</span></p>
+<p>where the numerator is a measure of the covariance between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, divided by the product of the individual variable variance estimates. The resulting parameter <span class="math inline">\(r\)</span>, which approximates the statistic <span class="math inline">\(\rho\)</span>, relies upon assumptions of normality.</p>
+<p>To date, we’ve been using the <code>cor()</code> function to estimate correlations. Check out the documentation on it by running. You will see there are several options.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?cor</code></pre></div>
+<p>For our example data, we can estimate the correlation as:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(x,y)</code></pre></div>
+<pre><code>## [1] 0.9541928</code></pre>
+<p>whose default is Pearson’s estimator. Simply having a correlation is not sufficient though. Is this value significantly different than zero? How do we know? To evaluate our confidence in this statistic being significantly different than zero (both negative and positive), we can use the <code>cor.test()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor.test</span>(x,y)</code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  x and y
+## t = 31.572, df = 98, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.9325548 0.9690002
+## sample estimates:
+##       cor 
+## 0.9541928</code></pre>
+<p>Here, we have the option of setting the null hypothesis in terms of what we are testing. This comes down to evaluating what the alternative hypothesis should be.</p>
+<ol style="list-style-type: decimal">
+<li><code>alternative=&quot;two.sided&quot;</code> Are we evaluating both greater than or less than?</li>
+<li><code>alternative=&quot;less&quot;</code> Are we only concerned about rejecting the null hypothesis if it is less</li>
+<li><code>alternative=&quot;greater&quot;</code> Are we only concerned with rejections if it is greater?</li>
+</ol>
+<p>These alternative dictate where we determine the ‘area under the curve’ for assigning probabilities.</p>
+<p>Just like in other examples, the analysis itself in <code>R</code> returns on object that is a type of variable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rho &lt;-<span class="st"> </span><span class="kw">cor.test</span>(x,y)
+<span class="kw">class</span>(rho)</code></pre></div>
+<pre><code>## [1] &quot;htest&quot;</code></pre>
+<p>This type can be considered a list and you can gain access to the internal components in it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(rho)</code></pre></div>
+<pre><code>## [1] &quot;statistic&quot;   &quot;parameter&quot;   &quot;p.value&quot;     &quot;estimate&quot;    &quot;null.value&quot; 
+## [6] &quot;alternative&quot; &quot;method&quot;      &quot;data.name&quot;   &quot;conf.int&quot;</code></pre>
+<p>using the normal methods</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rho$estimate</code></pre></div>
+<pre><code>##       cor 
+## 0.9541928</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rho$alternative</code></pre></div>
+<pre><code>## [1] &quot;two.sided&quot;</code></pre>
+<p>This can come in handy when you want to add components of an analysis to some graphical output. In this example, I add the estimate and the probability of the correlation being significantly different than zero to a scatter plot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x,y,<span class="dt">xlab=</span><span class="st">&quot;The X Value&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;The Y Value&quot;</span>, <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>)
+r &lt;-<span class="st"> </span><span class="kw">paste</span>( <span class="st">&quot;r =&quot;</span>, <span class="kw">format</span>( rho$estimate, <span class="dt">digits=</span><span class="dv">4</span>) )
+p &lt;-<span class="st"> </span><span class="kw">paste</span>( <span class="st">&quot;P =&quot;</span>, <span class="kw">format</span>( rho$p.value, <span class="dt">digits=</span><span class="dv">4</span>) )
+msg &lt;-<span class="st"> </span><span class="kw">paste</span>( r, p, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+<span class="kw">text</span>( <span class="fl">1.050</span>, <span class="dv">12</span>, msg)</code></pre></div>
+<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-198-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="non-parametric-correlation" class="section level2">
+<h2><span class="header-section-number">12.3</span> Non-Parametric Correlation</h2>
+<p>In addition to parametric approaches, we have a host of non-parametric approaches that we can use to evaluate the correlation between variables. The most common one is Spearman’s Rank Correlation. The idea here is that if your data are not conforming to assumptions of normality, you can summarize your data by ranking them instead and derive the correlation based upon the ranks of your data instead of on the raw data itself.</p>
+<p>Here is an example where I rank both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in the <code>data.frame</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span>df[ <span class="kw">order</span>(df$x),]
+df$X_Rank &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="kw">nrow</span>(df)
+df &lt;-<span class="st"> </span>df[ <span class="kw">order</span>(df$y),]
+df$Y_Rank &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="kw">nrow</span>(df)
+df[<span class="dv">1</span>:<span class="dv">10</span>,]</code></pre></div>
+<pre><code>##        x   y X_Rank Y_Rank
+## 43 1.035 3.2      4      1
+## 96 1.032 3.3      2      2
+## 15 1.034 3.6      3      3
+## 95 1.038 3.6      6      4
+## 76 1.032 3.8      1      5
+## 40 1.038 3.8      5      6
+## 34 1.039 3.8      7      7
+## 44 1.040 3.9      9      8
+## 8  1.044 4.1     11      9
+## 1  1.040 4.2      8     10</code></pre>
+<p>You can see that the smallest values in <span class="math inline">\(x\)</span> are not the smallest values in <span class="math inline">\(y\)</span> but they are pretty close. in fact, the estimator for this statistic is identical to that for Pearson’s <span class="math inline">\(\rho\)</span> except that instead of using the raw data, we use the rank.</p>
+<p><span class="math display">\[
+\rho_{Spearman} = \frac{\sum_{i=1}^N(Rx_i-\bar{Rx})(Ry_i-\bar{Ry})}{\sqrt{\sum_{i=1}^N(Rx_i-\bar{Rx})^2} \sqrt{\sum_{i=1}^N(Rx_i-\bar{Rx})^2}}
+\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(x,y,<span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</code></pre></div>
+<pre><code>## [1] 0.9493338</code></pre>
+<p>If there are no ties in the values (e.g., how we assign a rank to a set of <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span> values that are identical), then</p>
+<p><span class="math display">\[
+\rho_{Spearman} = \frac{6\sum_{i=1}^N d_i^2}{N(N^2-1)}
+\]</span></p>
+<p>where <span class="math inline">\(d_i = Rx_i - Ry_i\)</span> (e.g., the difference in the rank values). If there are ties in the raw data (as we have in ours) then fractional ranks are given to all the values that have the same observation. Look at the output above, we see that for the values of <span class="math inline">\(y\)</span> we have two that both have an assigned value of 3.6, the third and fourth observation. To assigned tied ranks we would assign both of them a rank of 3.5. We would assign a rank of 6 for those whose values are 3.8, etc. If there are ties, we are warned about this when we test significance</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor.test</span>( x, y, <span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>)</code></pre></div>
+<pre><code>## 
+##  Spearman&#39;s rank correlation rho
+## 
+## data:  x and y
+## S = 8443.5, p-value &lt; 2.2e-16
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.9493338</code></pre>
+<p>You could get around it a bit if you either increase the specificity of your measurements or throw away data. In our case, I can do neither so it requires me to take a hit in the way in which the probability is estimated. No ties allows some simplifying assumptions to be me, whereas having them does prevents us from using them.</p>
+</div>
+<div id="differences" class="section level2">
+<h2><span class="header-section-number">12.4</span> Differences</h2>
+<p>So what is the difference? Why use one over approach over the other?</p>
+<p>In general, if they give similar responses to the same data</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(x,y)</code></pre></div>
+<pre><code>## [1] 0.9541928</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(x,y,<span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>)</code></pre></div>
+<pre><code>## [1] 0.9493338</code></pre>
+<p>Here the difference between them is 0.004859 with the parametric one giving a slightly larger correlation. There is some loss of power going from observations to ranked observations.</p>
+<p>This is not always the case though. Consider the data<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">seq</span>(-<span class="fl">1.6</span>, <span class="fl">1.6</span>, <span class="dt">by=</span><span class="fl">0.05</span>)
+b &lt;-<span class="st"> </span><span class="kw">sin</span>(a)*<span class="dv">20</span> +<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(a),<span class="dt">sd=</span><span class="dv">1</span>)
+<span class="kw">plot</span>(a,b)</code></pre></div>
+<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-203-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>As we should expect, these data are probably not normally distributed.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qqnorm</span>(b)
+<span class="kw">qqline</span>(b,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-204-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>with deviations on the tails.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shapiro.test</span>(b)</code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  b
+## W = 0.90311, p-value = 9.309e-05</code></pre>
+<p>But if we look at the correlations</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(a,b)</code></pre></div>
+<pre><code>## [1] 0.9900828</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(a,b,<span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>)</code></pre></div>
+<pre><code>## [1] 0.9927448</code></pre>
+<p>in this case, the rank correlation is higher (0.0026619, not a lot but enough to prove the point that parametric approximations are not <u>always</u> producing higher estimates.</p>
+</div>
+<div id="permutation" class="section level2">
+<h2><span class="header-section-number">12.5</span> Permutation</h2>
+<p>Before we finish, I want to make a diversion into permutation. A lot of what we do in Biology may be done on data whose underlying distributional assumptions (normality, etc.) are generally unknown. Many times, we can make assumptions (or transform our data) in such a way as to approximate the underlying assumptions. However, that is not always the case. In the last decade, we’ve relied upon permutation as a method for evaluating probabilities associated with correlations (and a whole host of other statistics) and have opened a large door onto a lot of new analyses.</p>
+<p>The main idea behind permutation is that you have a null hypothesis, say:</p>
+<p><span class="math display">\[
+H_O: \rho=0
+\]</span></p>
+<p>That is, you are expecting that the correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> is non-existent. If this is <code>TRUE</code> then the value of <span class="math inline">\(\rho\)</span> you estimate should be just as big if you took one of your data sets, say <span class="math inline">\(y\)</span>, and permuted it. If the NULL hypothesis is <code>TRUE</code> any permutation of <span class="math inline">\(y\)</span> should produce values of <span class="math inline">\(\hat{\rho}\)</span> that are as large as you got in the original analysis.</p>
+<p>So, one way to test the amount of support we have in <span class="math inline">\(H_O\)</span> is to do just that. Say we want to evaluate the significance associated with rejecting the null hypothesis of no correlation when we observed <span class="math inline">\(\rho =\)</span> 0.9542. We can create a large number (say 999 permuted values) and look at the distribution of <span class="math inline">\(\hat{\rho}\)</span> estimates.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Make place to store permuted and observed values</span>
+r_null &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>,<span class="dv">999</span>)
+<span class="co"># Assign observed value</span>
+r_null[<span class="dv">1000</span>] &lt;-<span class="st"> </span><span class="kw">cor</span>( x, y )
+<span class="co"># Make 1000 permutation, each time assigning new rho</span>
+for( i in <span class="dv">1</span>:<span class="dv">999</span>) {
+  yp &lt;-<span class="st"> </span><span class="kw">sample</span>( y, <span class="dt">size =</span> <span class="kw">length</span>(x), <span class="dt">replace =</span> <span class="ot">FALSE</span>)
+  r_null[i] &lt;-<span class="st"> </span><span class="kw">cor</span>( x, yp )
+}</code></pre></div>
+<p>If we look at these values, we see that our observed correlation is way out on the right end of the NULL distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">rho=</span>r_null )
+observation &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="kw">rep</span>( <span class="st">&quot;Permuted&quot;</span>,<span class="dv">999</span>), <span class="st">&quot;Observed&quot;</span> )
+df$Observation &lt;-<span class="st"> </span><span class="kw">factor</span>( observation )
+<span class="kw">ggplot</span>( df, <span class="kw">aes</span>(<span class="dt">x=</span>rho,<span class="dt">fill=</span>Observation)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">bins=</span><span class="dv">50</span>)</code></pre></div>
+<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-208-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>We can evaluate the Probability of the NULL being correct as the fraction of all those values which are as large or larger than the observed one.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">P &lt;-<span class="st"> </span><span class="kw">sum</span>( r_null &gt;=<span class="st"> </span><span class="kw">cor</span>(x,y) ) /<span class="st"> </span><span class="dv">1000</span>
+P</code></pre></div>
+<pre><code>## [1] 0.001</code></pre>
+<p>Which in this case is 1/1000! The observed value is the largest. You will see more and more statistical approaches that use this ‘trick’ (it is really a trick and drives many statisticians a bit crazy) in Biology and Ecology because the underlying distributions are largely unknown. It does become tricky though, when you have more complicated models and there is currently a lot of research being conducted on models that have nesting (e.g., populations within regions, etc.) or other designs more complicated than the most simple ones.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="2">
+<li id="fn2"><p>I am making this data up, it uses a random number generator and your data is <em>probably</em> not going to produce the same identical correlation but it will be close.<a href="correlation.html#fnref2">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="summary-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linear-regression.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"],
+"instapaper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

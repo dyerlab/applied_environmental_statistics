@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Applied Environmental Statitics</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="A textbook for the use of R in environmental statistics.">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Applied Environmental Statitics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A textbook for the use of R in environmental statistics." />
+  <meta name="github-repo" content="dyerlab/AppliedEnvironmentalStatistics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Applied Environmental Statitics" />
+  
+  <meta name="twitter:description" content="A textbook for the use of R in environmental statistics." />
+  
+
+<meta name="author" content="Rodney J. Dyer">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="manipulating-data.html">
+<link rel="next" href="markdown.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="media/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Frontmatter</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#typography"><i class="fa fa-check"></i>Typography</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#interactive-content"><i class="fa fa-check"></i>Interactive Content</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#dedication"><i class="fa fa-check"></i>Dedication</a></li>
+</ul></li>
+<li class="part"><span><b>I Foundations</b></span></li>
+<li class="chapter" data-level="1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html"><i class="fa fa-check"></i><b>1</b> The R Ecosystem</a><ul>
+<li class="chapter" data-level="1.1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#getting-r-configured"><i class="fa fa-check"></i><b>1.1</b> Getting R Configured</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#packages"><i class="fa fa-check"></i><b>1.1.1</b> Packages</a></li>
+<li class="chapter" data-level="1.1.2" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#cran"><i class="fa fa-check"></i><b>1.1.2</b> CRAN</a></li>
+<li class="chapter" data-level="1.1.3" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#github"><i class="fa fa-check"></i><b>1.1.3</b> GitHub</a></li>
+<li class="chapter" data-level="1.1.4" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#bioconductor"><i class="fa fa-check"></i><b>1.1.4</b> Bioconductor</a></li>
+<li class="chapter" data-level="1.1.5" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#troublesome-packages"><i class="fa fa-check"></i><b>1.1.5</b> Troublesome Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#libraries-used"><i class="fa fa-check"></i><b>1.2</b> Libraries Used</a></li>
+<li class="chapter" data-level="1.3" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#the-rstudio-environment"><i class="fa fa-check"></i><b>1.3</b> The RStudio Environment</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-types.html"><a href="data-types.html"><i class="fa fa-check"></i><b>2</b> Data Types</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-types.html"><a href="data-types.html#numeric-data-types"><i class="fa fa-check"></i><b>2.1</b> Numeric Data Types</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data-types.html"><a href="data-types.html#coercion-to-numeric"><i class="fa fa-check"></i><b>2.1.1</b> Coercion to Numeric</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-types.html"><a href="data-types.html#characters"><i class="fa fa-check"></i><b>2.2</b> Characters</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="data-types.html"><a href="data-types.html#concatenation-of-characters"><i class="fa fa-check"></i><b>2.2.1</b> Concatenation of Characters</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-types.html"><a href="data-types.html#coercion-to-characters"><i class="fa fa-check"></i><b>2.2.2</b> Coercion to Characters</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="data-types.html"><a href="data-types.html#factors"><i class="fa fa-check"></i><b>2.3</b> Factors</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data-types.html"><a href="data-types.html#missing-levels-in-factors"><i class="fa fa-check"></i><b>2.3.1</b> Missing Levels in Factors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-types.html"><a href="data-types.html#logical-types"><i class="fa fa-check"></i><b>2.4</b> Logical Types</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-containers.html"><a href="data-containers.html"><i class="fa fa-check"></i><b>3</b> Data Containers</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-containers.html"><a href="data-containers.html#vectors"><i class="fa fa-check"></i><b>3.1</b> Vectors</a></li>
+<li class="chapter" data-level="3.2" data-path="data-containers.html"><a href="data-containers.html#matrices"><i class="fa fa-check"></i><b>3.2</b> Matrices</a></li>
+<li class="chapter" data-level="3.3" data-path="data-containers.html"><a href="data-containers.html#lists"><i class="fa fa-check"></i><b>3.3</b> Lists</a></li>
+<li class="chapter" data-level="3.4" data-path="data-containers.html"><a href="data-containers.html#data-frames"><i class="fa fa-check"></i><b>3.4</b> Data Frames</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="data-containers.html"><a href="data-containers.html#indexing-data-frames"><i class="fa fa-check"></i><b>3.4.1</b> Indexing Data Frames</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulating-data.html"><a href="manipulating-data.html"><i class="fa fa-check"></i><b>4</b> Manipulating Data</a><ul>
+<li class="chapter" data-level="4.1" data-path="manipulating-data.html"><a href="manipulating-data.html#data-import-export"><i class="fa fa-check"></i><b>4.1</b> Data Import &amp; Export</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulating-data.html"><a href="manipulating-data.html#diving-into-data"><i class="fa fa-check"></i><b>4.2</b> Diving Into Data</a></li>
+<li class="chapter" data-level="4.3" data-path="manipulating-data.html"><a href="manipulating-data.html#factor-character-data"><i class="fa fa-check"></i><b>4.3</b> Factor &amp; Character Data</a></li>
+<li class="chapter" data-level="4.4" data-path="manipulating-data.html"><a href="manipulating-data.html#indexing"><i class="fa fa-check"></i><b>4.4</b> Indexing</a></li>
+<li class="chapter" data-level="4.5" data-path="manipulating-data.html"><a href="manipulating-data.html#sorting-ordering"><i class="fa fa-check"></i><b>4.5</b> Sorting &amp; Ordering</a></li>
+<li class="chapter" data-level="4.6" data-path="manipulating-data.html"><a href="manipulating-data.html#manipulating-data-1"><i class="fa fa-check"></i><b>4.6</b> Manipulating Data</a></li>
+<li class="chapter" data-level="4.7" data-path="manipulating-data.html"><a href="manipulating-data.html#tabulating"><i class="fa fa-check"></i><b>4.7</b> Tabulating</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="programming.html"><a href="programming.html"><i class="fa fa-check"></i><b>5</b> Programming</a><ul>
+<li class="chapter" data-level="5.1" data-path="programming.html"><a href="programming.html#function-writing"><i class="fa fa-check"></i><b>5.1</b> Function Writing</a></li>
+<li class="chapter" data-level="5.2" data-path="programming.html"><a href="programming.html#variable-scope"><i class="fa fa-check"></i><b>5.2</b> Variable Scope</a></li>
+<li class="chapter" data-level="5.3" data-path="programming.html"><a href="programming.html#decision-making"><i class="fa fa-check"></i><b>5.3</b> Decision Making</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="programming.html"><a href="programming.html#the-if-pattern"><i class="fa fa-check"></i><b>5.3.1</b> The if Pattern</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="programming.html"><a href="programming.html#the-if-else-pattern"><i class="fa fa-check"></i><b>5.4</b> The <code>if-else</code> Pattern</a></li>
+<li class="chapter" data-level="5.5" data-path="programming.html"><a href="programming.html#flow-control"><i class="fa fa-check"></i><b>5.5</b> Flow Control</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="programming.html"><a href="programming.html#the-for-loop"><i class="fa fa-check"></i><b>5.5.1</b> The <code>for()</code> Loop</a></li>
+<li class="chapter" data-level="5.5.2" data-path="programming.html"><a href="programming.html#short-circuiting-the-loop"><i class="fa fa-check"></i><b>5.5.2</b> Short Circuiting the Loop</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>6</b> Markdown</a><ul>
+<li class="chapter" data-level="6.1" data-path="markdown.html"><a href="markdown.html#markdown-1"><i class="fa fa-check"></i><b>6.1</b> Markdown</a></li>
+<li class="chapter" data-level="6.2" data-path="markdown.html"><a href="markdown.html#marking-up-text"><i class="fa fa-check"></i><b>6.2</b> Marking up Text</a></li>
+<li class="chapter" data-level="6.3" data-path="markdown.html"><a href="markdown.html#inserting-r-code-chunks"><i class="fa fa-check"></i><b>6.3</b> Inserting R Code Chunks</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="markdown.html"><a href="markdown.html#chunk-options"><i class="fa fa-check"></i><b>6.3.1</b> Chunk Options</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="markdown.html"><a href="markdown.html#variables-in-text"><i class="fa fa-check"></i><b>6.4</b> Variables in Text</a></li>
+</ul></li>
+<li class="part"><span><b>II Data</b></span></li>
+<li class="chapter" data-level="7" data-path="manipulating-data-2.html"><a href="manipulating-data-2.html"><i class="fa fa-check"></i><b>7</b> Manipulating Data</a></li>
+<li class="chapter" data-level="8" data-path="graphical-display.html"><a href="graphical-display.html"><i class="fa fa-check"></i><b>8</b> Graphical Display</a></li>
+<li class="chapter" data-level="9" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>9</b> GGPlot</a></li>
+<li class="chapter" data-level="10" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>10</b> Spatial Data</a></li>
+<li class="part"><span><b>III Statistical Inferences</b></span></li>
+<li class="chapter" data-level="11" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>11</b> Summary Statistics</a><ul>
+<li class="chapter" data-level="11.1" data-path="summary-statistics.html"><a href="summary-statistics.html#central-tendency"><i class="fa fa-check"></i><b>11.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="11.2" data-path="summary-statistics.html"><a href="summary-statistics.html#dispersion"><i class="fa fa-check"></i><b>11.2</b> Dispersion</a></li>
+<li class="chapter" data-level="11.3" data-path="summary-statistics.html"><a href="summary-statistics.html#ordination"><i class="fa fa-check"></i><b>11.3</b> Ordination</a></li>
+<li class="chapter" data-level="11.4" data-path="summary-statistics.html"><a href="summary-statistics.html#hierarchical-clustering"><i class="fa fa-check"></i><b>11.4</b> Hierarchical Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>12</b> Correlation</a><ul>
+<li class="chapter" data-level="12.1" data-path="correlation.html"><a href="correlation.html#the-data"><i class="fa fa-check"></i><b>12.1</b> The Data</a></li>
+<li class="chapter" data-level="12.2" data-path="correlation.html"><a href="correlation.html#parametric-correlations"><i class="fa fa-check"></i><b>12.2</b> Parametric Correlations</a></li>
+<li class="chapter" data-level="12.3" data-path="correlation.html"><a href="correlation.html#non-parametric-correlation"><i class="fa fa-check"></i><b>12.3</b> Non-Parametric Correlation</a></li>
+<li class="chapter" data-level="12.4" data-path="correlation.html"><a href="correlation.html#differences"><i class="fa fa-check"></i><b>12.4</b> Differences</a></li>
+<li class="chapter" data-level="12.5" data-path="correlation.html"><a href="correlation.html#permutation"><i class="fa fa-check"></i><b>12.5</b> Permutation</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>13</b> Linear Regression</a><ul>
+<li class="chapter" data-level="13.1" data-path="linear-regression.html"><a href="linear-regression.html#the-data-1"><i class="fa fa-check"></i><b>13.1</b> The Data</a></li>
+<li class="chapter" data-level="13.2" data-path="linear-regression.html"><a href="linear-regression.html#least-squares-linear-regression"><i class="fa fa-check"></i><b>13.2</b> Least Squares Linear Regression</a></li>
+<li class="chapter" data-level="13.3" data-path="linear-regression.html"><a href="linear-regression.html#fitting-a-linear-model"><i class="fa fa-check"></i><b>13.3</b> Fitting a Linear Model</a></li>
+<li class="chapter" data-level="13.4" data-path="linear-regression.html"><a href="linear-regression.html#multiple-regression"><i class="fa fa-check"></i><b>13.4</b> Multiple Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>14</b> Analysis of Variance</a><ul>
+<li class="chapter" data-level="14.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#one-sample-hypotheses"><i class="fa fa-check"></i><b>14.1</b> One Sample Hypotheses</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#data-variability"><i class="fa fa-check"></i><b>14.1.1</b> Data Variability</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#two-sample-hypotheses"><i class="fa fa-check"></i><b>14.2</b> Two Sample Hypotheses</a></li>
+<li class="chapter" data-level="14.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#many-sample-hypotheses"><i class="fa fa-check"></i><b>14.3</b> Many Sample Hypotheses</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#post-hoc-tests"><i class="fa fa-check"></i><b>14.3.1</b> Post-Hoc Tests</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="http://dyerlab.org" target="blank">the Dyer Laboratory</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Environmental Statitics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="programming" class="section level1">
+<h1><span class="header-section-number">5</span> Programming</h1>
+<blockquote>
+<p>One of the strengths of R as an analysis platform is that it is a language rather than a program. With programs, such as SPSS &amp; JMP, you are limited by the functionality that the designers thought would be necessary to meet the broadest audience. In R, you can rely upon simple functions or you can create entire analysis and simulation programs de novo. To do this, we need to dig into flow control and decision making processes, both of which you need for doing more in-depth programming.</p>
+</blockquote>
+<div id="function-writing" class="section level2">
+<h2><span class="header-section-number">5.1</span> Function Writing</h2>
+<p>Here we look at how to create an R function. Writing small functions like this is a huge benefit to you as an analyst and this is a great place to start. A function in R is defined as:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">function_name &lt;-<span class="st"> </span>function( arguments ) { Stuff you want the function to do }</code></pre></div>
+<p>You define a function name for whatever you like (given you use the names) and assign it the stuff to the right. In R, the function named <code>function()</code> is a special one, it tells R that you are about to create a little routine and you want that set of code to be available to you for later use under the name of whatever you named it. This allows a tremendous amount of flexibility as you develop your own set of routines and analyses for your work. The part that actually does stuff is after the function call. It may be that the function that you create does need some data (those are the arguments) or you may not need any input in to the function (in which you pass no arguments). It all depends upon what you are creating.</p>
+<p>The key to understanding functions is that they are encapsulations of code—a shortcut for a sequence of instructions if you will not have to type over and over again. The less typing you do, the lower the probability that you will have errors (and all code has errors).</p>
+<p>Here is an example of some code that I’m going to develop into a function. This function will allow me to determine if one genotype could possibly be the offspring of the other genotype.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gstudio)
+loc1 &lt;-<span class="st"> </span><span class="kw">locus</span>( <span class="kw">c</span>(<span class="dv">128</span>,<span class="dv">130</span>) )
+loc2 &lt;-<span class="st"> </span><span class="kw">locus</span>( <span class="kw">c</span>(<span class="dv">128</span>,<span class="dv">128</span>) )
+<span class="kw">cat</span>( loc1, loc2 )</code></pre></div>
+<pre><code>## 128:130 128:128</code></pre>
+<p>We start out with two loci, a <code>128:130</code> heterozygote and a <code>128:128</code> homozygote. These may represent repeat motifs at a microsatellite locus or some other co-dominant genotype. First, I’ll break the locus into a vector of genotypes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">off.alleles &lt;-<span class="st"> </span><span class="kw">alleles</span>( loc1 )
+off.alleles</code></pre></div>
+<pre><code>## [1] &quot;128&quot; &quot;130&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mom.alleles &lt;-<span class="st"> </span><span class="kw">alleles</span>( loc2 )
+mom.alleles</code></pre></div>
+<pre><code>## [1] &quot;128&quot; &quot;128&quot;</code></pre>
+<p>To be a valid potential offspring there should be at least one of the alleles in the parent that matches the allele in the offspring. The <code>intersect()</code> function returns the set of values common to both vectors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shared &lt;-<span class="st"> </span><span class="kw">intersect</span>( off.alleles, mom.alleles )
+shared</code></pre></div>
+<pre><code>## [1] &quot;128&quot;</code></pre>
+<p>If it has at least one of the alleles present (it could have both if parent and offspring are both the same heterozygote) then you cannot exclude this individual as a potential offspring. If there are no alleles in common, then the value returned is an empty vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loc3 &lt;-<span class="st"> </span><span class="kw">locus</span>( <span class="kw">c</span>(<span class="dv">132</span>,<span class="dv">132</span>))
+dad.alleles &lt;-<span class="st"> </span><span class="kw">alleles</span>( loc3 )
+<span class="kw">intersect</span>( mom.alleles, dad.alleles )</code></pre></div>
+<pre><code>## character(0)</code></pre>
+<p>This logic can be shoved into a function. You have to wrap it into a set of curly brackets. I use the length of the result from the intersect() to return from the function. Potential values for</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potential_offspring &lt;-<span class="st"> </span>function( parent, offspring ) {
+  off &lt;-<span class="st"> </span><span class="kw">alleles</span>( offspring )
+  par &lt;-<span class="st"> </span><span class="kw">alleles</span>( loc2 )
+  shared &lt;-<span class="st"> </span><span class="kw">intersect</span>( off, par )
+  <span class="kw">return</span>( <span class="kw">length</span>( shared ) &gt;<span class="st"> </span><span class="dv">0</span> )
+}</code></pre></div>
+<p>Now, you can call this function anytime you need, just passing it two genotypes. If they can be offspring it returns TRUE, as in the comparison between 128:130 and 128:128 genotypes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">potential_offspring</span>(loc1, loc2)</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>And it returns FALSE for the comparison between 128:128 and 132:132.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">potential_offspring</span>(loc2, loc3)</code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="variable-scope" class="section level2">
+<h2><span class="header-section-number">5.2</span> Variable Scope</h2>
+<p>There is a lot more information on writing functions and we will get into that as we progress through the text. However, it is important that I bring this up now. The value assigned to a variable is defined by its scope. Consider the following code</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">10</span></code></pre></div>
+<p>and the function defined as</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">do_it &lt;-<span class="st"> </span>function( x ) {
+  x &lt;-<span class="st"> </span>x +<span class="st"> </span><span class="dv">10</span>
+  <span class="kw">return</span>( x )
+}</code></pre></div>
+<p>When I call the function, the variable x that is the argument of the function is not the same variable that is in the environment that I assigned a value of 10. The x in the function argument is what we call “local to that function” in that within the curly brackets that follow (and any number of curly brackets nested within those, the value of x is given whatever was passed to the function.</p>
+</div>
+<div id="decision-making" class="section level2">
+<h2><span class="header-section-number">5.3</span> Decision Making</h2>
+<p>We interact with our data in many ways and introspection of the values we have in the variables we are working with are of prime importance. Decision making in your code is where you evaluate your data and make a choice of outcomes based upon some criteria. Here is some example data that we can use as we explore the basics of <code>if()</code>, <code>if(){} else{}</code>, and <code>if(){} elif(){} else{}</code> coding patterns.</p>
+<div id="the-if-pattern" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> The if Pattern</h3>
+<p>The most basic version of decision making is asking a single question and if the answer is TRUE then do something. The <code>if(){}</code> function does this and has the form</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if( CRITERIA ) {
+    DO_SOMETHING
+}</code></pre></div>
+<p>You pass a logical statement (or something that can be coerced into a logical type) to the function as the CRITERIA and if it evaluates to <code>TRUE</code>, then the contents of the <code>DO_SOMETHING</code> are executed. If the value of <code>CRITERIA</code> is not <code>TRUE</code> the <code>DO_SOMETHING</code> is skipped entirely—it is not even seen by the interpreter.</p>
+<p>Here we can test this out using the loci defined above along with the is_heterozygote() function. This function takes one or more locus objects and returns TRUE/FALSE if they are or are not a heterozygote.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is_heterozygote</span>( <span class="kw">c</span>(loc1, loc2) )</code></pre></div>
+<pre><code>## [1]  TRUE FALSE</code></pre>
+<p>If we shove that function into the <code>if()</code> parameters we can use its evaluation of the heterozygous state of the locus to do something interesting, say tell us it is a heterozygote—it is admittedly a contrived example, but hey you try to make easy examples, it is not easy.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if( <span class="kw">is_heterozygote</span>(loc1) ){
+  <span class="kw">print</span>(<span class="st">&quot;It&#39;s a het!&quot;</span>)
+}</code></pre></div>
+<pre><code>## [1] &quot;It&#39;s a het!&quot;</code></pre>
+<p>If the <code>is_heterozygote()</code> function returns a value of FALSE, then the contents of the <code>if()</code> function (the stuff within the curly brackets is skipped entirely.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if( <span class="kw">is_heterozygote</span>(loc2) ){
+  <span class="kw">print</span>(<span class="st">&quot;It&#39;s a het!&quot;</span>)
+}</code></pre></div>
+<p>Notice, there was no indication of any of that code inside the curly brackets. The if-else Pattern If there are more than on thing you want to potentially do when making a decision, you can add an else clause after the if pattern. Here if is_heterozygote() returns FALSE, the contents of the else{} clause will be executed. Here is the heterozygote example</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if( <span class="kw">is_heterozygote</span>(loc1) ) {
+  <span class="kw">cat</span>(loc1, <span class="st">&quot;is a heterozygote&quot;</span>)
+} else {
+  <span class="kw">cat</span>(loc1, <span class="st">&quot;is a homozygote&quot;</span>)
+}</code></pre></div>
+<pre><code>## 128:130 is a heterozygote</code></pre>
+<p>and the homozygote one</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if( <span class="kw">is_heterozygote</span>(loc2) ) {
+  <span class="kw">cat</span>(loc2, <span class="st">&quot;is a heterozygote&quot;</span>)
+} else {
+  <span class="kw">cat</span>(loc2, <span class="st">&quot;is a homozygote&quot;</span>)
+}</code></pre></div>
+<pre><code>## 128:128 is a homozygote</code></pre>
+<p>There is a slightly shorter version of this that is available for the lazy programmer and lets be honest, all programmers are lazy and the more you can accomplish with fewer strokes on the keyboard the better (this is how we got emacs and vim). I generally don’t teach the shortcuts up front, but this one is short and readily apparent so it may be more helpful than confusing. The <code>ifelse()</code> function has three parts, the condition, the result if <code>TRUE</code>, and the result if <code>FALSE</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span><span class="kw">ifelse</span>( <span class="kw">is_heterozygote</span>( <span class="kw">c</span>(loc1, loc2)) , <span class="st">&quot;heterozygote&quot;</span>, <span class="st">&quot;Not&quot;</span>)
+ans</code></pre></div>
+<pre><code>## [1] &quot;heterozygote&quot; &quot;Not&quot;</code></pre>
+<p>So iterating through the x vector, the condition <code>x&gt;0</code> is evaluated and if TRUE the sqrt() of the value is returned, else the NA is given. It is compact and easy to use so you may run into it often.</p>
+</div>
+</div>
+<div id="the-if-else-pattern" class="section level2">
+<h2><span class="header-section-number">5.4</span> The <code>if-else</code> Pattern</h2>
+<p>It is possible to test many conditions in a single sequence by stringing together else-if conditions. The point that is important here is that the first condition that evaluates to TRUE will be executed and all remaining ones will be skipped, even if they also are logically TRUE. This means that it is important to figure out the proper order of asking your conditions. Here is an example function that determines if none, one, or both of the genotypes passed to it are heterozygotes. By default, I step through every one of the potential options of available on this comparison.<br />
+1. The first is a heterozygote and the second one isn’t 2. The first one isn’t and the second one is 3. Both are heterozygotes 4. The last state (both are not)</p>
+<p>Here is the function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">which_is_het &lt;-<span class="st"> </span>function( A, B) {
+  if( <span class="kw">is_heterozygote</span>(A) &amp;<span class="st"> </span>!<span class="kw">is_heterozygote</span>(B) ) {
+    <span class="kw">print</span>(<span class="st">&quot;First is heterozygote&quot;</span>)
+  } else if( !<span class="kw">is_heterozygote</span>(A) &amp;<span class="st"> </span><span class="kw">is_heterozygote</span>(B) ){
+    <span class="kw">print</span>(<span class="st">&quot;Second is heterozygote&quot;</span>)
+  } else if( <span class="kw">is_heterozygote</span>(A) &amp;<span class="st"> </span><span class="kw">is_heterozygote</span>(B) ){
+    <span class="kw">print</span>(<span class="st">&quot;Both are heterozygotes&quot;</span>)
+  } else {
+    <span class="kw">print</span>( <span class="st">&quot;Neither are heterozygotes&quot;</span>)
+  }
+}</code></pre></div>
+<p>It is possible that the order of these CRITERIA could be changed, the important thing to remember is that the sequence of if - else if - else if etc. will terminate the very first time one of the CRITERIA is evaluated to be <code>TRUE</code>.</p>
+</div>
+<div id="flow-control" class="section level2">
+<h2><span class="header-section-number">5.5</span> Flow Control</h2>
+<p>Flow control is the process of iterating across objects and perhaps doing operations on those objects. The R language has several mechanisms that you can use to control the flow of a script or bit of code.</p>
+<div id="the-for-loop" class="section level3">
+<h3><span class="header-section-number">5.5.1</span> The <code>for()</code> Loop</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">6</span>)
+x</code></pre></div>
+<pre><code>## [1] 3 8 5 4 6</code></pre>
+<p>You can iterate through this vector using a for() loop. This is a simple function that has the form:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for( SOME_SEQUENCE ){
+  DO_SOMETHING
+}</code></pre></div>
+<p>Where the <code>SOME_SEQUENCE</code> component is a sequence of values either specified OR calculated and the <code>DO_SOMETHING</code> is the thing you want to do with each of the values in the sequence. Usually, there is a variable defined in the <code>SOME_SEQUENCE</code> component and the value of that variable is used. Here are a few examples. The first goes through the existing vector directly and assigns (in sequential order) the entries of ‘x’ to the variable val. We can then do whatever we want with the value in val (though if we change it, nothing happens to the original x vector).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for( val in x ){
+  <span class="kw">print</span>(val)
+}</code></pre></div>
+<pre><code>## [1] 3
+## [1] 8
+## [1] 5
+## [1] 4
+## [1] 6</code></pre>
+<p>We can also specify a sequence directly and then use it as an index. Here I use an index variable named i to take on the integer seqeunce equal in length to the length of the original <code>x</code> variable. Then I can iterate through the original vector and use that index variable to grab the value I want.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for( i in <span class="dv">1</span>:<span class="kw">length</span>(x)){
+  <span class="kw">print</span>( x[i] )
+}</code></pre></div>
+<pre><code>## [1] 3
+## [1] 8
+## [1] 5
+## [1] 4
+## [1] 6</code></pre>
+<p>Both give us the same output, namely a way to go through the variable <code>x</code>. However, there may be a need to use the latter approach in your calculations. For example, perhaps I want to do some other operation on the values. In this very contrived example that follows, I want to perform operations on the values in <code>x</code> depending on if they are even or odd. For the odd ones, I add the corresponding value in <code>y</code> and if not I subtract it. Sure, this is totally contrived and I cannot think of a reason why I would be doing this, but if I need to know what index (row, column or whatever) an entry is during the iteration process, then I need to use this approach over the <code>for( val in x)</code> approach.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">5</span>
+for( i in <span class="dv">1</span>:<span class="kw">length</span>(x)){
+  if( x[i] %%<span class="st"> </span><span class="dv">2</span>)
+    <span class="kw">print</span>( x[i] +<span class="st"> </span>y[i])
+  else
+    <span class="kw">print</span>( x[i] -<span class="st"> </span>y[i] )
+}</code></pre></div>
+<pre><code>## [1] 4
+## [1] 6
+## [1] 8
+## [1] 0
+## [1] 1</code></pre>
+</div>
+<div id="short-circuiting-the-loop" class="section level3">
+<h3><span class="header-section-number">5.5.2</span> Short Circuiting the Loop</h3>
+<p>It is possible to short circuit the looping process using the keywords next and break, though in my programming style, I consider their use in my source files as evidence of inelegant code. That said, you may need them on occasion.</p>
+<p>The next keyword basically stops all commands after that during the current iteration of the loop. It does not terminate the loop itself, it just stops the commands that follow it this time through. Here is an example that uses the modulus operator, <code>%%</code> (e.g., the remainder after division), to print out only those numbers that are divisible by three.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for( i in <span class="dv">1</span>:<span class="dv">20</span> ){
+  if( i %%<span class="st"> </span><span class="dv">3</span> )
+    next
+  <span class="kw">cat</span>(<span class="st">&quot;The value of i =&quot;</span>,i,<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+}</code></pre></div>
+<pre><code>## The value of i = 3 
+## The value of i = 6 
+## The value of i = 9 
+## The value of i = 12 
+## The value of i = 15 
+## The value of i = 18</code></pre>
+<p>The use of break to exit the loop entirely is perhaps more commonly encountered. When this keyword is encountered, the loop terminates immediately, as if it reached the send of the sequence.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for( i in <span class="dv">1</span>:<span class="dv">10</span>){
+  if( i &gt;<span class="st"> </span><span class="dv">2</span> )
+    break
+  <span class="kw">cat</span>(<span class="st">&quot;The value of i=&quot;</span>,i,<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+}</code></pre></div>
+<pre><code>## The value of i= 1 
+## The value of i= 2</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="manipulating-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="markdown.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"],
+"instapaper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

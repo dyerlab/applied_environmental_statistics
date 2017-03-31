@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="data-types.html">
+<link rel="prev" href="ggplot.html">
+<link rel="next" href="summary-statistics.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -223,146 +223,20 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="the-r-ecosystem" class="section level1">
-<h1><span class="header-section-number">1</span> The R Ecosystem</h1>
-<blockquote>
-<p>R is an open-source, community driven platform available for a wide variety of computer operating systems and is becoming a de facto standard in modern biological analyses. It is not a point-and-click interface, rather it is a rich analytical ecosystem that will make your research and scientific life more pleasurable.</p>
-</blockquote>
-<div id="getting-r-configured" class="section level2">
-<h2><span class="header-section-number">1.1</span> Getting R Configured</h2>
-<p>The grammar of the R language was derived from another system called S-Plus. S-Plus was a proprietary analysis platform developed by AT&amp;T and licenses were sold for its use, mostly in industry and education. Given the closed nature of the S-Plus platform, R was developed with the goal of creating an interpreter that could read grammar similar to S-Plus but be available to the larger research community. The use of R has increased dramatically due to its open nature and the ability of people to share code solutions with relatively little barriers.</p>
-<p>The main repository for R is located at the <a href="http://cran.r-project.org">CRAN Repository</a>, which is where you can download the latest version. It is in your best interests to make sure you update the underlying R system, changes are made continually (perhaps despite the outward appearance of the website).</p>
-<p><img src="media/CRAN.png" width="305" style="display: block; margin: auto;" /></p>
-<p>The current version of this book uses version 3.2. To get the correct version, open the page and there should be a link at the top for your particular computing platform. Download the appropriate version and install it following the instructions appropriate for your computer.</p>
-<div id="packages" class="section level3">
-<h3><span class="header-section-number">1.1.1</span> Packages</h3>
-<p>The base R system comes with enough functionality to get you going. By default, there is only a limited amount of functionality in R, which is a great thing. You only load and use the packages that you intend to use. There are just too many packages to have them all loaded into memory at all times and there is such a broad range of packages, it is not likely you’d need more than a small fraction of the packages during the course of all your analyses. Once you have a package, you can tell R that you intend to use it by either</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(package_name)</code></pre></div>
-<p>or</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(package_name)</code></pre></div>
-<p>They are approximately equivalent, differing in only that the second one actually returns a TRUE or FALSE indicating the presence of that library on you machine. If you do not want to be mocked by other users of R, I would recommend the <code>library</code> version—there are situations where <code>require</code> will not do what you think you want it to do (even though it is a verb and should probably be the correct one to use grammatically).</p>
-<p>There are, at present, a few different places you can get packages. The packages can either be downloaded from these online repositories and installed into R or you can install them from within R itself. Again, I’ll prefer the latter as it is a bit more straightforward.</p>
-</div>
-<div id="cran" class="section level3">
-<h3><span class="header-section-number">1.1.2</span> CRAN</h3>
-<p>The main repository for packages is hosted by the r-project page itself. There are packages with solutions to analyses ranging from Approximate Bayesian Computation to Zhang &amp; Pilon’s approaches to characterizing climatic trends. The list of these packages is large and ever growing. It can be found on CRAN under the packages menu. To install a package from this repository, you use the function</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;thePackageName&quot;</span>) </code></pre></div>
-<p>You can see that R went to the CRAN mirror site (I use the rstudio one), downloaded the package, look for particular dependencies that that package may have and download them as well for you. It should install these packages for you and give you an affirmative message indicating it had done so.</p>
-<p>At times, there are some packages that are not available in binary form for all computer systems (the rgdal package is one that comes to mind for which we will provide a work around later) and the packages need to be compiled. This means that you need to have some additional tools and/or libraries on your machine to take the code, compile it, and link it together to make the package. In these cases, the internet and the documentation that the developer provide are key to your sanity.</p>
-<p>For packages on CRAN, you can also keep them updated to the latest version using the command:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">update.packages</span>(<span class="dt">ask=</span><span class="ot">FALSE</span>)</code></pre></div>
-<p>I recommend using the <code>ask=FALSE</code> option on this one as it can be very tedious to respond to a “Y/N” question for each library you may need to update (there could be hundreds).</p>
-</div>
-<div id="github" class="section level3">
-<h3><span class="header-section-number">1.1.3</span> GitHub</h3>
-<p>There are an increasing number of projects that are being developed either in the open source community or shared among a set of developers. These projects are often hosted on <a href="http://www.github.com" class="uri">http://www.github.com</a> where you can get access to the latest code updates. The packages that I develop are hosted on Github at (<a href="http://github.com/dyerlab" class="uri">http://github.com/dyerlab</a>) and only pushed to CRAN when I make major changes.</p>
-<p><img src="media/dyerlabGithub.png" width="333" style="display: block; margin: auto;" /></p>
-<p>To install packages from Github you need to install the devtools library from CRAN first</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
-<span class="kw">library</span>(devtools)</code></pre></div>
-<p>Then you need to use the devtools function <code>install_github()</code> to go grab it. To do so you need two separate pieces of information, the name of the developer who is creating the repository and the name of the repository it is contained within. For the gstudio package, the develop is <code>dyerlab</code> and the repository name is <code>gstudio</code>. If you are comfortable with git, you can also check out certain branches of development if you like with optional arguments to the <code>install_github()</code> function. Here is how you would install both the <code>gstudio</code> and <code>popgraph</code> libraries I use in this book.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install_github</span>(<span class="st">&quot;dyerlab/gstudio&quot;</span>)
-<span class="kw">install_github</span>(<span class="st">&quot;dyerlab/popgraph&quot;</span>)</code></pre></div>
-<p>If you are starting to work with R and intend to compile packages, there are some tools that you will need to have on your machine. For Windows machines, there is an rtools download EXE that you can get. On OSX, you need to download the developers tools from Apple (available on the Application Store for free). In either case, the developer (if they care about their code being used by others) should provide sufficient documentation. If you are working on Windows, I do not know how that system (and never have used it for any prolonged period of time) so you’ll have to look to the internet on where to find compilers and other developer tools.</p>
-<p>In a way similar to that for the CRAN packages, you can update existing github packages using:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(devtools)
-<span class="kw">update_packages</span>()</code></pre></div>
-<p>It will ask you if you really want to do this (which has three options: ‘Yup’, ‘No’, and ‘I forget’) and then proceed.</p>
-</div>
-<div id="bioconductor" class="section level3">
-<h3><span class="header-section-number">1.1.4</span> Bioconductor</h3>
-<p>The last common location to find packages for R is on the Bioconductor site, a collection of software for bioinformatic analyses. To install from the bioconductor site you need to download their own installer as:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;http://bioconductor.org/biocLite.R&quot;</span>)
-<span class="kw">biocLite</span>()</code></pre></div>
-<p>And then to install packages you use</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">biocLite</span>(<span class="kw">c</span>(<span class="st">&quot;GenomicFeatures&quot;</span>, <span class="st">&quot;AnnotationDbi&quot;</span>))</code></pre></div>
-<p>There are no libraries used in this text from bioconductor as this text but if you shoudl do those kinds of analyses, it will be helpful to see what they have available.</p>
-</div>
-<div id="troublesome-packages" class="section level3">
-<h3><span class="header-section-number">1.1.5</span> Troublesome Packages</h3>
-<p>Some packages provide a unique set of problems for getting them onto your computer. There are a variety of reasons for this and Google is your friend (though it would be easier if R was named something more unique than the 18<sup><sup>th</sup></sup> letter of the alphabet…).</p>
-<div id="rgdal-rgeos-packages" class="section level4">
-<h4><span class="header-section-number">1.1.5.1</span> RGDAL &amp; RGEOS</h4>
-<p>Every time I upgrade in any significant way, two R libraries seem to raise their ugly heads and scream like a spoiled child—rgdal and rgeos. Why do these two have to be SOOOO much of a pain? Why can’t we have a auto build of a binary with all the options in it for OSX? Who knows? I always feel like I get the fuzzy end of the lollipop with these two. Here is my latest approach for getting them going.</p>
-<p>First you have to make sure you have the latest GDAL libraries. I used to get mine from <a href="http://www.kyngchaos.com/software/frameworks">Kyngchaos</a>, just download the framework, install it, and then do some kind of long R CMD INSTALL dance, which seems to no longer work for me. I also tried installing from Ripley’s repository and found that:</p>
-<ol style="list-style-type: lower-alpha">
-<li>It was a version older than the one I already had on my machine, and<br />
-</li>
-<li>You can’t install from that repository, there is a malformed header and the <code>install.packages()</code> function just barfs.</li>
-</ol>
-<p>Time to try something new. I typically stay away from the various installer frameworks out there on OSX to keep everything in Frameworks. But this time, I used MacPorts. You can find the latest version here. Here is how I got it to help me out.</p>
-<ul>
-<li>Download XCode from Apple, it is both free and has a lot of tools that make your life as a programmer easier. It is a big package and you’ll have to install the command line developer tools as well. You will be prompted on how to do this.</li>
-<li>Downloaded the version of macports for your OS, I’m currently on 10.11 and installed it with little problems. It takes a bit of time at the end of the installation because it is downloading a lot of information. Be patient.</li>
-<li>In the terminal, I updated it <code>sudo ports -v selfupdate</code> and again be patient, it is going to grab a lot of stuff from the internet.</li>
-<li>I then used it to install <code>gdal</code> as a unix library (rather than as a framework so it won’t be located in /Library/Frameworks) by sudo ports install <code>gdal</code>. There were a lot of dependencies for this one so it took a while.</li>
-<li>I then had R install rgdal as <code>install.packages( rgdal, type=&quot;source&quot;)</code></li>
-</ul>
-<p>Worked like a charm.</p>
-</div>
-</div>
-</div>
-<div id="libraries-used" class="section level2">
-<h2><span class="header-section-number">1.2</span> Libraries Used</h2>
-<p>This work requires several libraries that you may need to get from either CRAN or GitHub. The following if you run the following code, you should be up-to-date on the necessary packages used throughout this text.</p>
-<table>
-<caption><span id="tab:unnamed-chunk-14">Table 1.1: </span>R packages used in the examples shown in this book.</caption>
-<thead>
-<tr class="header">
-<th align="left">Name</th>
-<th align="left">Title</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">DescTools</td>
-<td align="left">Tools for Descriptive Statistics</td>
-</tr>
-<tr class="even">
-<td align="left">devtools</td>
-<td align="left">Tools to Make Developing R Packages Easier</td>
-</tr>
-<tr class="odd">
-<td align="left">GGally</td>
-<td align="left">Extension to ‘ggplot2’</td>
-</tr>
-<tr class="even">
-<td align="left">ggplot2</td>
-<td align="left">Create Elegant Data Visualisations Using the Grammar of Graphics</td>
-</tr>
-<tr class="odd">
-<td align="left">gstudio</td>
-<td align="left">Tools Related to the Spatial Analysis of Genetic Marker Data</td>
-</tr>
-<tr class="even">
-<td align="left">MASS</td>
-<td align="left">Support Functions and Datasets for Venables and Ripley’s MASS</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="the-rstudio-environment" class="section level2">
-<h2><span class="header-section-number">1.3</span> The RStudio Environment</h2>
-<p>By itself, R can be used in the terminal or as the basic interface the installer provides. While both of these methods are sufficient for working in R, they are less than optimal (IMHO). I believe one of the most important tools you can use is a good IDE as it helps you organize and work with your data in ways that focus more on the outcome and less on the implementation. I’ve spent a lot of time in both Emacs and Vim and while they may be tools for the geek elite, RStudio has made me much more productive in terms of output per unit time.</p>
-<p><img src="media/rstudio.png" width="312" style="display: block; margin: auto;" /></p>
-<p>The RStudio IDE can be can be downloaded directly from (<a href="http://rstudio.org" class="uri">http://rstudio.org</a>) and comes in varieties for desktops and servers. The packages are easy to install and contain all the instructions you need. If you run your own server, you can install it and do your analyses via a web interface that looks identical to the desktop client (in fact it is more similar than you perhaps know).</p>
-<p>The interface has four panes, two of which (the source code editor and the terminal output) you will work with the most often. The other panes have information on the history of your project, plot output, packages, help, command history, a list of all variables, and a file browser (in the image above, I have minimized the pane with the “Environment” and “History” tabs on it to make more room for the code editor).</p>
-<p>You can type in R commands in the terminal window and receive responses directly, just as normal. However, there are several alternative ways you can extract use R including:</p>
-<ol style="list-style-type: decimal">
-<li>Code can be entered into a script file (ending in *.R) and run them directly by submitting that file to the R interpreter. This kind of file only has code (and comments) in it.<br />
-</li>
-<li>A Markdown (*.Rmd) or LaTeX (*.Rwd) file that mixes code and non-code documenation together. This text is acutally written in RMarkdown and mixes together the word-processing parts and the analytical code in a single file. This is a <em>very</em> important and useful approach. If you are a serious user of R, you can use LaTeX or RMarkdown to make documents, slides, presentations, posters, etc. It is a versatile tool and one worth looking into, especially as it pertains to reproducible research (something we all need to strive for).</li>
-</ol>
+<div id="spatial-data" class="section level1">
+<h1><span class="header-section-number">10</span> Spatial Data</h1>
 
 </div>
-</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-types.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="ggplot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summary-statistics.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>

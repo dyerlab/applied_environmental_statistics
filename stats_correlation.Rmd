@@ -1,0 +1,239 @@
+# Correlation
+
+
+> In this activity, we will be exploring the use of correlation and how we can get inferences about the degree of correlation between sets of data.  The most important thing to remember is that correlation does not imply causation, it is only designed to determine the way variables systematically change.
+
+## The Data
+
+For this example, we will go back to our old friend, the Beer Styles data set.
+
+```{r}
+data <- read.csv("data/Beer_Styles.csv")
+summary(data)
+```
+
+Intuitively, we have been displaying data in the manner appropriate for correlations for some time using the scatter plot.  Here is an example display using the maximum Original Gravity (a measure of how much sugar is in the pre-fermented beer—technically called wort) and the final level of alcohol (what the yeast makes by munching on the sugar).  These are obviously related variables, you cannot have a high alcohol fermented liquid by starting with a low sugar wort.
+
+```{r}
+library( ggplot2 )
+x <- data$OG_Max
+y <- data$ABV_Max
+df <- data.frame( x, y )
+ggplot( df, aes(x,y) ) + geom_point() + xlab("ABV") + ylab("OG")
+```
+
+The extent to which these variables change together is quantified by a correlation statistic.
+
+```{r}
+cor(x,y)
+```
+
+This correlation statistic, $\rho$, is bound between -1 (perfect negative correlation) and +1 (perfect positive correlation).  In our example here, the correlation is $\rho=$ `r format(cor(x,y),digits=3)`, suggesting that there is a positive association and it is quite strong (close to +1).  
+
+Using a combination of either `plot()` or `geom_point()` and `cor()`, we can both display and evaluate the correlation between two variables.  For more than two, we can either iteratively go through all possible pairs and plot/evaluate them individually, or we can use the `GGally` package to plot all pairs of variables.  You may need to install the `GGally` package (it is not installed by default).  If you get an error message when you use `library(GGally)` install the package from CRAN using the command `install.packages("GGally")`.  Here I plot the maximum values for each property of the styles (and change the base font size so that it shows up properly on the PDF output).
+
+```{r fig.height=6, warning=FALSE, message=FALSE}
+library(GGally)
+ggpairs(data[c(4,6,8,10,12)]) + theme_bw(base_size = 8)
+```
+
+There are three components to this graphical output.  Above the diagonal is the pair-wise correlation, on the diagonal is the density (histogram) of each variable, and below the diagonal is the plot.  The `ggpairs()` function is quite extensible.  You can specify the kinds of plots to be used above, on, and below the diagonal.  You can also mix and match different types of data and it will plot them accordingly.  Here is an example if I include the `data$Yeast` column, which is a factor.
+
+```{r fig.height=5, warning=FALSE, message=FALSE}
+ggpairs(data[c(2,4,6,8)]) + theme_bw(base_size = 8)
+```
+
+Because it is a factor, it presents the pair-wise correlations in a slightly different way.  A word of caution.  You should be very careful when using this plot with a lot of data types.  It takes a bit of time to create each of these graphical outputs and display them.  If you make the mistake of doing too many, you might as well go get some coffee because it will take a bit of time for it to finish.
+
+## Parametric Correlations
+
+The most common kind of correlation is Pearson's product moment statistic.  It is defined as:
+
+\[
+\rho = \frac{\sum_{i=1}^N(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^N(x_i-\bar{x})^2} \sqrt{\sum_{i=1}^N(x_i-\bar{x})^2}}
+\]
+
+where the numerator is a measure of the covariance between $x$ and $y$, divided by the product of the individual variable variance estimates.  The resulting parameter $r$, which approximates the statistic $\rho$, relies upon assumptions of normality.
+
+To date, we've been using the `cor()` function to estimate correlations.  Check out the documentation on it by running.  You will see there are several options.
+
+```{r eval=FALSE}
+?cor
+```
+
+For our example data, we can estimate the correlation as:
+
+```{r}
+cor(x,y)
+```
+
+whose default is Pearson's estimator.  Simply having a correlation is not sufficient though.  Is this value significantly different than zero?  How do we know?  To evaluate our confidence in this statistic being significantly different than zero (both negative and positive), we can use the `cor.test()` function.
+
+```{r}
+cor.test(x,y)
+```
+
+Here, we have the option of setting the null hypothesis in terms of what we are testing.  This comes down to evaluating what the alternative hypothesis should be.  
+
+1. `alternative="two.sided"`  Are we evaluating both greater than or less than?
+2. `alternative="less"`  Are we only concerned about rejecting the null hypothesis if it is less
+3. `alternative="greater"`  Are we only concerned with rejections if it is greater?
+
+These alternative dictate where we determine the 'area under the curve' for assigning probabilities.
+
+Just like in other examples, the analysis itself in `R` returns on object that is a type of variable.
+
+```{r}
+rho <- cor.test(x,y)
+class(rho)
+```
+
+This type can be considered a list and you can gain access to the internal components in it.
+
+```{r}
+names(rho)
+```
+
+using the normal methods
+
+```{r}
+rho$estimate
+rho$alternative
+```
+
+This can come in handy when you want to add components of an analysis to some graphical output.  In this example, I add the estimate and the probability of the correlation being significantly different than zero to a scatter plot.
+
+```{r }
+plot(x,y,xlab="The X Value", ylab="The Y Value", bty="n")
+r <- paste( "r =", format( rho$estimate, digits=4) )
+p <- paste( "P =", format( rho$p.value, digits=4) )
+msg <- paste( r, p, sep="\n")
+text( 1.050, 12, msg)
+```
+
+
+## Non-Parametric Correlation
+
+In addition to parametric approaches, we have a host of non-parametric approaches that we can use to evaluate the correlation between variables.  The most common one is Spearman's Rank Correlation.  The idea here is that if your data are not conforming to assumptions of normality, you can summarize your data by ranking them instead and derive the correlation based upon the ranks of your data instead of on the raw data itself.
+
+Here is an example where I rank both $x$ and $y$ in the `data.frame`.
+
+```{r}
+df <- df[ order(df$x),]
+df$X_Rank <- 1:nrow(df)
+df <- df[ order(df$y),]
+df$Y_Rank <- 1:nrow(df)
+df[1:10,]
+```
+
+You can see that the smallest values in $x$ are not the smallest values in $y$ but they are pretty close. in fact, the estimator for this statistic is identical to that for Pearson's $\rho$ except that instead of using the raw data, we use the rank.
+
+\[
+\rho_{Spearman} = \frac{\sum_{i=1}^N(Rx_i-\bar{Rx})(Ry_i-\bar{Ry})}{\sqrt{\sum_{i=1}^N(Rx_i-\bar{Rx})^2} \sqrt{\sum_{i=1}^N(Rx_i-\bar{Rx})^2}}
+\]
+
+```{r}
+cor(x,y,method = "spearman")
+```
+
+If there are no ties in the values (e.g., how we assign a rank to a set of $x$ or $y$ values that are identical), then
+
+\[
+\rho_{Spearman} = \frac{6\sum_{i=1}^N d_i^2}{N(N^2-1)}
+\]
+
+where $d_i = Rx_i - Ry_i$ (e.g., the difference in the rank values).  If there are ties in the raw data (as we have in ours) then fractional ranks are given to all the values that have the same observation.  Look at the output above, we see that for the values of $y$ we have two that both have an assigned value of 3.6, the third and fourth observation.  To assigned tied ranks we would assign both of them a rank of 3.5.  We would assign a rank of 6 for those whose values are 3.8, etc.  If there are ties, we are warned about this when we test significance
+
+```{r}
+cor.test( x, y, method="spearman")
+```
+
+You could get around it a bit if you either increase the specificity of your measurements or throw away data.  In our case, I can do neither so it requires me to take a hit in the way in which the probability is estimated. No ties allows some simplifying assumptions to be me, whereas having them does prevents us from using them.
+
+## Differences
+
+So what is the difference?  Why use one over approach over the other?
+
+In general, if they give similar responses to the same data
+
+```{r}
+cor(x,y)
+cor(x,y,method="spearman")
+```
+
+Here the difference between them is `r abs(cor(x,y)-cor(x,y,method="spearman"))` with the parametric one giving a slightly larger correlation.  There is some loss of power going from observations to ranked observations.
+
+This is not always the case though.  Consider the data^[I am making this data up, it uses a random number generator and your data is *probably* not going to produce the same identical correlation but it will be close.] below.
+
+```{r}
+a <- seq(-1.6, 1.6, by=0.05)
+b <- sin(a)*20 + rnorm(length(a),sd=1)
+plot(a,b)
+```
+
+As we should expect, these data are probably not normally distributed.
+
+```{r}
+qqnorm(b)
+qqline(b,col="red")
+```
+
+with deviations on the tails.
+
+```{r}
+shapiro.test(b)
+```
+
+But if we look at the correlations
+
+```{r}
+cor(a,b)
+cor(a,b,method="spearman")
+```
+
+in this case, the rank correlation is higher (`r abs(cor(a,b)-cor(a,b,method="spearman"))`, not a lot but enough to prove the point that parametric approximations are not <u>always</u> producing higher estimates.
+
+
+## Permutation
+
+Before we finish, I want to make a diversion into permutation.  A lot of what we do in Biology may be done on data whose underlying distributional assumptions (normality, etc.) are generally unknown.  Many times, we can make assumptions (or transform our data) in such a way as to approximate the underlying assumptions.  However, that is not always the case. In the last decade, we've relied upon permutation as a method for evaluating probabilities associated with correlations (and a whole host of other statistics) and have opened a large door onto a lot of new analyses. 
+
+The main idea behind permutation is that you have a null hypothesis, say:
+
+\[
+H_O: \rho=0
+\]
+
+That is, you are expecting that the correlation between $x$ and $y$ is non-existent.  If this is `TRUE` then the value of $\rho$ you estimate should be just as big if you took one of your data sets, say $y$, and permuted it.  If the NULL hypothesis is `TRUE` any permutation of $y$ should produce values of $\hat{\rho}$ that are as large as you got in the original analysis.  
+
+So, one way to test the amount of support we have in $H_O$ is to do just that.  Say we want to evaluate the significance associated with rejecting the null hypothesis of no correlation when we observed $\rho =$ `r format( cor(x,y), digits=4)`.  We can create a large number (say 999 permuted values) and look at the distribution of $\hat{\rho}$ estimates.
+
+```{r}
+# Make place to store permuted and observed values
+r_null <- rep(NA,999)
+# Assign observed value
+r_null[1000] <- cor( x, y )
+# Make 1000 permutation, each time assigning new rho
+for( i in 1:999) {
+  yp <- sample( y, size = length(x), replace = FALSE)
+  r_null[i] <- cor( x, yp )
+}
+```
+
+If we look at these values, we see that our observed correlation is way out on the right end of the NULL distribution.
+
+```{r}
+df <- data.frame( rho=r_null )
+observation <- c( rep( "Permuted",999), "Observed" )
+df$Observation <- factor( observation )
+ggplot( df, aes(x=rho,fill=Observation)) + geom_histogram(bins=50)
+```
+
+We can evaluate the Probability of the NULL being correct as the fraction of all those values which are as large or larger than the observed one.
+
+```{r}
+P <- sum( r_null >= cor(x,y) ) / 1000
+P
+```
+
+Which in this case is 1/1000!  The observed value is the largest.  You will see more and more statistical approaches that use this 'trick' (it is really a trick and drives many statisticians a bit crazy) in Biology and Ecology because the underlying distributions are largely unknown.  It does become tricky though, when you have more complicated models and there is currently a lot of research being conducted on models that have nesting (e.g., populations within regions, etc.) or other designs more complicated than the most simple ones.

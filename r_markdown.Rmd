@@ -1,4 +1,4 @@
-# RMarkdown
+# Markdown
 
 > Writing code and the associated text around the analyses and your data is an odd job that munges together some programming skills, a lot of copy-and-paste, saving images, menu jujitsu (Insert $\to$ Image $\to$ From Computer...), etc.  One of the things that we should strive to do is to minimize the amount of stoooopid work that we have to do in our daily lives, right?  Markdown is a way to create textual output that can be magically turned into many types of output.  In this section, we start looking at some markdown examples that integrate our data, analysis code, and output into a single document that makes our lives suck just a little bit less \smiley{}.
 

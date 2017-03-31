@@ -1,4 +1,4 @@
-# R Data Containers
+# Data Containers
 
 > We almost never work with a single datum^[The word *data* is plural, datum is singular], rather we keep lots of data.  Moreover, the kinds of data are often heterogeneous, including categorical (Populations, Regions),  continuous (coordinates, rainfall, elevation), imagry (hyperspectral, LiDAR), and perhaps even genetic.  R has a very rich set of containers into which we can stuff our data as we work with it.  Here these container types are examined and the restrictions and benefits associated with each type are explained.
 
