@@ -1,5 +1,5 @@
 --- 
-title: "Applied Environmental Statistics"
+title: "Ecological Data Literacy"
 author: "Rodney J. Dyer"
 address: "Center for Environmental Studies, VCU Life Sciences"
 description: "A textbook for the use of R in environmental statistics."
@@ -9,7 +9,7 @@ documentclass: book
 bibliography: 
 biblio-style: apalike
 link-citations: yes
-github-repo: "dyerlab/AppliedEnvironmentalStatistics"
+github-repo: "dyerlab/applied_environmental_statisics"
 ---
 
 # Frontmatter {-}
@@ -23,7 +23,7 @@ theme_set( theme_bw() )
 ```
 
 
-This textbook was designed in support of the basic graduate level Applied Environmental Statistics course for the [Center for Environmental Studies](http://ces.vcu.edu) at [Virginia Commonwealth University](http://www.vcu.edu).  T
+This textbook was designed in support of the basic graduate level course in Ecological Data Literacytaught to incoming graduate students in the [Center for Environmental Studies](http://ces.vcu.edu) at [Virginia Commonwealth University](http://www.vcu.edu).  T
 
 Build Date: **`r date()`**
 
@@ -37,7 +37,6 @@ Dr. Rodney Dyer is a Professor and Director for the [Center for Environmental St
 
 ## Typography {-}
 
-This text is designed primarily as an electronic publication (ePub) and has dynamical content included within.  If you are reading a static copy (as PDF or printed text), you are not getting the full experience of what this book has been designed to deliver.  Much of the text is devoted to quantitative analysis of data in R, and as such I've typeset the R components differently from the flowing text.  Text intended to be input into R is typeset as a fixed width font and colored using the default color scheme found in RStudio (http://rstudio.org).  Here are two input examples.
 
 ```{r}
 value <- 20

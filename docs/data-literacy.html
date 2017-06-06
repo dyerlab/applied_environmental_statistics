@@ -32,7 +32,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
+<link rel="prev" href="index.html">
 <link rel="next" href="placeholder.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -102,11 +102,8 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <ul class="summary">
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Frontmatter</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#typography"><i class="fa fa-check"></i>Typography</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#interactive-content"><i class="fa fa-check"></i>Interactive Content</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#dedication"><i class="fa fa-check"></i>Dedication</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Frontmatter</a></li>
+<li class="chapter" data-level="" data-path="data-literacy.html"><a href="data-literacy.html"><i class="fa fa-check"></i>Data Literacy</a></li>
 <li class="part"><span><b>I Foundations</b></span></li>
 <li class="chapter" data-level="1" data-path="placeholder.html"><a href="placeholder.html"><i class="fa fa-check"></i><b>1</b> Placeholder</a></li>
 <li class="chapter" data-level="2" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html"><i class="fa fa-check"></i><b>2</b> The R Ecosystem</a></li>
@@ -145,84 +142,47 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Ecological Data Literacy</h1>
-<h4 class="author"><em>Rodney J. Dyer</em></h4>
+<div id="data-literacy" class="section level1 unnumbered">
+<h1>Data Literacy</h1>
+<p><em>Literacy</em> is broadly defined as the ability to take in, manipulate, and disberse information. In our world, we are continually bombarded with inforamtion. This information comes at us as <em>streams of data</em> (<em>n.b.</em> this is plural, the singular is <em>datum</em>)—much like a firehose and we are trying to hold onto it and perhaps even manipulate it to do something useful for us.</p>
+<div class="figure">
+<img src="media/firehose_crowd.jpg" alt="Trying to get inferences from the streams of data around us is like trying to control a firehose (unmodified photo from donnaidh_sidhe cc by-nc-nd)." />
+<p class="caption">Trying to get inferences from the streams of data around us is like trying to control a firehose (unmodified photo from <a href="https://www.flickr.com/photos/donnaidh_sidhe/1032985990/in/photolist-6Naoc5-74jKzz-3GpE8-74Ysr-dkMDL-32dG1t-6qG4x6-CAokAu-6EVzbs-qcFYBn-nrHMEs-3GpFH-3GpD9-5QAqxt-8MbpMH-hiQgk-hepL7-3GpH5-ocCJc6-2zhjKh-6iBJVW-4LDm9v-3GpF3-8ewjUM-4iZjCr-AN9Vvs-LRENiy-8ewjAr-bAU7jW-DqDhBc-SBNKmU-3FXoS-SrGPvd-ML94em-LREQgw-LREP9G-MD6R9S-ML95jC-nwUzyL">donnaidh_sidhe</a> cc by-nc-nd).</p>
 </div>
-<div id="frontmatter" class="section level1 unnumbered">
-<h1>Frontmatter</h1>
-<p>This textbook was designed in support of the basic graduate level course in Ecological Data Literacytaught to incoming graduate students in the <a href="http://ces.vcu.edu">Center for Environmental Studies</a> at <a href="http://www.vcu.edu">Virginia Commonwealth University</a>. T</p>
-<p>Build Date: <strong>Tue Jun 6 13:58:02 2017</strong></p>
-<p>The content of this text is modified, added to, and changed continually in support of this class. You are welcome to use the content of this book in its present form and you can provide feedback, comments, or suggestions for additions by contacting me at <a href="mailto://rjdyer@vcu.edu">rjdyer@vcu.edu</a>. This work will continue to be hosted online and continually updated as new approaches and applications become available.</p>
-<p>© 2017 by R.J. Dyer.</p>
-<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. Under this license, authorized individuals may copy, distribute, display and perform the work and make derivative works and remixes based on this text only if they give the original author credit (attribution). You are also free to distribute derivative works only under a license identical (“not more restrictive”) to the license that governs this original work.</p>
-<p>Dr. Rodney Dyer is a Professor and Director for the <a href="http://ces.vcu.edu">Center for Environmental Studies</a> at <a href="http://www.vcu.edu">Virginia Commonwealth University</a> in Richmond, Virginia, USA. His research focuses on genetic connectivity and structure and how the environment influences both. More information on his research can be found at <a href="http://dyerlab.org" class="uri">http://dyerlab.org</a>.</p>
-<div id="typography" class="section level2 unnumbered">
-<h2>Typography</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">value &lt;-<span class="st"> </span><span class="dv">20</span>
-name &lt;-<span class="st"> &quot;Perdedor&quot;</span></code></pre></div>
-<p>This text is amenable to copy-and-paste action so you can perform the same calculations on your computer as are done in the text. When R returns an answer to an analysis or prints the contents of a variable out, the results are also typeset in fixed width font but each line is prefixed by two hash marks.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>)</code></pre></div>
-<pre><code>##  [1] -0.60592958 -0.69805244 -0.38449639  1.46810755  0.11274083
-##  [6] -0.49395035 -0.04936498 -0.93579755  0.33117300  3.96896438</code></pre>
-<p>The lines with hashes are not something you are going to copy-and-paste into your R session, it is what R is giving you. Inline code (e.g., code inserted into a sentence in a descriptive context such as discussing the <code>rnorm()</code> function in the previous example) is typeset similarly though not necessarily intended to be cut-and-pasted into your session.</p>
-<p>Throughout the ePub, there are also dynamical content. Some of this content may be condensed text put into a scrolling text-box. Here the notion is to provide direct access to information without unnecessarily adding length to the overall text. Here is an example, showing the documentation associated with the R <code>help.start()</code> function within a scrolling text box.</p>
-<div class="scrollingbox">
-<pre>
-help.start {utils}                                              R Documentation
-
-Hypertext Documentation
-
-Description
-
-Start the hypertext (currently HTML) version of R's online documentation.
-
-Usage
-
-help.start(update = FALSE, gui = "irrelevant", browser = getOption("browser"), remote = NULL)
-
-Arguments
-
-update - logical: should this attempt to update the package index to reflect the currently available packages. (Not attempted if remote is non-NULL.)
-gui - just for compatibility with S-PLUS.
-browser - the name of the program to be used as hypertext browser. It should be in the PATH, or a full path specified. Alternatively, it can be an R function which will be called with a URL as its only argument. This option is normally unset on Windows, when the file-association mechanism will be used.
-remote - A character string giving a valid URL for the ‘R_HOME' directory on a remote location.
-
-Details
-
-Unless remote is specified this requires the HTTP server to be available (it will be started if possible: see startDynamicHelp).
-
-One of the links on the index page is the HTML package index, ‘R.home("docs")/html/packages.html', which can be remade by make.packages.html(). For local operation, the HTTP server will remake a temporary version of this list when the link is first clicked, and each time thereafter check if updating is needed (if .libPaths has changed or any of the directories has been changed). This can be slow, and using update = TRUE will ensure that the packages list is updated before launching the index page.
-
-Argument remote can be used to point to HTML help published by another R installation: it will typically only show packages from the main library of that installation.
-
-See Also
-
-help() for on- and off-line help in other formats.
-browseURL for how the help file is displayed.
-RSiteSearch to access an on-line search of R resources.
-
-Examples
-
-help.start()
-## Not run: 
-## the 'remote' arg can be tested by
-help.start(remote = paste0("file://", R.home()))
-
-## End(Not run)
-</pre>
+<p>The whole notion of data streams forms the foundation of this course. As students in the environmental sciences, you must become fascile in the discovery, manipulation, use, and interpretation of data. The amount of data you will be working with is staggering. We no longer just take simple measurements and writing them in our log book and analyze them with pen and pencil later in the semester. Now, we have automated data collection, next generation sequencing, remote sensing, drones (!), and a host of other sources of data.</p>
+<p>Here is an example. At the Rice Rivers Center (the VCU Research Station on the James River just outside Richmond Virginia), we have a numerous automated data collection devices. Here is one example. At the <a href="http://ricerivers.vcu.edu">Rice Rivers Center</a>, we have many automated data collection sources, one of which is located on the pier. In the table below, we have real data from a slice of one sunday afternoon.</p>
+<div class="figure">
+<img src="media/RicePierData.png" alt="A slice of the data from one instrument tied to the Pier at the Rice Rivers Center. Data from 13 different variables are collected at 10-minute intervals." />
+<p class="caption">A slice of the data from one instrument tied to the Pier at the <a href="http://ricerivers.vcu.edu">Rice Rivers Center</a>. Data from 13 different variables are collected at 10-minute intervals.</p>
 </div>
-<p>In addition to shoving static content into scrolling windows, longer R scripts will also be inserted into these widgets so that space can be saved while preserving syntax highlighting and code format.</p>
-</div>
-<div id="interactive-content" class="section level2 unnumbered">
-<h2>Interactive Content</h2>
-<p>Where possible, I have included interactive content in the text. Examples include dynamical plots such as embedding google map objects in the page, network structure that can be manipulated in the browser, and widgets that show how a process influences popualtion genetic features by allowing you to direclty manipulate the parameters in the model.</p>
-</div>
-<div id="dedication" class="section level2 unnumbered">
-<h2>Dedication</h2>
-<p>I would like to dedicate this text to the first person who showed me the beauty of statistical inferences, Dr. Richard Fonda, who guided this misguided undergrad at Western Washington University.</p>
+<p>During each day, we collect:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num_variables &lt;-<span class="st"> </span><span class="dv">13</span>
+collections_per_day &lt;-<span class="st"> </span><span class="dv">24</span> *<span class="st"> </span><span class="dv">60</span> /<span class="st"> </span><span class="dv">10</span>
+num_data_points &lt;-<span class="st"> </span>num_variables *<span class="st"> </span>collections_per_day
+num_data_points</code></pre></div>
+<pre><code>## [1] 1872</code></pre>
+<p>That is not too bad, N = 1872 data points per day. So during the course of this semester, which spans</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">semester_start &lt;-<span class="st"> </span><span class="kw">as.Date</span>( <span class="st">&quot;2017-08-24&quot;</span>)
+semester_end &lt;-<span class="st"> </span><span class="kw">as.Date</span>( <span class="st">&quot;2017-12-09&quot;</span>)
+days &lt;-<span class="st"> </span>semester_end -<span class="st"> </span>semester_start
+days</code></pre></div>
+<pre><code>## Time difference of 107 days</code></pre>
+<p>this unit will have collected a total number of observations equal to:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num_data_points *<span class="st"> </span><span class="kw">as.numeric</span>( days )</code></pre></div>
+<pre><code>## [1] 200304</code></pre>
+<p>Just over 200,000 observations! Day in and day out. Over the course of the year there will be 683,280 individual data points collected, stored somewhere, and hopefully provide some bit of insight for humanity (else why are we collecting useless data?). And this is only one such instrument, there are many at this site. And if you were studying how things changed along the river, you would have to have many such sites. It rapidly gets out of control.</p>
+<p>So how do we do it? If your first intuition was to <code>open up Excel</code>, this is probably not the class for you. Software that comes as part of an “Office” suite of applications belong in an office environment. We are not office workers. You are data wranglers and this course will teach you how to work with and gain inferences from different kinds of data.</p>
+<p>A typical work cycle with data consists of the following steps:</p>
+<ol style="list-style-type: decimal">
+<li><em>Collect the Data</em>: Through some mechanisms, you find the raw data by collecting it yourself, going through existing datasets (public or otherwise), or create the data <em>de novo</em> (we call it modeling not ‘making stuff up’).</li>
+<li><em>Tranform the Data</em>: More often than not, the data you have is in some format that was designed for someone elses use and it needs to be manipulated in such a way so that you can get it into some sort of examination and analysis framework.</li>
+<li><em>Visualize the Data</em>: Some subset of the whole data is examined in a way to provide some valuable insights. Visualization is tremendously important when it comes to making biologically meaningful inferences.</li>
+<li><em>Model the Data</em>: Here we are beginning to come up with some questions or assumptions about the data. There is some underlying model we develop. If the goal is statistical inferences, we may be testing to determine if subgroups in the data are different in composition or that certain treatments or conditions have an impact on the values we measured.<br />
+</li>
+<li><em>GOTO 1 or 2</em>: Often this is where we figure out we need more or differnt kinds of data. Additional transformations may be necessary before we can get the kinds of inferences we are seeking. More often than not, this iteration through the steps of collect-transform-visualize-model</li>
+<li><em>Provide Insights</em>: Here is where we take the skills you’ve learned within a course like this and from the other courses you’ve taken to communicate the findings of your efforts to the larger world. This is an important step in gaining data literacy.</li>
+</ol>
 
-</div>
 </div>
 
 
@@ -232,8 +192,8 @@ help.start(remote = paste0("file://", R.home()))
           </div>
         </div>
       </div>
-
-<a href="placeholder.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="placeholder.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
