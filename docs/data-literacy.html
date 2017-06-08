@@ -172,14 +172,19 @@ days</code></pre></div>
 <pre><code>## [1] 200304</code></pre>
 <p>Just over 200,000 observations! Day in and day out. Over the course of the year there will be 683,280 individual data points collected, stored somewhere, and hopefully provide some bit of insight for humanity (else why are we collecting useless data?). And this is only one such instrument, there are many at this site. And if you were studying how things changed along the river, you would have to have many such sites. It rapidly gets out of control.</p>
 <p>So how do we do it? If your first intuition was to <code>open up Excel</code>, this is probably not the class for you. Software that comes as part of an “Office” suite of applications belong in an office environment. We are not office workers. You are data wranglers and this course will teach you how to work with and gain inferences from different kinds of data.</p>
-<p>A typical work cycle with data consists of the following steps:</p>
+<p>A typical work cycle with data consists of the steps in the following diagram.</p>
+<div class="figure">
+<img src="media/DataWorkCycle.png" alt="Sequence of events" />
+<p class="caption">Sequence of events</p>
+</div>
+<p>Clearly, the process of gaining infromation from data requires an <em>iterative</em> approach. Each of the steps that are followed can be defined as follows:</p>
 <ol style="list-style-type: decimal">
 <li><em>Collect the Data</em>: Through some mechanisms, you find the raw data by collecting it yourself, going through existing datasets (public or otherwise), or create the data <em>de novo</em> (we call it modeling not ‘making stuff up’).</li>
 <li><em>Tranform the Data</em>: More often than not, the data you have is in some format that was designed for someone elses use and it needs to be manipulated in such a way so that you can get it into some sort of examination and analysis framework.</li>
 <li><em>Visualize the Data</em>: Some subset of the whole data is examined in a way to provide some valuable insights. Visualization is tremendously important when it comes to making biologically meaningful inferences.</li>
 <li><em>Model the Data</em>: Here we are beginning to come up with some questions or assumptions about the data. There is some underlying model we develop. If the goal is statistical inferences, we may be testing to determine if subgroups in the data are different in composition or that certain treatments or conditions have an impact on the values we measured.<br />
 </li>
-<li><em>GOTO 1 or 2</em>: Often this is where we figure out we need more or differnt kinds of data. Additional transformations may be necessary before we can get the kinds of inferences we are seeking. More often than not, this iteration through the steps of collect-transform-visualize-model</li>
+<li><em>GOTO 1 and/or 2</em>: Often this is where we figure out we need more or differnt kinds of data. Additional transformations may be necessary before we can get the kinds of inferences we are seeking. More often than not, this iteration through the steps of collect-transform-visualize-model</li>
 <li><em>Provide Insights</em>: Here is where we take the skills you’ve learned within a course like this and from the other courses you’ve taken to communicate the findings of your efforts to the larger world. This is an important step in gaining data literacy.</li>
 </ol>
 

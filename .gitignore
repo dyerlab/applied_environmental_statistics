@@ -5,3 +5,5 @@
 .DS_Store
 
 _bookdown_file*
+docs/*_files*
+*.swp

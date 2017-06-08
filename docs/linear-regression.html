@@ -5,20 +5,20 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Applied Environmental Statistics</title>
+  <title>Ecological Data Literacy</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="A textbook for the use of R in environmental statistics.">
   <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Applied Environmental Statistics" />
+  <meta property="og:title" content="Ecological Data Literacy" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="A textbook for the use of R in environmental statistics." />
-  <meta name="github-repo" content="dyerlab/AppliedEnvironmentalStatistics" />
+  <meta name="github-repo" content="dyerlab/applied_environmental_statisics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Applied Environmental Statistics" />
+  <meta name="twitter:title" content="Ecological Data Literacy" />
   
   <meta name="twitter:description" content="A textbook for the use of R in environmental statistics." />
   
@@ -107,6 +107,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#interactive-content"><i class="fa fa-check"></i>Interactive Content</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#dedication"><i class="fa fa-check"></i>Dedication</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="data-literacy.html"><a href="data-literacy.html"><i class="fa fa-check"></i>Data Literacy</a></li>
 <li class="part"><span><b>I Foundations</b></span></li>
 <li class="chapter" data-level="1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html"><i class="fa fa-check"></i><b>1</b> The R Ecosystem</a><ul>
 <li class="chapter" data-level="1.1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#getting-r-configured"><i class="fa fa-check"></i><b>1.1</b> Getting R Configured</a><ul>
@@ -216,7 +217,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Environmental Statistics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ecological Data Literacy</a>
           </h1>
         </div>
 
@@ -279,8 +280,8 @@ y_{ij} = \beta_0 + \beta_1x_i + \epsilon_j
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 p &lt;-<span class="st"> </span><span class="kw">ggplot</span>( Cars93, <span class="kw">aes</span>(<span class="dt">x=</span>EngineSize, <span class="dt">y=</span>Horsepower) ) +<span class="st"> </span><span class="kw">geom_point</span>() 
 p +<span class="st"> </span><span class="kw">geom_text</span>( <span class="kw">aes</span>(<span class="dt">label=</span>Make, <span class="dt">y=</span>Horsepower<span class="dv">+10</span>), <span class="dt">data=</span>Cars93[<span class="dv">57</span>,])</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-212"></span>
-<img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-212-1.png" alt="Horsepower as a function of engine size (in Liters) for 93 different vehicles available in 1993.  The Mazda RX-7 is labeled as it is a rotary engine, an entirely different kind of engine than the rest." width="576" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-215"></span>
+<img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-215-1.png" alt="Horsepower as a function of engine size (in Liters) for 93 different vehicles available in 1993.  The Mazda RX-7 is labeled as it is a rotary engine, an entirely different kind of engine than the rest." width="576" />
 <p class="caption">
 Figure 13.1: Horsepower as a function of engine size (in Liters) for 93 different vehicles available in 1993. The Mazda RX-7 is labeled as it is a rotary engine, an entirely different kind of engine than the rest.
 </p>
@@ -313,7 +314,7 @@ b0 &lt;-<span class="st"> </span><span class="kw">format</span>( fit$coefficient
 b1 &lt;-<span class="st"> </span><span class="kw">format</span>( fit$coefficients[<span class="dv">2</span>], <span class="dt">digits=</span><span class="dv">3</span>)
 msg &lt;-<span class="st"> </span><span class="kw">paste</span>( <span class="st">&quot;y = &quot;</span>,b0, <span class="st">&quot; + &quot;</span>, b1, <span class="st">&quot;x&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)
 <span class="kw">text</span>( <span class="fl">4.5</span>,<span class="dv">100</span>, msg)</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-216-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-219-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>How does the model look? Do you think it is a good fit? Lets look at some output of the <code>lm</code> object.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit)</code></pre></div>
 <pre><code>## 
@@ -396,7 +397,7 @@ F_{x,df_1,df_2} = \frac{\sqrt{\frac{(df_1x)^{df_1}df_2^{df_2}}{(df_1x+df_2)^{df_
 <span class="kw">plot</span>(fit, <span class="dt">which=</span><span class="dv">2</span>)
 <span class="kw">plot</span>(fit, <span class="dt">which=</span><span class="dv">3</span>)
 <span class="kw">plot</span>(fit, <span class="dt">which=</span><span class="dv">5</span>)</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-219-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-222-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>These depict the following items.</p>
 <ol style="list-style-type: decimal">
 <li><em>Residuals vs. Fitted</em> - This gives an indication of what is not explained by the model. Here if there are general trends (e.g., the residuals show systematic patterns of increase, decrease or non-linearity) these depict variance that is not explained by the underlying model.<br />

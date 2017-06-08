@@ -5,20 +5,20 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Applied Environmental Statistics</title>
+  <title>Ecological Data Literacy</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="A textbook for the use of R in environmental statistics.">
   <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Applied Environmental Statistics" />
+  <meta property="og:title" content="Ecological Data Literacy" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="A textbook for the use of R in environmental statistics." />
-  <meta name="github-repo" content="dyerlab/AppliedEnvironmentalStatistics" />
+  <meta name="github-repo" content="dyerlab/applied_environmental_statisics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Applied Environmental Statistics" />
+  <meta name="twitter:title" content="Ecological Data Literacy" />
   
   <meta name="twitter:description" content="A textbook for the use of R in environmental statistics." />
   
@@ -107,6 +107,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#interactive-content"><i class="fa fa-check"></i>Interactive Content</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#dedication"><i class="fa fa-check"></i>Dedication</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="data-literacy.html"><a href="data-literacy.html"><i class="fa fa-check"></i>Data Literacy</a></li>
 <li class="part"><span><b>I Foundations</b></span></li>
 <li class="chapter" data-level="1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html"><i class="fa fa-check"></i><b>1</b> The R Ecosystem</a><ul>
 <li class="chapter" data-level="1.1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#getting-r-configured"><i class="fa fa-check"></i><b>1.1</b> Getting R Configured</a><ul>
@@ -216,7 +217,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Environmental Statistics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ecological Data Literacy</a>
           </h1>
         </div>
 
@@ -264,7 +265,7 @@ x &lt;-<span class="st"> </span>data$OG_Max
 y &lt;-<span class="st"> </span>data$ABV_Max
 df &lt;-<span class="st"> </span><span class="kw">data.frame</span>( x, y )
 <span class="kw">ggplot</span>( df, <span class="kw">aes</span>(x,y) ) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;ABV&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;OG&quot;</span>)</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-189-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-192-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>The extent to which these variables change together is quantified by a correlation statistic.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(x,y)</code></pre></div>
 <pre><code>## [1] 0.9541928</code></pre>
@@ -272,10 +273,10 @@ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>( x, y )
 <p>Using a combination of either <code>plot()</code> or <code>geom_point()</code> and <code>cor()</code>, we can both display and evaluate the correlation between two variables. For more than two, we can either iteratively go through all possible pairs and plot/evaluate them individually, or we can use the <code>GGally</code> package to plot all pairs of variables. You may need to install the <code>GGally</code> package (it is not installed by default). If you get an error message when you use <code>library(GGally)</code> install the package from CRAN using the command <code>install.packages(&quot;GGally&quot;)</code>. Here I plot the maximum values for each property of the styles (and change the base font size so that it shows up properly on the PDF output).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
 <span class="kw">ggpairs</span>(data[<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">12</span>)]) +<span class="st"> </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">8</span>)</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-191-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-194-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>There are three components to this graphical output. Above the diagonal is the pair-wise correlation, on the diagonal is the density (histogram) of each variable, and below the diagonal is the plot. The <code>ggpairs()</code> function is quite extensible. You can specify the kinds of plots to be used above, on, and below the diagonal. You can also mix and match different types of data and it will plot them accordingly. Here is an example if I include the <code>data$Yeast</code> column, which is a factor.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggpairs</span>(data[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>)]) +<span class="st"> </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">8</span>)</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-192-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-195-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Because it is a factor, it presents the pair-wise correlations in a slightly different way. A word of caution. You should be very careful when using this plot with a lot of data types. It takes a bit of time to create each of these graphical outputs and display them. If you make the mistake of doing too many, you might as well go get some coffee because it will take a bit of time for it to finish.</p>
 </div>
 <div id="parametric-correlations" class="section level2">
@@ -330,7 +331,7 @@ r &lt;-<span class="st"> </span><span class="kw">paste</span>( <span class="st">
 p &lt;-<span class="st"> </span><span class="kw">paste</span>( <span class="st">&quot;P =&quot;</span>, <span class="kw">format</span>( rho$p.value, <span class="dt">digits=</span><span class="dv">4</span>) )
 msg &lt;-<span class="st"> </span><span class="kw">paste</span>( r, p, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
 <span class="kw">text</span>( <span class="fl">1.050</span>, <span class="dv">12</span>, msg)</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-199-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-202-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="non-parametric-correlation" class="section level2">
 <h2><span class="header-section-number">12.3</span> Non-Parametric Correlation</h2>
@@ -388,24 +389,24 @@ df[<span class="dv">1</span>:<span class="dv">10</span>,]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">seq</span>(-<span class="fl">1.6</span>, <span class="fl">1.6</span>, <span class="dt">by=</span><span class="fl">0.05</span>)
 b &lt;-<span class="st"> </span><span class="kw">sin</span>(a)*<span class="dv">20</span> +<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(a),<span class="dt">sd=</span><span class="dv">1</span>)
 <span class="kw">plot</span>(a,b)</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-204-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-207-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>As we should expect, these data are probably not normally distributed.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qqnorm</span>(b)
 <span class="kw">qqline</span>(b,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-205-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-208-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>with deviations on the tails.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shapiro.test</span>(b)</code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  b
-## W = 0.89852, p-value = 6.225e-05</code></pre>
+## W = 0.91035, p-value = 0.0001793</code></pre>
 <p>But if we look at the correlations</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(a,b)</code></pre></div>
-<pre><code>## [1] 0.9885372</code></pre>
+<pre><code>## [1] 0.9906033</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(a,b,<span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>)</code></pre></div>
-<pre><code>## [1] 0.9940122</code></pre>
-<p>in this case, the rank correlation is higher (0.005475, not a lot but enough to prove the point that parametric approximations are not <u>always</u> producing higher estimates.</p>
+<pre><code>## [1] 0.9928322</code></pre>
+<p>in this case, the rank correlation is higher (0.0022289, not a lot but enough to prove the point that parametric approximations are not <u>always</u> producing higher estimates.</p>
 </div>
 <div id="permutation" class="section level2">
 <h2><span class="header-section-number">12.5</span> Permutation</h2>
@@ -430,7 +431,7 @@ for( i in <span class="dv">1</span>:<span class="dv">999</span>) {
 observation &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="kw">rep</span>( <span class="st">&quot;Permuted&quot;</span>,<span class="dv">999</span>), <span class="st">&quot;Observed&quot;</span> )
 df$Observation &lt;-<span class="st"> </span><span class="kw">factor</span>( observation )
 <span class="kw">ggplot</span>( df, <span class="kw">aes</span>(<span class="dt">x=</span>rho,<span class="dt">fill=</span>Observation)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">bins=</span><span class="dv">50</span>)</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-209-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-212-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>We can evaluate the Probability of the NULL being correct as the fraction of all those values which are as large or larger than the observed one.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">P &lt;-<span class="st"> </span><span class="kw">sum</span>( r_null &gt;=<span class="st"> </span><span class="kw">cor</span>(x,y) ) /<span class="st"> </span><span class="dv">1000</span>
 P</code></pre></div>

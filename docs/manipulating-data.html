@@ -5,20 +5,20 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Applied Environmental Statistics</title>
+  <title>Ecological Data Literacy</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="A textbook for the use of R in environmental statistics.">
   <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Applied Environmental Statistics" />
+  <meta property="og:title" content="Ecological Data Literacy" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="A textbook for the use of R in environmental statistics." />
-  <meta name="github-repo" content="dyerlab/AppliedEnvironmentalStatistics" />
+  <meta name="github-repo" content="dyerlab/applied_environmental_statisics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Applied Environmental Statistics" />
+  <meta name="twitter:title" content="Ecological Data Literacy" />
   
   <meta name="twitter:description" content="A textbook for the use of R in environmental statistics." />
   
@@ -107,6 +107,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#interactive-content"><i class="fa fa-check"></i>Interactive Content</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#dedication"><i class="fa fa-check"></i>Dedication</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="data-literacy.html"><a href="data-literacy.html"><i class="fa fa-check"></i>Data Literacy</a></li>
 <li class="part"><span><b>I Foundations</b></span></li>
 <li class="chapter" data-level="1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html"><i class="fa fa-check"></i><b>1</b> The R Ecosystem</a><ul>
 <li class="chapter" data-level="1.1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#getting-r-configured"><i class="fa fa-check"></i><b>1.1</b> Getting R Configured</a><ul>
@@ -216,7 +217,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Environmental Statistics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ecological Data Literacy</a>
           </h1>
         </div>
 
@@ -234,7 +235,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <p>Raw data is imported into R using <code>read.*</code> functions. There are a wide variety of file formats available, most of which have a corresponding function (e.g., <code>read.csv()</code>, <code>read.delim()</code>, <code>read.dcf()</code>, etc.). For our purposes, we will focus on using <em>comma separated</em> files (*.CSV) as they are the most readily available and can be read by almost all editors and spreadsheet functions.</p>
 <p>On the lecture webpage, there is a file named <code>iris.csv</code>. Download this file and put it in the same directory as your RStudio session. If you do not know where this is, you can find it by asking R to get its current working directory as:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre></div>
-<pre><code>## [1] &quot;/Users/rodney/Documents/R/AppliedEnvironmentalStatistics&quot;</code></pre>
+<pre><code>## [1] &quot;/Users/rodney/Documents/Teaching/applied_environmental_statistics&quot;</code></pre>
 <p>The same information is also printed across the top of the “Files” pane in the RStudio interface (though it starts from your ‘home’ directory instead of the top of the file path).</p>
 <p><img src="media/getwd.png" width="288" style="display: block; margin: auto;" /></p>
 <p>One way to easily open this location is to select the “Show Folder in New Window” menu item in the “More” menu on that same pane. It will open the folder you are looking at in the file system as a new window for you, then you can drag and drop things into it.</p>
@@ -491,7 +492,7 @@ df</code></pre></div>
 standardized_sepal_lengths &lt;-<span class="st"> </span>flowers$Sepal.Length -<span class="st"> </span>ave_sepal_length
 <span class="kw">summary</span>( standardized_sepal_lengths )</code></pre></div>
 <pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## -1.54300 -0.74330 -0.04333  0.00000  0.55670  2.05700</code></pre>
+## -1.54333 -0.74333 -0.04333  0.00000  0.55667  2.05667</code></pre>
 <p>Which should have a mean of zero, right?</p>
 <span class="math inline">\(\;\)</span>
 

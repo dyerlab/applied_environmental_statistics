@@ -39,14 +39,17 @@ Just over 200,000 observations!  Day in and day out.  Over the course of the yea
 
 So how do we do it?  If your first intuition was to `open up Excel`, this is probably not the class for you.  Software that comes as part of an "Office" suite of applications belong in an office environment.  We are not office workers.  You are data wranglers and this course will teach you how to work with and gain inferences from different kinds of data. 
 
-A typical work cycle with data consists of the following steps:
+A typical work cycle with data consists of the steps in the following diagram.
+
+![Sequence of events ](./media/DataWorkCycle.png)
+
+Clearly, the process of gaining infromation from data requires an *iterative* approach.  Each of the steps that are followed can be defined as follows:
 
 1. *Collect the Data*: Through some mechanisms, you find the raw data by  collecting it yourself, going through existing datasets (public or otherwise), or create the data *de novo* (we call it modeling not 'making stuff up').
-2. *Tranform the Data*: More often than not, the data you have is in some format that was designed for someone elses use and it needs to be manipulated in such a way so that you can get it into some sort of examination and analysis framework.
-3. *Visualize the Data*: Some subset of the whole data is examined in a way to provide some valuable insights.  Visualization is tremendously important when it comes to making biologically meaningful inferences.
+2. *Visualize the Data*: Some subset of the whole data is examined in a way to provide some valuable insights.  Visualization is tremendously important when it comes to making biologically meaningful inferences.
+3. *Tranform the Data*: More often than not, the data you have is in some format that was designed for someone elses use and it needs to be manipulated in such a way so that you can get it into some sort of examination and analysis framework.
 4. *Model the Data*: Here we are beginning to come up with some questions or assumptions about the data.  There is some underlying model we develop.  If the goal is statistical inferences, we may be testing to determine if subgroups in the data are different in composition or that certain treatments or conditions have an impact on the values we measured.  
-5. *GOTO 1 or 2*:  Often this is where we figure out we need more or differnt kinds of data.  Additional transformations may be necessary before we can get the kinds of inferences we are seeking.  More often than not, this iteration through the steps of collect-transform-visualize-model
-5. *Provide Insights*: Here is where we take the skills you've learned within a course like this and from the other courses you've taken to communicate the findings of your efforts to the larger world.  This is an important step in gaining data literacy.
+5. *Communicate*: Here is where we take the skills you've learned within a course like this and from the other courses you've taken to communicate the findings of your efforts to the larger world.  This is an important step in gaining data literacy.
 
 
 

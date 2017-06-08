@@ -5,20 +5,20 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Applied Environmental Statistics</title>
+  <title>Ecological Data Literacy</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="A textbook for the use of R in environmental statistics.">
   <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Applied Environmental Statistics" />
+  <meta property="og:title" content="Ecological Data Literacy" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="A textbook for the use of R in environmental statistics." />
-  <meta name="github-repo" content="dyerlab/AppliedEnvironmentalStatistics" />
+  <meta name="github-repo" content="dyerlab/applied_environmental_statisics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Applied Environmental Statistics" />
+  <meta name="twitter:title" content="Ecological Data Literacy" />
   
   <meta name="twitter:description" content="A textbook for the use of R in environmental statistics." />
   
@@ -107,6 +107,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#interactive-content"><i class="fa fa-check"></i>Interactive Content</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#dedication"><i class="fa fa-check"></i>Dedication</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="data-literacy.html"><a href="data-literacy.html"><i class="fa fa-check"></i>Data Literacy</a></li>
 <li class="part"><span><b>I Foundations</b></span></li>
 <li class="chapter" data-level="1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html"><i class="fa fa-check"></i><b>1</b> The R Ecosystem</a><ul>
 <li class="chapter" data-level="1.1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#getting-r-configured"><i class="fa fa-check"></i><b>1.1</b> Getting R Configured</a><ul>
@@ -216,7 +217,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Environmental Statistics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ecological Data Literacy</a>
           </h1>
         </div>
 
@@ -371,7 +372,7 @@ x &lt;-<span class="st"> </span>b
 y0 &lt;-<span class="st"> </span><span class="kw">as.numeric</span>( mu )
 y1 &lt;-<span class="st"> </span>y0 +<span class="st"> </span><span class="kw">as.numeric</span>( sepal.sd)
 <span class="kw">arrows</span>( x,y0,x,y1, <span class="dt">angle =</span> <span class="dv">90</span> )</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-178-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-181-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ordination" class="section level2">
 <h2><span class="header-section-number">11.3</span> Ordination</h2>
@@ -395,7 +396,7 @@ pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit.pca)
 df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">PC1 =</span> pred[, <span class="dv">1</span>], <span class="dt">PC2 =</span> pred[, <span class="dv">2</span>])
 df$Species &lt;-<span class="st"> </span>iris$Species
 <span class="kw">ggplot</span>(df) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> PC1, <span class="dt">y =</span> PC2, <span class="dt">color =</span> Species), <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.75</span>)</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-182-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-185-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>We can see from the plot that the the samples are clustered in an obvious way. The designation of ‘Species’ as depicted by the color of the points, shows definite partitions between <em>I. setosa</em> and the remaining species (along the PC1 axis). However, projected onto the PC2 axis, there does not seem to be a partitioning of the samples differentiating the species in an obvious way.</p>
 </div>
 <div id="hierarchical-clustering" class="section level2">
@@ -411,11 +412,11 @@ df$Species &lt;-<span class="st"> </span>iris$Species
 <p>We can then perform the above algorithm using the <code>hclust()</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h &lt;-<span class="st"> </span><span class="kw">hclust</span>( iris.dist )
 <span class="kw">plot</span>( h )</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-184-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-187-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Which shows a deep separation between groups. Lets see if we can get a bit more interpretive power out of it by changing the labels to show species:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h$labels &lt;-<span class="st"> </span>iris$Species 
 <span class="kw">plot</span>( h , <span class="dt">cex=</span><span class="fl">0.5</span>)</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-185-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-188-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>You may need to ‘zoom’ that one a bit to understand the labels because I reduced their font size (the <code>cex</code> bit in the plot statement). This is interesting but would be helpful if we could provide a bit of color to the plot to differentiate the <code>Species</code>. Unfortunately, we cannot just add <code>col=Species</code> (for reasons I don’t quite understand) to the plot but there is a way to change the <code>h</code> object into one that can be colored. However, you <strong>must</strong> first install a new library if you don’t already have it, which I am guessing if this is the first time you’ve done some work using trees in R you have not. Install it in the normal fashion</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;dendextend&quot;</span>)</code></pre></div>
 <p>Then we can use it like</p>
@@ -423,7 +424,7 @@ df$Species &lt;-<span class="st"> </span>iris$Species
 d &lt;-<span class="st"> </span><span class="kw">as.dendrogram</span>( h )
 <span class="kw">labels_colors</span>( d ) &lt;-<span class="st"> </span><span class="kw">as.numeric</span>( iris$Species )
 <span class="kw">plot</span>( d )</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-187-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-190-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>There are some interesting things to notice here.<br />
 - The green <em>setosa</em> group seems to be nicely separated from the rest, just like we saw in the PC plot. - There are some individual samples that are a bit mixed, the <em>I. virginica</em> and <em>I. versicolor</em> samples are mixed together not forming a coherent group.</p>
 <p>These plot suggest that morphology along may be a good indicator of species differences for <em>I. setosa</em> but not perhaps that good for telling the differences between the <em>I. virginica</em> and <em>I. versicolor</em> samples.</p>

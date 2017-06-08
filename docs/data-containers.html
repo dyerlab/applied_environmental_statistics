@@ -5,20 +5,20 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Applied Environmental Statistics</title>
+  <title>Ecological Data Literacy</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="A textbook for the use of R in environmental statistics.">
   <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Applied Environmental Statistics" />
+  <meta property="og:title" content="Ecological Data Literacy" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="A textbook for the use of R in environmental statistics." />
-  <meta name="github-repo" content="dyerlab/AppliedEnvironmentalStatistics" />
+  <meta name="github-repo" content="dyerlab/applied_environmental_statisics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Applied Environmental Statistics" />
+  <meta name="twitter:title" content="Ecological Data Literacy" />
   
   <meta name="twitter:description" content="A textbook for the use of R in environmental statistics." />
   
@@ -107,6 +107,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#interactive-content"><i class="fa fa-check"></i>Interactive Content</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#dedication"><i class="fa fa-check"></i>Dedication</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="data-literacy.html"><a href="data-literacy.html"><i class="fa fa-check"></i>Data Literacy</a></li>
 <li class="part"><span><b>I Foundations</b></span></li>
 <li class="chapter" data-level="1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html"><i class="fa fa-check"></i><b>1</b> The R Ecosystem</a><ul>
 <li class="chapter" data-level="1.1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#getting-r-configured"><i class="fa fa-check"></i><b>1.1</b> Getting R Configured</a><ul>
@@ -216,7 +217,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Environmental Statistics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ecological Data Literacy</a>
           </h1>
         </div>
 
@@ -244,16 +245,18 @@ z</code></pre></div>
 <p>or coearce them into one type that is amenable to all the types of data that you have given it. In this example, a Logical, Character, Constant, and Function are combined resulting in a vector output of type Character.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">w &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="st">&quot;1&quot;</span>, pi, <span class="kw">ls</span>())
 w</code></pre></div>
-<pre><code>##  [1] &quot;TRUE&quot;             &quot;1&quot;                &quot;3.14159265358979&quot;
-##  [4] &quot;canThrow&quot;         &quot;data&quot;             &quot;f&quot;               
-##  [7] &quot;file&quot;             &quot;files&quot;            &quot;i&quot;               
-## [10] &quot;idx&quot;              &quot;inst_pkgs&quot;        &quot;item&quot;            
-## [13] &quot;libraries&quot;        &quot;library&quot;          &quot;name&quot;            
-## [16] &quot;pkgs&quot;             &quot;pkgs_df&quot;          &quot;prof&quot;            
-## [19] &quot;region&quot;           &quot;s&quot;                &quot;stable&quot;          
-## [22] &quot;subregion&quot;        &quot;terms&quot;            &quot;title&quot;           
-## [25] &quot;to_install&quot;       &quot;value&quot;            &quot;x&quot;               
-## [28] &quot;y&quot;                &quot;z&quot;</code></pre>
+<pre><code>##  [1] &quot;TRUE&quot;                &quot;1&quot;                   &quot;3.14159265358979&quot;   
+##  [4] &quot;canThrow&quot;            &quot;collections_per_day&quot; &quot;data&quot;               
+##  [7] &quot;days&quot;                &quot;f&quot;                   &quot;file&quot;               
+## [10] &quot;files&quot;               &quot;i&quot;                   &quot;idx&quot;                
+## [13] &quot;inst_pkgs&quot;           &quot;item&quot;                &quot;libraries&quot;          
+## [16] &quot;library&quot;             &quot;name&quot;                &quot;num_data_points&quot;    
+## [19] &quot;num_variables&quot;       &quot;pkgs&quot;                &quot;pkgs_df&quot;            
+## [22] &quot;prof&quot;                &quot;region&quot;              &quot;s&quot;                  
+## [25] &quot;semester_end&quot;        &quot;semester_start&quot;      &quot;stable&quot;             
+## [28] &quot;subregion&quot;           &quot;terms&quot;               &quot;title&quot;              
+## [31] &quot;to_install&quot;          &quot;value&quot;               &quot;x&quot;                  
+## [34] &quot;y&quot;                   &quot;z&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(w)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>Accessing elements within a vector are done using the square bracket <code>[]</code> notation. All indices (for vectors and matrices) start at 1 (not zero as is the case for some languages). Getting and setting the components within a vector are accomplished using numeric indices with the assignment operators just like we do for variables containing a single value.</p>
@@ -441,35 +444,35 @@ theList$x</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">ID=</span><span class="dv">1</span>:<span class="dv">5</span>, <span class="dt">Names=</span><span class="kw">c</span>(<span class="st">&quot;Bob&quot;</span>,<span class="st">&quot;Alice&quot;</span>,<span class="st">&quot;Vicki&quot;</span>,<span class="st">&quot;John&quot;</span>,<span class="st">&quot;Sarah&quot;</span>), <span class="dt">Score=</span><span class="dv">100</span> -<span class="st"> </span><span class="kw">rpois</span>(<span class="dv">5</span>,<span class="dt">lambda=</span><span class="dv">10</span>))
 df</code></pre></div>
 <pre><code>##   ID Names Score
-## 1  1   Bob    89
-## 2  2 Alice    96
-## 3  3 Vicki    90
-## 4  4  John    87
-## 5  5 Sarah    89</code></pre>
+## 1  1   Bob    88
+## 2  2 Alice    90
+## 3  3 Vicki    86
+## 4  4  John    88
+## 5  5 Sarah    90</code></pre>
 <p>You can see that each column is a unified type of data and each row is equivalent to a record. Additional data columns may be added to an existing data.frame as:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$Passed_Class &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">TRUE</span>,<span class="ot">TRUE</span>,<span class="ot">FALSE</span>,<span class="ot">TRUE</span>)</code></pre></div>
 <p>Since we may have many (thousands?) of rows of observations, a <code>summary()</code> of the data.frame can provide a more compact description.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(df)</code></pre></div>
 <pre><code>##        ID      Names       Score      Passed_Class   
-##  Min.   :1   Alice:1   Min.   :87.0   Mode :logical  
-##  1st Qu.:2   Bob  :1   1st Qu.:89.0   FALSE:1        
-##  Median :3   John :1   Median :89.0   TRUE :4        
-##  Mean   :3   Sarah:1   Mean   :90.2   NA&#39;s :0        
+##  Min.   :1   Alice:1   Min.   :86.0   Mode :logical  
+##  1st Qu.:2   Bob  :1   1st Qu.:88.0   FALSE:1        
+##  Median :3   John :1   Median :88.0   TRUE :4        
+##  Mean   :3   Sarah:1   Mean   :88.4                  
 ##  3rd Qu.:4   Vicki:1   3rd Qu.:90.0                  
-##  Max.   :5             Max.   :96.0</code></pre>
+##  Max.   :5             Max.   :90.0</code></pre>
 <p>We can add columns of data to the data.frame after the fact using the <code>$</code>-operator to indicate the column name. Depending upon the data type, the summary will provide an overview of what is there.</p>
 <div id="indexing-data-frames" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> Indexing Data Frames</h3>
 <p>You can access individual items within a <code>data.frame</code> by numeric index such as:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[<span class="dv">1</span>,<span class="dv">3</span>]</code></pre></div>
-<pre><code>## [1] 89</code></pre>
+<pre><code>## [1] 88</code></pre>
 <p>You can slide indices along rows (which return a new <code>data.frame</code> for you)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[<span class="dv">1</span>,]</code></pre></div>
 <pre><code>##   ID Names Score Passed_Class
-## 1  1   Bob    89         TRUE</code></pre>
+## 1  1   Bob    88         TRUE</code></pre>
 <p>or along columns (which give you a vector of data)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[,<span class="dv">3</span>]</code></pre></div>
-<pre><code>## [1] 89 96 90 87 89</code></pre>
+<pre><code>## [1] 88 90 86 88 90</code></pre>
 <p>or use the <code>$</code>-operator as you did for the list data type to get direct access to a either all the data or a specific subset therein.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$Names[<span class="dv">3</span>]</code></pre></div>
 <pre><code>## [1] Vicki
@@ -477,12 +480,12 @@ df</code></pre></div>
 <p>Indices are ordered just like for matrices, rows first then columns. You can also pass a set of indices such as:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[<span class="dv">1</span>:<span class="dv">3</span>,]</code></pre></div>
 <pre><code>##   ID Names Score Passed_Class
-## 1  1   Bob    89         TRUE
-## 2  2 Alice    96         TRUE
-## 3  3 Vicki    90         TRUE</code></pre>
+## 1  1   Bob    88         TRUE
+## 2  2 Alice    90         TRUE
+## 3  3 Vicki    86         TRUE</code></pre>
 <p>It is also possible to use logical operators as indices. Here I select only those names in the data.frame whose score was &gt;90 and they passed popgen.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$Names[df$Score &gt;<span class="st"> </span><span class="dv">90</span> &amp;<span class="st"> </span>df$Passed_Class==<span class="ot">TRUE</span>]</code></pre></div>
-<pre><code>## [1] Alice
+<pre><code>## factor(0)
 ## Levels: Alice Bob John Sarah Vicki</code></pre>
 <p>This is why <code>data.frame</code> objects are very database like. They can contain lots of data and you can extract from them subsets that you need to work on. This is a VERY important feature, one that is vital for reproducible research. Keep you data in one and only one place.</p>
 

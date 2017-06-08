@@ -5,20 +5,20 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Applied Environmental Statistics</title>
+  <title>Ecological Data Literacy</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="A textbook for the use of R in environmental statistics.">
   <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Applied Environmental Statistics" />
+  <meta property="og:title" content="Ecological Data Literacy" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="A textbook for the use of R in environmental statistics." />
-  <meta name="github-repo" content="dyerlab/AppliedEnvironmentalStatistics" />
+  <meta name="github-repo" content="dyerlab/applied_environmental_statisics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Applied Environmental Statistics" />
+  <meta name="twitter:title" content="Ecological Data Literacy" />
   
   <meta name="twitter:description" content="A textbook for the use of R in environmental statistics." />
   
@@ -107,6 +107,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#interactive-content"><i class="fa fa-check"></i>Interactive Content</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#dedication"><i class="fa fa-check"></i>Dedication</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="data-literacy.html"><a href="data-literacy.html"><i class="fa fa-check"></i>Data Literacy</a></li>
 <li class="part"><span><b>I Foundations</b></span></li>
 <li class="chapter" data-level="1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html"><i class="fa fa-check"></i><b>1</b> The R Ecosystem</a><ul>
 <li class="chapter" data-level="1.1" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html#getting-r-configured"><i class="fa fa-check"></i><b>1.1</b> Getting R Configured</a><ul>
@@ -216,7 +217,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Environmental Statistics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ecological Data Literacy</a>
           </h1>
         </div>
 
@@ -246,7 +247,7 @@ d &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class=
                   <span class="dt">df=</span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;3&quot;</span>,<span class="st">&quot;Inf&quot;</span>),<span class="dt">each=</span><span class="kw">length</span>(x)))
 
 <span class="kw">ggplot</span>( d, <span class="kw">aes</span>(<span class="dt">x=</span>t,<span class="dt">y=</span>f,<span class="dt">color=</span>df)) +<span class="st"> </span><span class="kw">geom_line</span>() </code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-225-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-228-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>When <span class="math inline">\(df=\infty\)</span> then <span class="math inline">\(PDF(t) = Normal\)</span>. As such, we do not need to make corrections to understand the area under the curve, we can just use the normal probability density function. In fact, when <span class="math inline">\(df=\infty\)</span> then <span class="math inline">\(t_{\alpha,\infty} = Z_{\alpha} = \sqrt{\chi^2_{\alpha,df=1}}\)</span>! The take home message here is that all your statistics become much easier when <span class="math inline">\(N=\infty\)</span>, so go collect some more data!</p>
 <p>For <span class="math inline">\(df &lt; \infty\)</span> (all the cases we will be dealing with), we will use the approximation defined by the <span class="math inline">\(t\)</span> distribution. If you look at the distributions above, you see that as we increase the number of samples (e.g., as <span class="math inline">\(df\)</span> increases), the distribution becomes more restricted. The actual function is defined (where <span class="math inline">\(df = v\)</span> for simplicity in nomenclature) as:</p>
 <p><span class="math display">\[
@@ -264,14 +265,14 @@ d3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class
 <span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(t,f),<span class="dt">data=</span>d2, <span class="dt">fill=</span><span class="st">&quot;#F8766D&quot;</span>,<span class="dt">alpha=</span><span class="fl">0.5</span>,<span class="dt">color=</span><span class="st">&quot;#F8766D&quot;</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>( <span class="kw">aes</span>(t,f),<span class="dt">data=</span>d[d$df==<span class="dv">1</span>,], <span class="dt">color=</span><span class="st">&quot;#F8766D&quot;</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_text</span>( <span class="kw">aes</span>(x,y,<span class="dt">label=</span>label),<span class="dt">data=</span>d3)</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-226-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-229-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>In R, we can use the <code>t.test()</code> function. I’m going to go back to the <em>Iris</em> data set and use that as it has three categories (the species) and many measurements on sepals and pedals. Here I separate the species into their own <code>data.frame</code> objects.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df.se &lt;-<span class="st"> </span>iris[ iris$Species ==<span class="st"> &quot;setosa&quot;</span>,] 
 df.ve &lt;-<span class="st"> </span>iris[ iris$Species ==<span class="st"> &quot;versicolor&quot;</span>,] 
 df.vi &lt;-<span class="st"> </span>iris[ iris$Species ==<span class="st"> &quot;virginica&quot;</span>,]</code></pre></div>
 <p>Lets look at the <code>Sepal.Length</code> feature in these species and create some hypotheses about it.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>( iris, <span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length, <span class="dt">fill=</span>Species)) +<span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span><span class="fl">0.75</span>)</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-228-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-231-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>We could test the hypothesis, <span class="math inline">\(H_O: mean(Sepal.Length)=6\)</span> for each of the species.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit.se &lt;-<span class="st"> </span><span class="kw">t.test</span>(df.se$Sepal.Length, <span class="dt">mu =</span> <span class="fl">6.0</span>)
 fit.se</code></pre></div>
@@ -366,7 +367,7 @@ knitr::<span class="kw">kable</span>(df,<span class="dt">row.names =</span> <spa
 <p>Visually, these data look like:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span>iris[ (iris$Species %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;versicolor&quot;</span>,<span class="st">&quot;virginica&quot;</span>)),]
 <span class="kw">ggplot</span>( df, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) +<span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="dt">notch=</span><span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-234-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-237-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>which clearly overlap in their distributions but are the mean values different? This sets up the null hypothesis:</p>
 <p><span class="math display">\[
 H_O: \mu_1 - \mu_2 = 0
@@ -402,7 +403,7 @@ s_{\bar{x}_1-\bar{x}_2} = \sqrt{ \frac{s_1^2}{N_1}+\frac{s_2^2}{N}}
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>( iris, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">notch =</span> <span class="ot">TRUE</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Sepal Length&quot;</span>)</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-236-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-239-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>For us to tell if there are statistical differences among the species, we need to look at both the location of the mean values as well as the variation around them. We do this by partitioning the variation in all the data into the components within each treatment (species) and among each treatment (species) using an approach derived from the sum of squared deviations (or Sums of Squares). Formally, we can estimate the sum of squares within each of the <span class="math inline">\(K\)</span> groupings as:</p>
 <p><span class="math display">\[
 SS_{Within} = \sum_{i=1}^K\left( \sum_{j=1}^{N_i}(x_{ij}-\bar{x}_i)^2 \right)
@@ -517,7 +518,7 @@ tuk</code></pre></div>
 ## virginica-versicolor 0.652 0.4082273 0.8957727     0</code></pre>
 <p>which breaks down the pair-wise differences in the mean of each treatment. Here we see the magnitude of the differences in mean values, the lower and upper confidence on the differences, and the probability associated with these differences. In this example, all three comparisons are highly unlikely (e.g., <span class="math inline">\(P\)</span> is very small and in this case essentially zero). As a result, we can interpret these results as suggesting that each of the three species have significantly different. If we plot these results, we see which ones are larger and which are smaller.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>( tuk )</code></pre></div>
-<p><img src="Applied_Environmental_Statistics_files/figure-html/unnamed-chunk-240-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Ecological_Data_Literacy_files/figure-html/unnamed-chunk-243-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Which shows the difference between treatment mean between all pairs of treatments. Overall, we see that the <em>Iris</em> species are all significantly different.</p>
 
 </div>
