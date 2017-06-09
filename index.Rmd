@@ -1,5 +1,5 @@
 --- 
-title: "Ecological Data Literacy"
+title: "Environmental Data Literacy"
 author: "Rodney J. Dyer"
 address: "Center for Environmental Studies, VCU Life Sciences"
 description: "A textbook for the use of R in environmental statistics."
@@ -12,7 +12,11 @@ link-citations: yes
 github-repo: "dyerlab/applied_environmental_statisics"
 ---
 
-# Frontmatter {-}
+
+
+# Frontmatter {- .white_letters}
+
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, 
@@ -20,10 +24,25 @@ knitr::opts_chunk$set(echo = TRUE,
                       warning=FALSE, error=FALSE)
 library( ggplot2 )
 theme_set( theme_bw() )
+
+if( !require(DiagrammeR))
+  devtools::install_github("rich-iannone/DiagrammeR")
 ```
 
 
-This textbook was designed in support of the basic graduate level course in Ecological Data Literacytaught to incoming graduate students in the [Center for Environmental Studies](http://ces.vcu.edu) at [Virginia Commonwealth University](http://www.vcu.edu).  T
+
+```{r}
+
+```
+
+
+
+
+![](./media/DataWorkCycle.Small.png)
+
+
+
+This textbook was designed in support of the basic graduate level course in Ecological Data Literacytaught to incoming graduate students in the [Center for Environmental Studies](http://ces.vcu.edu) at [Virginia Commonwealth University](http://www.vcu.edu).  
 
 Build Date: **`r date()`**
 
