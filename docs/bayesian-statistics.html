@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Environmental Data Literacy</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="A textbook for the use of R in environmental statistics.">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Environmental Data Literacy" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A textbook for the use of R in environmental statistics." />
+  <meta name="github-repo" content="dyerlab/applied_environmental_statisics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Environmental Data Literacy" />
+  
+  <meta name="twitter:description" content="A textbook for the use of R in environmental statistics." />
+  
+
+<meta name="author" content="Rodney J. Dyer">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="statistical-models.html">
+<link rel="next" href="summary-statistics.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="media/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Frontmatter</a></li>
+<li class="chapter" data-level="" data-path="data-literacy.html"><a href="data-literacy.html"><i class="fa fa-check"></i>Data Literacy</a></li>
+<li class="part"><span><b>I Foundations</b></span></li>
+<li class="chapter" data-level="1" data-path="placeholder.html"><a href="placeholder.html"><i class="fa fa-check"></i><b>1</b> Placeholder</a></li>
+<li class="chapter" data-level="2" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html"><i class="fa fa-check"></i><b>2</b> The R Ecosystem</a></li>
+<li class="chapter" data-level="3" data-path="data-types.html"><a href="data-types.html"><i class="fa fa-check"></i><b>3</b> Data Types</a></li>
+<li class="chapter" data-level="4" data-path="data-containers.html"><a href="data-containers.html"><i class="fa fa-check"></i><b>4</b> Data Containers</a></li>
+<li class="chapter" data-level="5" data-path="manipulating-data.html"><a href="manipulating-data.html"><i class="fa fa-check"></i><b>5</b> Manipulating Data</a></li>
+<li class="chapter" data-level="6" data-path="programming.html"><a href="programming.html"><i class="fa fa-check"></i><b>6</b> Programming</a></li>
+<li class="chapter" data-level="7" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>7</b> Markdown</a></li>
+<li class="part"><span><b>II Data</b></span></li>
+<li class="chapter" data-level="8" data-path="manipulating-data-1.html"><a href="manipulating-data-1.html"><i class="fa fa-check"></i><b>8</b> Manipulating Data</a></li>
+<li class="chapter" data-level="9" data-path="graphical-display.html"><a href="graphical-display.html"><i class="fa fa-check"></i><b>9</b> Graphical Display</a></li>
+<li class="chapter" data-level="10" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>10</b> GGPlot</a></li>
+<li class="chapter" data-level="11" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>11</b> Spatial Data</a></li>
+<li class="chapter" data-level="12" data-path="statistical-models.html"><a href="statistical-models.html"><i class="fa fa-check"></i><b>12</b> Statistical Models</a><ul>
+<li class="chapter" data-level="12.1" data-path="statistical-models.html"><a href="statistical-models.html#an-applied-example."><i class="fa fa-check"></i><b>12.1</b> An applied example.</a></li>
+<li class="chapter" data-level="12.2" data-path="statistical-models.html"><a href="statistical-models.html#a-frequentist-approach"><i class="fa fa-check"></i><b>12.2</b> A Frequentist Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html"><i class="fa fa-check"></i><b>13</b> Bayesian Statistics</a><ul>
+<li class="chapter" data-level="13.1" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#what-is-bayesian-data-analysis"><i class="fa fa-check"></i><b>13.1</b> What is Bayesian Data Analysis</a></li>
+</ul></li>
+<li class="part"><span><b>III Statistical Inferences</b></span></li>
+<li class="chapter" data-level="14" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>14</b> Summary Statistics</a></li>
+<li class="chapter" data-level="15" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>15</b> Correlation</a></li>
+<li class="chapter" data-level="16" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>16</b> Linear Regression</a></li>
+<li class="chapter" data-level="17" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>17</b> Analysis of Variance</a></li>
+<li class="divider"></li>
+<li><a href="http://dyerlab.org" target="blank">the Dyer Laboratory</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Environmental Data Literacy</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bayesian-statistics" class="section level1">
+<h1><span class="header-section-number">13</span> Bayesian Statistics</h1>
+<div id="what-is-bayesian-data-analysis" class="section level2">
+<h2><span class="header-section-number">13.1</span> What is Bayesian Data Analysis</h2>
+<p>Using probability to represent uncertainty in all parts of a statistical model. Adapting a Bayesian approach requires three things:</p>
+<ol style="list-style-type: decimal">
+<li>Data consisting of several observations.</li>
+<li>A generative model underlying the creation of the data.</li>
+<li>Priors probabilities,</li>
+</ol>
+<p>In essence, we want to start with some data and try to figure out what the parameters are given some specified model.</p>
+<p>A/B Testing</p>
+<p><span class="math display">\[
+P(A|B) = \frac{P(B|A)P(B)}{P(A)P(B)}
+\]</span></p>
+<p>Simple example. For a set of <span class="math inline">\(N\)</span> observations, consider the case where we have <span class="math inline">\(k\)</span> observations of species <code>A</code> and <span class="math inline">\(N-k\)</span> observations of species <code>B</code>. As an environmental scientist, we are interested in the frequency of each of these species in our sampling location. For simplicity, lets call the frequency of species <code>A</code> <span class="math inline">\(p\)</span> and the frequency of species <code>B</code> in our samples as <span class="math inline">\(q = 1-p\)</span>.</p>
+<p>A frequentist would start with a hypothesis, such as <span class="math inline">\(H_O:\)</span><em>The species are equally frequenct</em>. In this case, it would amo</p>
+<p><span class="math display">\[
+P(X|N,k,p) = \frac{N!}{(N-k)!k!}p^{N-k}(1-p)^k
+\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">observed &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">25</span>,<span class="dv">1</span>,<span class="fl">0.42</span>)
+observed</code></pre></div>
+<pre><code>##  [1] 1 1 0 0 1 1 0 1 0 0 0 1 0 0 0 0 0 1 0 1 1 0 1 0 0</code></pre>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="statistical-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summary-statistics.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"],
+"instapaper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+# Statistical Models
+
+
+So we have been able to take our data, visualize it, manipulate it, and now it is time to apply some model to the data so we can get some degree of confidence on the statements we are going to make.
+
+
+## An applied example.
+
+Consider the case where we are trying to determine the relative frequency of blue catfish in the James River.  This species (shown below) has turned into a voracious preditor and has negatively impacted the other fish species.
+
+![The blue catfish (*Ictalurus furcatus*), an invasive species in the James River watershed. Photo by Matt Rath (CC BY-NC 2.0).](./media/BlueCatfish_MattRath.jpg)
+
+As a simple example, consider the case where you went out and caught 50 fish, 37 of which were blue cats.
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+library(ggplot2)
+df <- data.frame( Species=c("Blue Catfish","Other Species"), N=c(37,13) )
+ggplot(df,aes(Species,N)) + geom_bar(stat="identity") 
+```
+
+From this, we can estimate the relative frequency of the invasive species as:
+
+$$
+p_{catfish} = \frac{N_{catfish}}{N_{catfish} + N_{other}} = \frac{37}{50} = 0.74
+$$
+
+So, empirically, we found `74%` of the captures were the invasive species and `26%` were other species.  
+
+Our underlying biological question here is one focusing on how frequent the catfish are, relative to other species.  In the data above, we had a single sample and found the relative frequency to be $p=0.74$, though this just one sample.  Is it really 74% ?  How can we get any statistical confidence on this finding?  
+
+In general, there are two different schools of thought here, a frequentist approach and a Bayesian approach.  
+
+## A Frequentist Approach
+
+This is by-in-large the most common approach to extracting statistical inferences from some data.  Lets assume that the *true* underlying frequency is actually $p=0.74$ in the James River.  If we were to go out and sample 10 different places, by the luck of sampling, we may find: 
+
+```{r}
+df <- data.frame( Site = 1:10, Catfish=c(37,32,35,39,31,38,38,35,41,38) )
+df
+```
+
+This results in an average frequency of $\bar{p}=$ `r sum(df$Catfish)/500`.  Pretty close to the target of 74%, right?  But is it close enough?  
+
+A simple way is to test the hypothesis, $H_O: p = 0.74$, using a univariate $t-$test.  
+
+```{r}
+model <- t.test(df$Catfish, mu = 37)
+model
+```
+
+Here we see the average number of catfish sampled across all runs was `r model$estimate` catfish.  The $t-$statistic, as we will see, has a very specific distribution and given that we have `r model$parameter` degrees of freedom (more on what this means also later), the probability associated with these set of observations is $P =$ `r model$p.value`.  If we think of the distribution of all the times we could go out and sample 50 fish from the James River **and** the true underlying frequency was actually 74%, then the collection of samples we had would be roughly in the $56^{th}$ percentile---right in the middle.  As such, I fail to reject the null hypothesis ($H_O: p = 0.74$) for these data^[Notice here that I did not say 'accept' the null, we **never** accept null hypotheses, only fail to reject them.].  It may actually be 74%.
+
+However, consider the following code.  Here we examine the sequence of potential values for the relative frequency, ranging from no catfish to only catfish.  After all, I kinda just made up the 74% number because that was a random draw from the first sampling session.  As each sampling session is independent and many found differing (though close) numbers of catfish, who is to say that 75% is actually the true value. 
+
+Lets look at how the data observed the first time can be examined across all potential values for the true mean.  In the figure below, I perform the $t-$test using our original data and the hypothesis that the true mean is 0, 1, 2, \ldots, and 50 catfish.  For each, I record the probability associated with testing the null hypothesis.  
+
+```{r}
+potential <- seq(0,50)
+other_p.vals <- unlist(lapply( potential,FUN = function(x) {t.test(df$Catfish, mu=x)$p.value}))
+data <- data.frame( potential,other_p.vals)
+data$Reject <- TRUE
+data$Reject[ data$other_p.vals >= 0.05] <- FALSE
+data$Reject <- factor( data$Reject, ordered=TRUE, levels=c(TRUE,FALSE))
+ggplot(data,aes(x=potential,y=other_p.vals)) + 
+  geom_abline(slope=0,intercept = 0.05, color="red") + 
+  geom_line() + geom_point(aes(shape=Reject)) +  
+  xlab("True Mean") + ylab("Probability") +
+  scale_shape_discrete("Reject Ho")
+```
+
+We see that 35, 36, 37, and 38, are all values could not be rejected using a $t-$test.  This means that the actual frequency of $\frac{35}{50} = 0.7$, $\frac{36}{50} = 0.72$, $\frac{37}{50} = 0.74$, and $\frac{38}{50} = 0.76$ are all potential frequencies for which the observations we made could not be rejected! So how do we know?
+
+One way to get a better idea is to go sample more.  "Always increase your sample size," says the advisor to the student.  If we captured all the fish in the James River, we would know exactly their relative frequencies--just by counting.  However, we cannot sample them all (though Dr. Garman would really like to have all the catfish out of the James River).
+
+The main idea here is that if we were to sample enough, the *Central Limit Theorem* states that we would assymptotically arrive at the true value of the underlying.
+
+
+
+
+# Bayesian Statistics
+
+
+
+## What is Bayesian Data Analysis
+
+Using probability to represent uncertainty in all parts of a statistical model.  Adapting a Bayesian approach requires three things:
+
+1. Data consisting of several observations.
+2. A generative model underlying the creation of the data.
+3. Priors probabilities, 
+
+In essence, we want to start with some data and try to figure out what the parameters are given some specified model.
+
+
+
+
+A/B Testing
+
+$$
+P(A|B) = \frac{P(B|A)P(B)}{P(A)P(B)}
+$$
+
+
+
+
+
+Simple example.  For a set of $N$ observations, consider the case where we have $k$ observations of species `A` and $N-k$ observations of species `B`.  As an environmental scientist, we are interested in the frequency of each of these species in our sampling location.  For simplicity, lets call the frequency of species `A` $p$ and the frequency of species `B` in our samples as $q = 1-p$.
+
+A frequentist would start with a hypothesis, such as $H_O:$*The species are equally frequenct*.  In this case, it would amo
+
+$$
+P(X|N,k,p) = \frac{N!}{(N-k)!k!}p^{N-k}(1-p)^k
+$$
+
+
+
+
+
+
+
+
+```{r}
+observed <- rbinom(25,1,0.42)
+observed
+```
+

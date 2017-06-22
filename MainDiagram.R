@@ -9,7 +9,7 @@ nodes <- create_node_df(
 
 
 edges <- create_edge_df(
-  from=c(1,2,3,4,4),
+  from=c(1,2,3,4,2),
   to = c(2,3,4,2,5)
 )
 

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Environmental Data Literacy</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="A textbook for the use of R in environmental statistics.">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Environmental Data Literacy" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A textbook for the use of R in environmental statistics." />
+  <meta name="github-repo" content="dyerlab/applied_environmental_statisics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Environmental Data Literacy" />
+  
+  <meta name="twitter:description" content="A textbook for the use of R in environmental statistics." />
+  
+
+<meta name="author" content="Rodney J. Dyer">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="spatial-data.html">
+<link rel="next" href="bayesian-statistics.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="media/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Frontmatter</a></li>
+<li class="chapter" data-level="" data-path="data-literacy.html"><a href="data-literacy.html"><i class="fa fa-check"></i>Data Literacy</a></li>
+<li class="part"><span><b>I Foundations</b></span></li>
+<li class="chapter" data-level="1" data-path="placeholder.html"><a href="placeholder.html"><i class="fa fa-check"></i><b>1</b> Placeholder</a></li>
+<li class="chapter" data-level="2" data-path="the-r-ecosystem.html"><a href="the-r-ecosystem.html"><i class="fa fa-check"></i><b>2</b> The R Ecosystem</a></li>
+<li class="chapter" data-level="3" data-path="data-types.html"><a href="data-types.html"><i class="fa fa-check"></i><b>3</b> Data Types</a></li>
+<li class="chapter" data-level="4" data-path="data-containers.html"><a href="data-containers.html"><i class="fa fa-check"></i><b>4</b> Data Containers</a></li>
+<li class="chapter" data-level="5" data-path="manipulating-data.html"><a href="manipulating-data.html"><i class="fa fa-check"></i><b>5</b> Manipulating Data</a></li>
+<li class="chapter" data-level="6" data-path="programming.html"><a href="programming.html"><i class="fa fa-check"></i><b>6</b> Programming</a></li>
+<li class="chapter" data-level="7" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>7</b> Markdown</a></li>
+<li class="part"><span><b>II Data</b></span></li>
+<li class="chapter" data-level="8" data-path="manipulating-data-1.html"><a href="manipulating-data-1.html"><i class="fa fa-check"></i><b>8</b> Manipulating Data</a></li>
+<li class="chapter" data-level="9" data-path="graphical-display.html"><a href="graphical-display.html"><i class="fa fa-check"></i><b>9</b> Graphical Display</a></li>
+<li class="chapter" data-level="10" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>10</b> GGPlot</a></li>
+<li class="chapter" data-level="11" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>11</b> Spatial Data</a></li>
+<li class="chapter" data-level="12" data-path="statistical-models.html"><a href="statistical-models.html"><i class="fa fa-check"></i><b>12</b> Statistical Models</a><ul>
+<li class="chapter" data-level="12.1" data-path="statistical-models.html"><a href="statistical-models.html#an-applied-example."><i class="fa fa-check"></i><b>12.1</b> An applied example.</a></li>
+<li class="chapter" data-level="12.2" data-path="statistical-models.html"><a href="statistical-models.html#a-frequentist-approach"><i class="fa fa-check"></i><b>12.2</b> A Frequentist Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html"><i class="fa fa-check"></i><b>13</b> Bayesian Statistics</a><ul>
+<li class="chapter" data-level="13.1" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#what-is-bayesian-data-analysis"><i class="fa fa-check"></i><b>13.1</b> What is Bayesian Data Analysis</a></li>
+</ul></li>
+<li class="part"><span><b>III Statistical Inferences</b></span></li>
+<li class="chapter" data-level="14" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>14</b> Summary Statistics</a></li>
+<li class="chapter" data-level="15" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>15</b> Correlation</a></li>
+<li class="chapter" data-level="16" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>16</b> Linear Regression</a></li>
+<li class="chapter" data-level="17" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>17</b> Analysis of Variance</a></li>
+<li class="divider"></li>
+<li><a href="http://dyerlab.org" target="blank">the Dyer Laboratory</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Environmental Data Literacy</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="statistical-models" class="section level1">
+<h1><span class="header-section-number">12</span> Statistical Models</h1>
+<p>So we have been able to take our data, visualize it, manipulate it, and now it is time to apply some model to the data so we can get some degree of confidence on the statements we are going to make.</p>
+<div id="an-applied-example." class="section level2">
+<h2><span class="header-section-number">12.1</span> An applied example.</h2>
+<p>Consider the case where we are trying to determine the relative frequency of blue catfish in the James River. This species (shown below) has turned into a voracious preditor and has negatively impacted the other fish species.</p>
+<div class="figure">
+<img src="media/BlueCatfish_MattRath.jpg" alt="The blue catfish (Ictalurus furcatus), an invasive species in the James River watershed. Photo by Matt Rath (CC BY-NC 2.0)." />
+<p class="caption">The blue catfish (<em>Ictalurus furcatus</em>), an invasive species in the James River watershed. Photo by Matt Rath (CC BY-NC 2.0).</p>
+</div>
+<p>As a simple example, consider the case where you went out and caught 50 fish, 37 of which were blue cats.</p>
+<p><img src="Environmental_Data_Literacy_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>From this, we can estimate the relative frequency of the invasive species as:</p>
+<p><span class="math display">\[
+p_{catfish} = \frac{N_{catfish}}{N_{catfish} + N_{other}} = \frac{37}{50} = 0.74
+\]</span></p>
+<p>So, empirically, we found <code>74%</code> of the captures were the invasive species and <code>26%</code> were other species.</p>
+<p>Our underlying biological question here is one focusing on how frequent the catfish are, relative to other species. In the data above, we had a single sample and found the relative frequency to be <span class="math inline">\(p=0.74\)</span>, though this just one sample. Is it really 74% ? How can we get any statistical confidence on this finding?</p>
+<p>In general, there are two different schools of thought here, a frequentist approach and a Bayesian approach.</p>
+</div>
+<div id="a-frequentist-approach" class="section level2">
+<h2><span class="header-section-number">12.2</span> A Frequentist Approach</h2>
+<p>This is by-in-large the most common approach to extracting statistical inferences from some data. Lets assume that the <em>true</em> underlying frequency is actually <span class="math inline">\(p=0.74\)</span> in the James River. If we were to go out and sample 10 different places, by the luck of sampling, we may find:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">Site =</span> <span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">Catfish=</span><span class="kw">c</span>(<span class="dv">37</span>,<span class="dv">32</span>,<span class="dv">35</span>,<span class="dv">39</span>,<span class="dv">31</span>,<span class="dv">38</span>,<span class="dv">38</span>,<span class="dv">35</span>,<span class="dv">41</span>,<span class="dv">38</span>) )
+df</code></pre></div>
+<pre><code>##    Site Catfish
+## 1     1      37
+## 2     2      32
+## 3     3      35
+## 4     4      39
+## 5     5      31
+## 6     6      38
+## 7     7      38
+## 8     8      35
+## 9     9      41
+## 10   10      38</code></pre>
+<p>This results in an average frequency of <span class="math inline">\(\bar{p}=\)</span> 0.728. Pretty close to the target of 74%, right? But is it close enough?</p>
+<p>A simple way is to test the hypothesis, <span class="math inline">\(H_O: p = 0.74\)</span>, using a univariate <span class="math inline">\(t-\)</span>test.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">t.test</span>(df$Catfish, <span class="dt">mu =</span> <span class="dv">37</span>)
+model</code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  df$Catfish
+## t = -0.60541, df = 9, p-value = 0.5599
+## alternative hypothesis: true mean is not equal to 37
+## 95 percent confidence interval:
+##  34.15804 38.64196
+## sample estimates:
+## mean of x 
+##      36.4</code></pre>
+<p>Here we see the average number of catfish sampled across all runs was 36.4 catfish. The <span class="math inline">\(t-\)</span>statistic, as we will see, has a very specific distribution and given that we have 9 degrees of freedom (more on what this means also later), the probability associated with these set of observations is <span class="math inline">\(P =\)</span> 0.559864. If we think of the distribution of all the times we could go out and sample 50 fish from the James River <strong>and</strong> the true underlying frequency was actually 74%, then the collection of samples we had would be roughly in the <span class="math inline">\(56^{th}\)</span> percentile—right in the middle. As such, I fail to reject the null hypothesis (<span class="math inline">\(H_O: p = 0.74\)</span>) for these data<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. It may actually be 74%.</p>
+<p>However, consider the following code. Here we examine the sequence of potential values for the relative frequency, ranging from no catfish to only catfish. After all, I kinda just made up the 74% number because that was a random draw from the first sampling session. As each sampling session is independent and many found differing (though close) numbers of catfish, who is to say that 75% is actually the true value.</p>
+<p>Lets look at how the data observed the first time can be examined across all potential values for the true mean. In the figure below, I perform the <span class="math inline">\(t-\)</span>test using our original data and the hypothesis that the true mean is 0, 1, 2, , and 50 catfish. For each, I record the probability associated with testing the null hypothesis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potential &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">50</span>)
+other_p.vals &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">lapply</span>( potential,<span class="dt">FUN =</span> function(x) {<span class="kw">t.test</span>(df$Catfish, <span class="dt">mu=</span>x)$p.value}))
+data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( potential,other_p.vals)
+data$Reject &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+data$Reject[ data$other_p.vals &gt;=<span class="st"> </span><span class="fl">0.05</span>] &lt;-<span class="st"> </span><span class="ot">FALSE</span>
+data$Reject &lt;-<span class="st"> </span><span class="kw">factor</span>( data$Reject, <span class="dt">ordered=</span><span class="ot">TRUE</span>, <span class="dt">levels=</span><span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">FALSE</span>))
+<span class="kw">ggplot</span>(data,<span class="kw">aes</span>(<span class="dt">x=</span>potential,<span class="dt">y=</span>other_p.vals)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">0</span>,<span class="dt">intercept =</span> <span class="fl">0.05</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape=</span>Reject)) +<span class="st">  </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;True Mean&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Probability&quot;</span>) +
+<span class="st">  </span><span class="kw">scale_shape_discrete</span>(<span class="st">&quot;Reject Ho&quot;</span>)</code></pre></div>
+<p><img src="Environmental_Data_Literacy_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>We see that 35, 36, 37, and 38, are all values could not be rejected using a <span class="math inline">\(t-\)</span>test. This means that the actual frequency of <span class="math inline">\(\frac{35}{50} = 0.7\)</span>, <span class="math inline">\(\frac{36}{50} = 0.72\)</span>, <span class="math inline">\(\frac{37}{50} = 0.74\)</span>, and <span class="math inline">\(\frac{38}{50} = 0.76\)</span> are all potential frequencies for which the observations we made could not be rejected! So how do we know?</p>
+<p>One way to get a better idea is to go sample more. “Always increase your sample size,” says the advisor to the student. If we captured all the fish in the James River, we would know exactly their relative frequencies–just by counting. However, we cannot sample them all (though Dr. Garman would really like to have all the catfish out of the James River).</p>
+<p>The main idea here is that if we were to sample enough, the <em>Central Limit Theorem</em> states that we would assymptotically arrive at the true value of the underlying.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Notice here that I did not say ‘accept’ the null, we <strong>never</strong> accept null hypotheses, only fail to reject them.<a href="statistical-models.html#fnref1">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="spatial-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bayesian-statistics.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"],
+"instapaper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
