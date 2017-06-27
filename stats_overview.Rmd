@@ -1,14 +1,17 @@
-# Statistical Models
+# Statistical Inferences
+
+> All models are wrong, but some are useful. (George E.P. Box)
 
 
 So we have been able to take our data, visualize it, manipulate it, and now it is time to apply some model to the data so we can get some degree of confidence on the statements we are going to make.
 
-
 ## An applied example.
 
-Consider the case where we are trying to determine the relative frequency of blue catfish in the James River.  This species (shown below) has turned into a voracious preditor and has negatively impacted the other fish species.
+Consider the case where we are trying to determine the relative frequency of blue catfish (*Ictalurus furcatus*) in the James River.  
 
 ![The blue catfish (*Ictalurus furcatus*), an invasive species in the James River watershed. Photo by Matt Rath (CC BY-NC 2.0).](./media/BlueCatfish_MattRath.jpg)
+
+This species is not native to this region, it is endemic to the midwest drainages in the US such as the Mississippi, Missouri, and Ohio rivers.  In the 1970's, individuals were introducted into both the James and Rappahannock rivers and in 1985 stock was released in the Mattaponi river which eventually populated the Pamunkey.  In the interim, this species has had a tremendous impact on native fishes.  Before we can come up with management plans and/or recommendations, we must establish some baseline census data on the frequency of this fish in the basin.
 
 As a simple example, consider the case where you went out and caught 50 fish, 37 of which were blue cats.
 
@@ -26,22 +29,76 @@ $$
 
 So, empirically, we found `74%` of the captures were the invasive species and `26%` were other species.  
 
-Our underlying biological question here is one focusing on how frequent the catfish are, relative to other species.  In the data above, we had a single sample and found the relative frequency to be $p=0.74$, though this just one sample.  Is it really 74% ?  How can we get any statistical confidence on this finding?  
+Our underlying biological question here is one focusing on how common this invasive species is.  In the data above, we had a single sample and found the relative frequency to be $p=0.74$, though this just one sample.  Is it really 74% ?  How can we get any statistical confidence on this finding?  Let's take a short detour into how we develop statistical inferences using the binomial probability function as an example and then show how there are two different schools of thought on how to analyze these data
 
-In general, there are two different schools of thought here, a frequentist approach and a Bayesian approach.  
+## The Binomial
+
+If you were to flip a coin, it is either `HEADS` or `TAILS`, and if it is a fair coin, then the frequency at which you find a `HEADS` can be determined by flipping it a large number of times and counting how many come up `HEADS`.  Actually, this probability is drawn from a well-known distribution, the binomial distribution, which is constructed as follows.
+
+Let the probability of getting `HEADS` be denoted as $P(HEADS) = p$ and the probability of not heads (or `TAILS` if you consider it to never land perfectly balanced on its side, and that would be silly), as $1 - P(HEADS) = P(TAILS) = 1 - p = q$.  Since either `HEADS` or `TAILS` must happen then $p + q = 1$.  Depending upon the number of times you flip the coin, you can come up with several different arrangements of `HEADS` (`H` for brevity) and `TAILS` (`T` similiarly).
+
+Here are some scenarios:  
+- *One flip:* `H` or `T`, both occuring at an expected rate of $p$ and $q$.  
+- *Two flips:* `HH` (rate is expected at $p^2$) or `HT` ($pq$) or `TH` ($qp$) or `TT` ($q^2$).  
+- *Three flips:* `HHH` (which can be written as $p^3q^0$ since $q^0=1$) or `HHT` ($p^2q^1$) or `HTH` ($pqp = p^2q^1$) or `THH` ($q^1p^2$) or `HTT` ($p^1q^2$) or `THT` ($pq^2$) or `TTH` ($pq^2$) or `TTT` ($p^0q^3$).  
+- etc.
+
+As you can see, there are some patterns emerging for any set of $N$ coin flips.  
+1. The probability of getting $K$ `H` is $p^K$ and getting $N-K$ `T` is $q^{N-K}$.  So if we are intersted in the simple question of 2 `H` and 1 `T` results, we have $p^2q^1$.  
+2. However, if you look at the iteration through the three flip case, there are many different ways you can get 2 `H` and 1 `T`.  In fact, there are $\frac{N!}{K!(N-K)!}$ different ways.^[The $X!$ notation is defined as: $X! = X * (X-1) * (X-2) * (X-3) * \dots * 3 * 2 * 1$.  This number gets big QUICK so be careful.]
+
+By doing this, we can define the binomial probability distribution as:
+
+$$
+P(K|N,p) = \frac{N!}{K!(N-K)!}p^K(1-p)^{N-k}
+$$
+
+In the coin example, we set (or assumed to set) $p=q$ but that does not necessarily have to be true.  We could, for example, set $p = 0.74$ as in our fish example.  It may be the case that the true frequency of blue catfish is $p$ as specified. However, it is also possible that you could take $N$ samples and get 0 catfish in the same way as it is possible to get $N$ `H` flips, right?  Lets look at the distribution for a sampling haul that caught 10 fishes (or fish if on the extreme ends).  First, set up some parameters,
+
+```{r}
+p <- 0.74
+q <- 1-p
+N <- 10
+Catfish <- seq(0,N)
+```
+
+Then estimate the number of ways to get $0$, $1$, $\ldots$ $N$ catfish.
+
+```{r}
+ways_to_get <- choose(N,Catfish)
+ways_to_get
+```
+
+This shows that while there is only one way to have all catfish (the first entry), there are 252 different ways to have 5 catfish!  We have to attenuate these potential outcomes by the probability of observing $0$, $1$, $\ldots$ $N$ catfish given the frequency at which they occur in the river.
+
+```{r}
+prob_of_each <- p^Catfish * q^(N-Catfish)
+prob_of_each
+```
+
+And then overall, we put these together to get the total probabilities.
+
+```{r}
+data <- data.frame( Catfish, Frequency = ways_to_get * prob_of_each )
+ggplot( data, aes(Catfish,Frequency)) + geom_col() + scale_x_continuous(breaks=Catfish)
+```
+
+So while the true underlying fraction of catfish is 74%, it is possible to get $0$, $1$, $\ldots$ $N$ catfish in a sample.  So how do we gain meaninful inferences?  Here are two of the most common ways.
 
 ## A Frequentist Approach
 
-This is by-in-large the most common approach to extracting statistical inferences from some data.  Lets assume that the *true* underlying frequency is actually $p=0.74$ in the James River.  If we were to go out and sample 10 different places, by the luck of sampling, we may find: 
+This is by-in-large the most common approach to extracting statistical inferences from some data.  Lets assume that the *true* underlying frequency is actually $p=0.74$ in the James River.  A frequentist, accepting the knowledge in the graph above, would consider that the way to get a good understanding of what the real likelihood of catfish in the James would require us to go sample a large number of times.  After all, any one sampling session could be a varied number of catfish even if we are drawing from a fixed population.  However, if we sampled many times, on average, we could get a good approximation of what the true underlying frequency really is.  
+
+For simplicity, lets say we go out and capture 50 fish from 10 different locations.  The samples we collected had the following number of catfish.
 
 ```{r}
 df <- data.frame( Site = 1:10, Catfish=c(37,32,35,39,31,38,38,35,41,38) )
 df
 ```
 
-This results in an average frequency of $\bar{p}=$ `r sum(df$Catfish)/500`.  Pretty close to the target of 74%, right?  But is it close enough?  
+This results in an average frequency of $\bar{p}=$ `r sum(df$Catfish)/500`.  Pretty close to the target of 74%, right?  Theoretically, if we went out and sampled more times the average would tend towards the true frequency---this is called the *Central Limit Theorem*.  Understanding how repetitive sampling tends to reveal underlying parameters (such as a mean value) is the basis of the frequentist approach.  
 
-A simple way is to test the hypothesis, $H_O: p = 0.74$, using a univariate $t-$test.  
+With these data, we could easily test the NULL hypothesis, $H_O: p = 0.74$, using a univariate Student's $t-$test.  This test was developed in 1908 by William Sealy Gosset, a chemist working for Guinness brewery in Dublin Ireland ('Student' was apparently his pen name). While we will come back to this specific test later and get into more details about its use, for our purposes, we can use it directly in R.  Most simple statistical models in R are depicted as a function with the name of the test and the suffix `.test()` attached to it.  From this function, a result is returned as an object that has our answer in it.
 
 ```{r}
 model <- t.test(df$Catfish, mu = 37)
@@ -77,11 +134,8 @@ The main idea here is that if we were to sample enough, the *Central Limit Theor
 
 
 
-# Bayesian Statistics
+## A Bayesian Approach
 
-
-
-## What is Bayesian Data Analysis
 
 Using probability to represent uncertainty in all parts of a statistical model.  Adapting a Bayesian approach requires three things:
 

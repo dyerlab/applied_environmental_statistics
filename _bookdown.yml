@@ -7,6 +7,6 @@ rmd_files: [
      "r_manipulating_data.Rmd", "r_programming.Rmd", "r_markdown.Rmd",
   "data_manipulations.Rmd", "data_graphics.Rmd", "data_ggplot.Rmd",
      "data_spatial.Rmd",
-  "stats_overview.Rmd", "stats_summaries.Rmd", "stats_correlation.Rmd", "stats_regression.Rmd",
+  "stats_part.Rmd", "stats_overview.Rmd", "stats_summaries.Rmd", "stats_correlation.Rmd", "stats_regression.Rmd",
      "stats_anova.Rmd"
 ]

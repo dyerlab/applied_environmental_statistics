@@ -1,5 +1,3 @@
-# (PART) Statistical Inferences {-}
-
 # Summary Statistics
 
 

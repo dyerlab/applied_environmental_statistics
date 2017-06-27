@@ -25,16 +25,7 @@ knitr::opts_chunk$set(echo = TRUE,
 library( ggplot2 )
 theme_set( theme_bw() )
 
-if( !require(DiagrammeR))
-  devtools::install_github("rich-iannone/DiagrammeR")
 ```
-
-
-
-```{r}
-
-```
-
 
 
 

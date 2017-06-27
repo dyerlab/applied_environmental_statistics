@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="manipulating-data.html">
-<link rel="next" href="markdown.html">
+<link rel="prev" href="spatial-data.html">
+<link rel="next" href="summary-statistics.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -230,203 +230,155 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="programming" class="section level1">
-<h1><span class="header-section-number">5</span> Programming</h1>
+<div id="statistical-inferences" class="section level1">
+<h1><span class="header-section-number">11</span> Statistical Inferences</h1>
 <blockquote>
-<p>One of the strengths of R as an analysis platform is that it is a language rather than a program. With programs, such as SPSS &amp; JMP, you are limited by the functionality that the designers thought would be necessary to meet the broadest audience. In R, you can rely upon simple functions or you can create entire analysis and simulation programs de novo. To do this, we need to dig into flow control and decision making processes, both of which you need for doing more in-depth programming.</p>
+<p>All models are wrong, but some are useful. (George E.P. Box)</p>
 </blockquote>
-<div id="function-writing" class="section level2">
-<h2><span class="header-section-number">5.1</span> Function Writing</h2>
-<p>Here we look at how to create an R function. Writing small functions like this is a huge benefit to you as an analyst and this is a great place to start. A function in R is defined as:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">function_name &lt;-<span class="st"> </span>function( arguments ) { Stuff you want the function to do }</code></pre></div>
-<p>You define a function name for whatever you like (given you use the names) and assign it the stuff to the right. In R, the function named <code>function()</code> is a special one, it tells R that you are about to create a little routine and you want that set of code to be available to you for later use under the name of whatever you named it. This allows a tremendous amount of flexibility as you develop your own set of routines and analyses for your work. The part that actually does stuff is after the function call. It may be that the function that you create does need some data (those are the arguments) or you may not need any input in to the function (in which you pass no arguments). It all depends upon what you are creating.</p>
-<p>The key to understanding functions is that they are encapsulations of code—a shortcut for a sequence of instructions if you will not have to type over and over again. The less typing you do, the lower the probability that you will have errors (and all code has errors).</p>
-<p>Here is an example of some code that I’m going to develop into a function. This function will allow me to determine if one genotype could possibly be the offspring of the other genotype.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gstudio)
-loc1 &lt;-<span class="st"> </span><span class="kw">locus</span>( <span class="kw">c</span>(<span class="dv">128</span>,<span class="dv">130</span>) )
-loc2 &lt;-<span class="st"> </span><span class="kw">locus</span>( <span class="kw">c</span>(<span class="dv">128</span>,<span class="dv">128</span>) )
-<span class="kw">cat</span>( loc1, loc2 )</code></pre></div>
-<pre><code>## 128:130 128:128</code></pre>
-<p>We start out with two loci, a <code>128:130</code> heterozygote and a <code>128:128</code> homozygote. These may represent repeat motifs at a microsatellite locus or some other co-dominant genotype. First, I’ll break the locus into a vector of genotypes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">off.alleles &lt;-<span class="st"> </span><span class="kw">alleles</span>( loc1 )
-off.alleles</code></pre></div>
-<pre><code>## [1] &quot;128&quot; &quot;130&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mom.alleles &lt;-<span class="st"> </span><span class="kw">alleles</span>( loc2 )
-mom.alleles</code></pre></div>
-<pre><code>## [1] &quot;128&quot; &quot;128&quot;</code></pre>
-<p>To be a valid potential offspring there should be at least one of the alleles in the parent that matches the allele in the offspring. The <code>intersect()</code> function returns the set of values common to both vectors.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shared &lt;-<span class="st"> </span><span class="kw">intersect</span>( off.alleles, mom.alleles )
-shared</code></pre></div>
-<pre><code>## [1] &quot;128&quot;</code></pre>
-<p>If it has at least one of the alleles present (it could have both if parent and offspring are both the same heterozygote) then you cannot exclude this individual as a potential offspring. If there are no alleles in common, then the value returned is an empty vector.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loc3 &lt;-<span class="st"> </span><span class="kw">locus</span>( <span class="kw">c</span>(<span class="dv">132</span>,<span class="dv">132</span>))
-dad.alleles &lt;-<span class="st"> </span><span class="kw">alleles</span>( loc3 )
-<span class="kw">intersect</span>( mom.alleles, dad.alleles )</code></pre></div>
-<pre><code>## character(0)</code></pre>
-<p>This logic can be shoved into a function. You have to wrap it into a set of curly brackets. I use the length of the result from the intersect() to return from the function. Potential values for</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potential_offspring &lt;-<span class="st"> </span>function( parent, offspring ) {
-  off &lt;-<span class="st"> </span><span class="kw">alleles</span>( offspring )
-  par &lt;-<span class="st"> </span><span class="kw">alleles</span>( loc2 )
-  shared &lt;-<span class="st"> </span><span class="kw">intersect</span>( off, par )
-  <span class="kw">return</span>( <span class="kw">length</span>( shared ) &gt;<span class="st"> </span><span class="dv">0</span> )
-}</code></pre></div>
-<p>Now, you can call this function anytime you need, just passing it two genotypes. If they can be offspring it returns TRUE, as in the comparison between 128:130 and 128:128 genotypes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">potential_offspring</span>(loc1, loc2)</code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<p>And it returns FALSE for the comparison between 128:128 and 132:132.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">potential_offspring</span>(loc2, loc3)</code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
+<p>So we have been able to take our data, visualize it, manipulate it, and now it is time to apply some model to the data so we can get some degree of confidence on the statements we are going to make.</p>
+<div id="an-applied-example." class="section level2">
+<h2><span class="header-section-number">11.1</span> An applied example.</h2>
+<p>Consider the case where we are trying to determine the relative frequency of blue catfish (<em>Ictalurus furcatus</em>) in the James River.</p>
+<div class="figure">
+<img src="media/BlueCatfish_MattRath.jpg" alt="The blue catfish (Ictalurus furcatus), an invasive species in the James River watershed. Photo by Matt Rath (CC BY-NC 2.0)." />
+<p class="caption">The blue catfish (<em>Ictalurus furcatus</em>), an invasive species in the James River watershed. Photo by Matt Rath (CC BY-NC 2.0).</p>
 </div>
-<div id="variable-scope" class="section level2">
-<h2><span class="header-section-number">5.2</span> Variable Scope</h2>
-<p>There is a lot more information on writing functions and we will get into that as we progress through the text. However, it is important that I bring this up now. The value assigned to a variable is defined by its scope. Consider the following code</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">10</span></code></pre></div>
-<p>and the function defined as</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">do_it &lt;-<span class="st"> </span>function( x ) {
-  x &lt;-<span class="st"> </span>x +<span class="st"> </span><span class="dv">10</span>
-  <span class="kw">return</span>( x )
-}</code></pre></div>
-<p>When I call the function, the variable x that is the argument of the function is not the same variable that is in the environment that I assigned a value of 10. The x in the function argument is what we call “local to that function” in that within the curly brackets that follow (and any number of curly brackets nested within those, the value of x is given whatever was passed to the function.</p>
+<p>This species is not native to this region, it is endemic to the midwest drainages in the US such as the Mississippi, Missouri, and Ohio rivers. In the 1970’s, individuals were introducted into both the James and Rappahannock rivers and in 1985 stock was released in the Mattaponi river which eventually populated the Pamunkey. In the interim, this species has had a tremendous impact on native fishes. Before we can come up with management plans and/or recommendations, we must establish some baseline census data on the frequency of this fish in the basin.</p>
+<p>As a simple example, consider the case where you went out and caught 50 fish, 37 of which were blue cats.</p>
+<p><img src="Environmental_Data_Literacy_files/figure-html/unnamed-chunk-165-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>From this, we can estimate the relative frequency of the invasive species as:</p>
+<p><span class="math display">\[
+p_{catfish} = \frac{N_{catfish}}{N_{catfish} + N_{other}} = \frac{37}{50} = 0.74
+\]</span></p>
+<p>So, empirically, we found <code>74%</code> of the captures were the invasive species and <code>26%</code> were other species.</p>
+<p>Our underlying biological question here is one focusing on how common this invasive species is. In the data above, we had a single sample and found the relative frequency to be <span class="math inline">\(p=0.74\)</span>, though this just one sample. Is it really 74% ? How can we get any statistical confidence on this finding? Let’s take a short detour into how we develop statistical inferences using the binomial probability function as an example and then show how there are two different schools of thought on how to analyze these data</p>
 </div>
-<div id="decision-making" class="section level2">
-<h2><span class="header-section-number">5.3</span> Decision Making</h2>
-<p>We interact with our data in many ways and introspection of the values we have in the variables we are working with are of prime importance. Decision making in your code is where you evaluate your data and make a choice of outcomes based upon some criteria. Here is some example data that we can use as we explore the basics of <code>if()</code>, <code>if(){} else{}</code>, and <code>if(){} elif(){} else{}</code> coding patterns.</p>
-<div id="the-if-pattern" class="section level3">
-<h3><span class="header-section-number">5.3.1</span> The if Pattern</h3>
-<p>The most basic version of decision making is asking a single question and if the answer is TRUE then do something. The <code>if(){}</code> function does this and has the form</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if( CRITERIA ) {
-    DO_SOMETHING
-}</code></pre></div>
-<p>You pass a logical statement (or something that can be coerced into a logical type) to the function as the CRITERIA and if it evaluates to <code>TRUE</code>, then the contents of the <code>DO_SOMETHING</code> are executed. If the value of <code>CRITERIA</code> is not <code>TRUE</code> the <code>DO_SOMETHING</code> is skipped entirely—it is not even seen by the interpreter.</p>
-<p>Here we can test this out using the loci defined above along with the is_heterozygote() function. This function takes one or more locus objects and returns TRUE/FALSE if they are or are not a heterozygote.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is_heterozygote</span>( <span class="kw">c</span>(loc1, loc2) )</code></pre></div>
-<pre><code>## [1]  TRUE FALSE</code></pre>
-<p>If we shove that function into the <code>if()</code> parameters we can use its evaluation of the heterozygous state of the locus to do something interesting, say tell us it is a heterozygote—it is admittedly a contrived example, but hey you try to make easy examples, it is not easy.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if( <span class="kw">is_heterozygote</span>(loc1) ){
-  <span class="kw">print</span>(<span class="st">&quot;It&#39;s a het!&quot;</span>)
-}</code></pre></div>
-<pre><code>## [1] &quot;It&#39;s a het!&quot;</code></pre>
-<p>If the <code>is_heterozygote()</code> function returns a value of FALSE, then the contents of the <code>if()</code> function (the stuff within the curly brackets is skipped entirely.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if( <span class="kw">is_heterozygote</span>(loc2) ){
-  <span class="kw">print</span>(<span class="st">&quot;It&#39;s a het!&quot;</span>)
-}</code></pre></div>
-<p>Notice, there was no indication of any of that code inside the curly brackets. The if-else Pattern If there are more than on thing you want to potentially do when making a decision, you can add an else clause after the if pattern. Here if is_heterozygote() returns FALSE, the contents of the else{} clause will be executed. Here is the heterozygote example</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if( <span class="kw">is_heterozygote</span>(loc1) ) {
-  <span class="kw">cat</span>(loc1, <span class="st">&quot;is a heterozygote&quot;</span>)
-} else {
-  <span class="kw">cat</span>(loc1, <span class="st">&quot;is a homozygote&quot;</span>)
-}</code></pre></div>
-<pre><code>## 128:130 is a heterozygote</code></pre>
-<p>and the homozygote one</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if( <span class="kw">is_heterozygote</span>(loc2) ) {
-  <span class="kw">cat</span>(loc2, <span class="st">&quot;is a heterozygote&quot;</span>)
-} else {
-  <span class="kw">cat</span>(loc2, <span class="st">&quot;is a homozygote&quot;</span>)
-}</code></pre></div>
-<pre><code>## 128:128 is a homozygote</code></pre>
-<p>There is a slightly shorter version of this that is available for the lazy programmer and lets be honest, all programmers are lazy and the more you can accomplish with fewer strokes on the keyboard the better (this is how we got emacs and vim). I generally don’t teach the shortcuts up front, but this one is short and readily apparent so it may be more helpful than confusing. The <code>ifelse()</code> function has three parts, the condition, the result if <code>TRUE</code>, and the result if <code>FALSE</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span><span class="kw">ifelse</span>( <span class="kw">is_heterozygote</span>( <span class="kw">c</span>(loc1, loc2)) , <span class="st">&quot;heterozygote&quot;</span>, <span class="st">&quot;Not&quot;</span>)
-ans</code></pre></div>
-<pre><code>## [1] &quot;heterozygote&quot; &quot;Not&quot;</code></pre>
-<p>So iterating through the x vector, the condition <code>x&gt;0</code> is evaluated and if TRUE the sqrt() of the value is returned, else the NA is given. It is compact and easy to use so you may run into it often.</p>
+<div id="the-binomial" class="section level2">
+<h2><span class="header-section-number">11.2</span> The Binomial</h2>
+<p>If you were to flip a coin, it is either <code>HEADS</code> or <code>TAILS</code>, and if it is a fair coin, then the frequency at which you find a <code>HEADS</code> can be determined by flipping it a large number of times and counting how many come up <code>HEADS</code>. Actually, this probability is drawn from a well-known distribution, the binomial distribution, which is constructed as follows.</p>
+<p>Let the probability of getting <code>HEADS</code> be denoted as <span class="math inline">\(P(HEADS) = p\)</span> and the probability of not heads (or <code>TAILS</code> if you consider it to never land perfectly balanced on its side, and that would be silly), as <span class="math inline">\(1 - P(HEADS) = P(TAILS) = 1 - p = q\)</span>. Since either <code>HEADS</code> or <code>TAILS</code> must happen then <span class="math inline">\(p + q = 1\)</span>. Depending upon the number of times you flip the coin, you can come up with several different arrangements of <code>HEADS</code> (<code>H</code> for brevity) and <code>TAILS</code> (<code>T</code> similiarly).</p>
+<p>Here are some scenarios:<br />
+- <em>One flip:</em> <code>H</code> or <code>T</code>, both occuring at an expected rate of <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span>.<br />
+- <em>Two flips:</em> <code>HH</code> (rate is expected at <span class="math inline">\(p^2\)</span>) or <code>HT</code> (<span class="math inline">\(pq\)</span>) or <code>TH</code> (<span class="math inline">\(qp\)</span>) or <code>TT</code> (<span class="math inline">\(q^2\)</span>).<br />
+- <em>Three flips:</em> <code>HHH</code> (which can be written as <span class="math inline">\(p^3q^0\)</span> since <span class="math inline">\(q^0=1\)</span>) or <code>HHT</code> (<span class="math inline">\(p^2q^1\)</span>) or <code>HTH</code> (<span class="math inline">\(pqp = p^2q^1\)</span>) or <code>THH</code> (<span class="math inline">\(q^1p^2\)</span>) or <code>HTT</code> (<span class="math inline">\(p^1q^2\)</span>) or <code>THT</code> (<span class="math inline">\(pq^2\)</span>) or <code>TTH</code> (<span class="math inline">\(pq^2\)</span>) or <code>TTT</code> (<span class="math inline">\(p^0q^3\)</span>).<br />
+- etc.</p>
+<p>As you can see, there are some patterns emerging for any set of <span class="math inline">\(N\)</span> coin flips.<br />
+1. The probability of getting <span class="math inline">\(K\)</span> <code>H</code> is <span class="math inline">\(p^K\)</span> and getting <span class="math inline">\(N-K\)</span> <code>T</code> is <span class="math inline">\(q^{N-K}\)</span>. So if we are intersted in the simple question of 2 <code>H</code> and 1 <code>T</code> results, we have <span class="math inline">\(p^2q^1\)</span>.<br />
+2. However, if you look at the iteration through the three flip case, there are many different ways you can get 2 <code>H</code> and 1 <code>T</code>. In fact, there are <span class="math inline">\(\frac{N!}{K!(N-K)!}\)</span> different ways.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
+<p>By doing this, we can define the binomial probability distribution as:</p>
+<p><span class="math display">\[
+P(K|N,p) = \frac{N!}{K!(N-K)!}p^K(1-p)^{N-k}
+\]</span></p>
+<p>In the coin example, we set (or assumed to set) <span class="math inline">\(p=q\)</span> but that does not necessarily have to be true. We could, for example, set <span class="math inline">\(p = 0.74\)</span> as in our fish example. It may be the case that the true frequency of blue catfish is <span class="math inline">\(p\)</span> as specified. However, it is also possible that you could take <span class="math inline">\(N\)</span> samples and get 0 catfish in the same way as it is possible to get <span class="math inline">\(N\)</span> <code>H</code> flips, right? Lets look at the distribution for a sampling haul that caught 10 fishes (or fish if on the extreme ends). First, set up some parameters,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="fl">0.74</span>
+q &lt;-<span class="st"> </span><span class="dv">1</span>-p
+N &lt;-<span class="st"> </span><span class="dv">10</span>
+Catfish &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,N)</code></pre></div>
+<p>Then estimate the number of ways to get <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, <span class="math inline">\(\ldots\)</span> <span class="math inline">\(N\)</span> catfish.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ways_to_get &lt;-<span class="st"> </span><span class="kw">choose</span>(N,Catfish)
+ways_to_get</code></pre></div>
+<pre><code>##  [1]   1  10  45 120 210 252 210 120  45  10   1</code></pre>
+<p>This shows that while there is only one way to have all catfish (the first entry), there are 252 different ways to have 5 catfish! We have to attenuate these potential outcomes by the probability of observing <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, <span class="math inline">\(\ldots\)</span> <span class="math inline">\(N\)</span> catfish given the frequency at which they occur in the river.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prob_of_each &lt;-<span class="st"> </span>p^Catfish *<span class="st"> </span>q^(N-Catfish)
+prob_of_each</code></pre></div>
+<pre><code>##  [1] 1.411671e-06 4.017833e-06 1.143537e-05 3.254682e-05 9.263326e-05
+##  [6] 2.636485e-04 7.503843e-04 2.135709e-03 6.078556e-03 1.730051e-02
+## [11] 4.923990e-02</code></pre>
+<p>And then overall, we put these together to get the total probabilities.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( Catfish, <span class="dt">Frequency =</span> ways_to_get *<span class="st"> </span>prob_of_each )
+<span class="kw">ggplot</span>( data, <span class="kw">aes</span>(Catfish,Frequency)) +<span class="st"> </span><span class="kw">geom_col</span>() +<span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span>Catfish)</code></pre></div>
+<p><img src="Environmental_Data_Literacy_files/figure-html/unnamed-chunk-169-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>So while the true underlying fraction of catfish is 74%, it is possible to get <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, <span class="math inline">\(\ldots\)</span> <span class="math inline">\(N\)</span> catfish in a sample. So how do we gain meaninful inferences? Here are two of the most common ways.</p>
 </div>
+<div id="a-frequentist-approach" class="section level2">
+<h2><span class="header-section-number">11.3</span> A Frequentist Approach</h2>
+<p>This is by-in-large the most common approach to extracting statistical inferences from some data. Lets assume that the <em>true</em> underlying frequency is actually <span class="math inline">\(p=0.74\)</span> in the James River. A frequentist, accepting the knowledge in the graph above, would consider that the way to get a good understanding of what the real likelihood of catfish in the James would require us to go sample a large number of times. After all, any one sampling session could be a varied number of catfish even if we are drawing from a fixed population. However, if we sampled many times, on average, we could get a good approximation of what the true underlying frequency really is.</p>
+<p>For simplicity, lets say we go out and capture 50 fish from 10 different locations. The samples we collected had the following number of catfish.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">Site =</span> <span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">Catfish=</span><span class="kw">c</span>(<span class="dv">37</span>,<span class="dv">32</span>,<span class="dv">35</span>,<span class="dv">39</span>,<span class="dv">31</span>,<span class="dv">38</span>,<span class="dv">38</span>,<span class="dv">35</span>,<span class="dv">41</span>,<span class="dv">38</span>) )
+df</code></pre></div>
+<pre><code>##    Site Catfish
+## 1     1      37
+## 2     2      32
+## 3     3      35
+## 4     4      39
+## 5     5      31
+## 6     6      38
+## 7     7      38
+## 8     8      35
+## 9     9      41
+## 10   10      38</code></pre>
+<p>This results in an average frequency of <span class="math inline">\(\bar{p}=\)</span> 0.728. Pretty close to the target of 74%, right? Theoretically, if we went out and sampled more times the average would tend towards the true frequency—this is called the <em>Central Limit Theorem</em>. Understanding how repetitive sampling tends to reveal underlying parameters (such as a mean value) is the basis of the frequentist approach.</p>
+<p>With these data, we could easily test the NULL hypothesis, <span class="math inline">\(H_O: p = 0.74\)</span>, using a univariate Student’s <span class="math inline">\(t-\)</span>test. This test was developed in 1908 by William Sealy Gosset, a chemist working for Guinness brewery in Dublin Ireland (‘Student’ was apparently his pen name). While we will come back to this specific test later and get into more details about its use, for our purposes, we can use it directly in R. Most simple statistical models in R are depicted as a function with the name of the test and the suffix <code>.test()</code> attached to it. From this function, a result is returned as an object that has our answer in it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">t.test</span>(df$Catfish, <span class="dt">mu =</span> <span class="dv">37</span>)
+model</code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  df$Catfish
+## t = -0.60541, df = 9, p-value = 0.5599
+## alternative hypothesis: true mean is not equal to 37
+## 95 percent confidence interval:
+##  34.15804 38.64196
+## sample estimates:
+## mean of x 
+##      36.4</code></pre>
+<p>Here we see the average number of catfish sampled across all runs was 36.4 catfish. The <span class="math inline">\(t-\)</span>statistic, as we will see, has a very specific distribution and given that we have 9 degrees of freedom (more on what this means also later), the probability associated with these set of observations is <span class="math inline">\(P =\)</span> 0.559864. If we think of the distribution of all the times we could go out and sample 50 fish from the James River <strong>and</strong> the true underlying frequency was actually 74%, then the collection of samples we had would be roughly in the <span class="math inline">\(56^{th}\)</span> percentile—right in the middle. As such, I fail to reject the null hypothesis (<span class="math inline">\(H_O: p = 0.74\)</span>) for these data<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>. It may actually be 74%.</p>
+<p>However, consider the following code. Here we examine the sequence of potential values for the relative frequency, ranging from no catfish to only catfish. After all, I kinda just made up the 74% number because that was a random draw from the first sampling session. As each sampling session is independent and many found differing (though close) numbers of catfish, who is to say that 75% is actually the true value.</p>
+<p>Lets look at how the data observed the first time can be examined across all potential values for the true mean. In the figure below, I perform the <span class="math inline">\(t-\)</span>test using our original data and the hypothesis that the true mean is 0, 1, 2, , and 50 catfish. For each, I record the probability associated with testing the null hypothesis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potential &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">50</span>)
+other_p.vals &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">lapply</span>( potential,<span class="dt">FUN =</span> function(x) {<span class="kw">t.test</span>(df$Catfish, <span class="dt">mu=</span>x)$p.value}))
+data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( potential,other_p.vals)
+data$Reject &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+data$Reject[ data$other_p.vals &gt;=<span class="st"> </span><span class="fl">0.05</span>] &lt;-<span class="st"> </span><span class="ot">FALSE</span>
+data$Reject &lt;-<span class="st"> </span><span class="kw">factor</span>( data$Reject, <span class="dt">ordered=</span><span class="ot">TRUE</span>, <span class="dt">levels=</span><span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">FALSE</span>))
+<span class="kw">ggplot</span>(data,<span class="kw">aes</span>(<span class="dt">x=</span>potential,<span class="dt">y=</span>other_p.vals)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">0</span>,<span class="dt">intercept =</span> <span class="fl">0.05</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape=</span>Reject)) +<span class="st">  </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;True Mean&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Probability&quot;</span>) +
+<span class="st">  </span><span class="kw">scale_shape_discrete</span>(<span class="st">&quot;Reject Ho&quot;</span>)</code></pre></div>
+<p><img src="Environmental_Data_Literacy_files/figure-html/unnamed-chunk-172-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>We see that 35, 36, 37, and 38, are all values could not be rejected using a <span class="math inline">\(t-\)</span>test. This means that the actual frequency of <span class="math inline">\(\frac{35}{50} = 0.7\)</span>, <span class="math inline">\(\frac{36}{50} = 0.72\)</span>, <span class="math inline">\(\frac{37}{50} = 0.74\)</span>, and <span class="math inline">\(\frac{38}{50} = 0.76\)</span> are all potential frequencies for which the observations we made could not be rejected! So how do we know?</p>
+<p>One way to get a better idea is to go sample more. “Always increase your sample size,” says the advisor to the student. If we captured all the fish in the James River, we would know exactly their relative frequencies–just by counting. However, we cannot sample them all (though Dr. Garman would really like to have all the catfish out of the James River).</p>
+<p>The main idea here is that if we were to sample enough, the <em>Central Limit Theorem</em> states that we would assymptotically arrive at the true value of the underlying.</p>
 </div>
-<div id="the-if-else-pattern" class="section level2">
-<h2><span class="header-section-number">5.4</span> The <code>if-else</code> Pattern</h2>
-<p>It is possible to test many conditions in a single sequence by stringing together else-if conditions. The point that is important here is that the first condition that evaluates to TRUE will be executed and all remaining ones will be skipped, even if they also are logically TRUE. This means that it is important to figure out the proper order of asking your conditions. Here is an example function that determines if none, one, or both of the genotypes passed to it are heterozygotes. By default, I step through every one of the potential options of available on this comparison.<br />
-1. The first is a heterozygote and the second one isn’t 2. The first one isn’t and the second one is 3. Both are heterozygotes 4. The last state (both are not)</p>
-<p>Here is the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">which_is_het &lt;-<span class="st"> </span>function( A, B) {
-  if( <span class="kw">is_heterozygote</span>(A) &amp;<span class="st"> </span>!<span class="kw">is_heterozygote</span>(B) ) {
-    <span class="kw">print</span>(<span class="st">&quot;First is heterozygote&quot;</span>)
-  } else if( !<span class="kw">is_heterozygote</span>(A) &amp;<span class="st"> </span><span class="kw">is_heterozygote</span>(B) ){
-    <span class="kw">print</span>(<span class="st">&quot;Second is heterozygote&quot;</span>)
-  } else if( <span class="kw">is_heterozygote</span>(A) &amp;<span class="st"> </span><span class="kw">is_heterozygote</span>(B) ){
-    <span class="kw">print</span>(<span class="st">&quot;Both are heterozygotes&quot;</span>)
-  } else {
-    <span class="kw">print</span>( <span class="st">&quot;Neither are heterozygotes&quot;</span>)
-  }
-}</code></pre></div>
-<p>It is possible that the order of these CRITERIA could be changed, the important thing to remember is that the sequence of if - else if - else if etc. will terminate the very first time one of the CRITERIA is evaluated to be <code>TRUE</code>.</p>
-</div>
-<div id="flow-control" class="section level2">
-<h2><span class="header-section-number">5.5</span> Flow Control</h2>
-<p>Flow control is the process of iterating across objects and perhaps doing operations on those objects. The R language has several mechanisms that you can use to control the flow of a script or bit of code.</p>
-<div id="the-for-loop" class="section level3">
-<h3><span class="header-section-number">5.5.1</span> The <code>for()</code> Loop</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">6</span>)
-x</code></pre></div>
-<pre><code>## [1] 3 8 5 4 6</code></pre>
-<p>You can iterate through this vector using a for() loop. This is a simple function that has the form:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for( SOME_SEQUENCE ){
-  DO_SOMETHING
-}</code></pre></div>
-<p>Where the <code>SOME_SEQUENCE</code> component is a sequence of values either specified OR calculated and the <code>DO_SOMETHING</code> is the thing you want to do with each of the values in the sequence. Usually, there is a variable defined in the <code>SOME_SEQUENCE</code> component and the value of that variable is used. Here are a few examples. The first goes through the existing vector directly and assigns (in sequential order) the entries of ‘x’ to the variable val. We can then do whatever we want with the value in val (though if we change it, nothing happens to the original x vector).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for( val in x ){
-  <span class="kw">print</span>(val)
-}</code></pre></div>
-<pre><code>## [1] 3
-## [1] 8
-## [1] 5
-## [1] 4
-## [1] 6</code></pre>
-<p>We can also specify a sequence directly and then use it as an index. Here I use an index variable named i to take on the integer seqeunce equal in length to the length of the original <code>x</code> variable. Then I can iterate through the original vector and use that index variable to grab the value I want.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for( i in <span class="dv">1</span>:<span class="kw">length</span>(x)){
-  <span class="kw">print</span>( x[i] )
-}</code></pre></div>
-<pre><code>## [1] 3
-## [1] 8
-## [1] 5
-## [1] 4
-## [1] 6</code></pre>
-<p>Both give us the same output, namely a way to go through the variable <code>x</code>. However, there may be a need to use the latter approach in your calculations. For example, perhaps I want to do some other operation on the values. In this very contrived example that follows, I want to perform operations on the values in <code>x</code> depending on if they are even or odd. For the odd ones, I add the corresponding value in <code>y</code> and if not I subtract it. Sure, this is totally contrived and I cannot think of a reason why I would be doing this, but if I need to know what index (row, column or whatever) an entry is during the iteration process, then I need to use this approach over the <code>for( val in x)</code> approach.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">5</span>
-for( i in <span class="dv">1</span>:<span class="kw">length</span>(x)){
-  if( x[i] %%<span class="st"> </span><span class="dv">2</span>)
-    <span class="kw">print</span>( x[i] +<span class="st"> </span>y[i])
-  else
-    <span class="kw">print</span>( x[i] -<span class="st"> </span>y[i] )
-}</code></pre></div>
-<pre><code>## [1] 4
-## [1] 6
-## [1] 8
-## [1] 0
-## [1] 1</code></pre>
-</div>
-<div id="short-circuiting-the-loop" class="section level3">
-<h3><span class="header-section-number">5.5.2</span> Short Circuiting the Loop</h3>
-<p>It is possible to short circuit the looping process using the keywords next and break, though in my programming style, I consider their use in my source files as evidence of inelegant code. That said, you may need them on occasion.</p>
-<p>The next keyword basically stops all commands after that during the current iteration of the loop. It does not terminate the loop itself, it just stops the commands that follow it this time through. Here is an example that uses the modulus operator, <code>%%</code> (e.g., the remainder after division), to print out only those numbers that are divisible by three.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for( i in <span class="dv">1</span>:<span class="dv">20</span> ){
-  if( i %%<span class="st"> </span><span class="dv">3</span> )
-    next
-  <span class="kw">cat</span>(<span class="st">&quot;The value of i =&quot;</span>,i,<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
-}</code></pre></div>
-<pre><code>## The value of i = 3 
-## The value of i = 6 
-## The value of i = 9 
-## The value of i = 12 
-## The value of i = 15 
-## The value of i = 18</code></pre>
-<p>The use of break to exit the loop entirely is perhaps more commonly encountered. When this keyword is encountered, the loop terminates immediately, as if it reached the send of the sequence.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for( i in <span class="dv">1</span>:<span class="dv">10</span>){
-  if( i &gt;<span class="st"> </span><span class="dv">2</span> )
-    break
-  <span class="kw">cat</span>(<span class="st">&quot;The value of i=&quot;</span>,i,<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
-}</code></pre></div>
-<pre><code>## The value of i= 1 
-## The value of i= 2</code></pre>
+<div id="a-bayesian-approach" class="section level2">
+<h2><span class="header-section-number">11.4</span> A Bayesian Approach</h2>
+<p>Using probability to represent uncertainty in all parts of a statistical model. Adapting a Bayesian approach requires three things:</p>
+<ol style="list-style-type: decimal">
+<li>Data consisting of several observations.</li>
+<li>A generative model underlying the creation of the data.</li>
+<li>Priors probabilities,</li>
+</ol>
+<p>In essence, we want to start with some data and try to figure out what the parameters are given some specified model.</p>
+<p>A/B Testing</p>
+<p><span class="math display">\[
+P(A|B) = \frac{P(B|A)P(B)}{P(A)P(B)}
+\]</span></p>
+<p>Simple example. For a set of <span class="math inline">\(N\)</span> observations, consider the case where we have <span class="math inline">\(k\)</span> observations of species <code>A</code> and <span class="math inline">\(N-k\)</span> observations of species <code>B</code>. As an environmental scientist, we are interested in the frequency of each of these species in our sampling location. For simplicity, lets call the frequency of species <code>A</code> <span class="math inline">\(p\)</span> and the frequency of species <code>B</code> in our samples as <span class="math inline">\(q = 1-p\)</span>.</p>
+<p>A frequentist would start with a hypothesis, such as <span class="math inline">\(H_O:\)</span><em>The species are equally frequenct</em>. In this case, it would amo</p>
+<p><span class="math display">\[
+P(X|N,k,p) = \frac{N!}{(N-k)!k!}p^{N-k}(1-p)^k
+\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">observed &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">25</span>,<span class="dv">1</span>,<span class="fl">0.42</span>)
+observed</code></pre></div>
+<pre><code>##  [1] 0 1 0 0 1 0 1 0 0 1 0 0 0 1 1 1 0 0 0 0 0 0 0 1 0</code></pre>
 
 </div>
 </div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p>The <span class="math inline">\(X!\)</span> notation is defined as: <span class="math inline">\(X! = X * (X-1) * (X-2) * (X-3) * \dots * 3 * 2 * 1\)</span>. This number gets big QUICK so be careful.<a href="statistical-inferences.html#fnref3">↩</a></p></li>
+<li id="fn4"><p>Notice here that I did not say ‘accept’ the null, we <strong>never</strong> accept null hypotheses, only fail to reject them.<a href="statistical-inferences.html#fnref4">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="manipulating-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="spatial-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summary-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
