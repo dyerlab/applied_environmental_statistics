@@ -6,4 +6,6 @@
 
 _bookdown_file*
 docs/*_files*
+docs/placeholder*
 *.swp
+media/*.key

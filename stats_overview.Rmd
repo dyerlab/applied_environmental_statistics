@@ -69,7 +69,7 @@ ways_to_get <- choose(N,Catfish)
 ways_to_get
 ```
 
-This shows that while there is only one way to have all catfish (the first entry), there are 252 different ways to have 5 catfish!  We have to attenuate these potential outcomes by the probability of observing $0$, $1$, $\ldots$ $N$ catfish given the frequency at which they occur in the river.
+This shows that while there is only 1 way to have all catfish (the first entry), there are 252 different ways to have 5 catfish!  We have to attenuate these potential outcomes by the probability of observing $0$, $1$, $\ldots$ $N$ catfish given the frequency at which they occur in the river.
 
 ```{r}
 prob_of_each <- p^Catfish * q^(N-Catfish)
@@ -98,7 +98,9 @@ df
 
 This results in an average frequency of $\bar{p}=$ `r sum(df$Catfish)/500`.  Pretty close to the target of 74%, right?  Theoretically, if we went out and sampled more times the average would tend towards the true frequency---this is called the *Central Limit Theorem*.  Understanding how repetitive sampling tends to reveal underlying parameters (such as a mean value) is the basis of the frequentist approach.  
 
-With these data, we could easily test the NULL hypothesis, $H_O: p = 0.74$, using a univariate Student's $t-$test.  This test was developed in 1908 by William Sealy Gosset, a chemist working for Guinness brewery in Dublin Ireland ('Student' was apparently his pen name). While we will come back to this specific test later and get into more details about its use, for our purposes, we can use it directly in R.  Most simple statistical models in R are depicted as a function with the name of the test and the suffix `.test()` attached to it.  From this function, a result is returned as an object that has our answer in it.
+With these data, we could easily test the NULL hypothesis, $H_O: p = 0.74$, using a univariate Student's $t-$test.  This test was developed in 1908 by William Sealy Gosset, a chemist working for Guinness brewery in Dublin Ireland ('Student' was apparently his pen name). While we will come back to this specific test later and get into more details about its use, for our purposes, it is designed to determine if either a set of samples has a particular mean value or two sets of observations have the same mean value.  
+
+In R, the majority of simple statistical models are depicted as a function with the name of the test and the suffix `.test()` attached to it.  In our case, we will be determining if the mean number of catfish collected from the different sites is equal to a distribution whose mean is 37 using the `t.test()` function and passing it the data as well as the value of the mean we are using for the NULL hypothesis.
 
 ```{r}
 model <- t.test(df$Catfish, mu = 37)
@@ -106,6 +108,8 @@ model
 ```
 
 Here we see the average number of catfish sampled across all runs was `r model$estimate` catfish.  The $t-$statistic, as we will see, has a very specific distribution and given that we have `r model$parameter` degrees of freedom (more on what this means also later), the probability associated with these set of observations is $P =$ `r model$p.value`.  If we think of the distribution of all the times we could go out and sample 50 fish from the James River **and** the true underlying frequency was actually 74%, then the collection of samples we had would be roughly in the $56^{th}$ percentile---right in the middle.  As such, I fail to reject the null hypothesis ($H_O: p = 0.74$) for these data^[Notice here that I did not say 'accept' the null, we **never** accept null hypotheses, only fail to reject them.].  It may actually be 74%.
+
+
 
 However, consider the following code.  Here we examine the sequence of potential values for the relative frequency, ranging from no catfish to only catfish.  After all, I kinda just made up the 74% number because that was a random draw from the first sampling session.  As each sampling session is independent and many found differing (though close) numbers of catfish, who is to say that 75% is actually the true value. 
 
